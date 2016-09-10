@@ -1,23 +1,31 @@
 <%- include header %>
 <div class="am-g">
     <div class="am-u-lg-8 am-u-sm-centered">
+        <% if (user) { %>
+          用户名: <%= user.name %>
+        <% } %>
 <% posts.forEach(function (post, index) { %>
     <div class="am-panel am-panel-default">
         <div class="am-panel-hd">
         <p>
-        <a href="#">
+        标题：<a href="#">
         <%=post.title %>
-        </a> | 作者：
+        </a>
+        <br />
+        作者：
         <a href="#">
         <%=post.name %>
-        </a> | 日期：
+        </a>
+        <br />
+        日期：
         <%=post.time.minute %>
         </p>
         </div>
         <div class="am-panel-bd">
-        <p>
-        <%- post.post %>
-        </p>
+            内容：
+            <p>
+            <%- post.post %>
+            </p>
         </div>
     </div>
     <% }) %>

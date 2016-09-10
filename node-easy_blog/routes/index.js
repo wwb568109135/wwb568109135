@@ -24,11 +24,22 @@ function checkLogin(req, res, next) {
 
 module.exports = function(app) {
     app.get('/', function(req, res) {
+        if (req.session.isVisit) {
+            req.session.isVisit++;
+            console.log('<test>第 ' + req.session.isVisit +
+                '次来到此页面</test>');
+        } else {
+            req.session.isVisit = 1;
+            console.log('欢迎第一次来这里');
+        }
+
+
         // 获取发表记录
         Post.get(null, function(err, posts) {
             if (err) {
                 posts = [];
             }
+            console.log("req.session.user:" + req.session.user)
             res.render('index', {
                 title: '主页',
                 user: req.session.user,
@@ -112,8 +123,10 @@ module.exports = function(app) {
                     return res.redirect('/reg');
                 }
                 req.session.user = user;
-                req.flash('success', '注册成功!');
-                res.redirect('/');
+                req.flash('success', '注册成功，用户名：' +
+                    req.session.user +
+                    ' 请马上登陆！');
+                res.redirect('/login');
             });
         });
     });

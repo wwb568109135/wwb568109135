@@ -10,6 +10,7 @@ var flash = require('connect-flash'); //flash 是一个可以储存特定信息�
 
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
+var redisStore = require('connect-redis')(session);
 
 var app = express();
 app.set('port', process.env.PORT || 3000);
@@ -26,14 +27,16 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 
 app.use(session({
+    // session 存放在内存中不方便进程间共享，因此可以使用 redis/MongoStore 等缓存来存储 session。
     secret: settings.cookieSecret,
     cookie: {
         maxAge: 1000 * 60 * 60 * 24 * 30
     },
-    store: new MongoStore({
-        url: 'mongodb://localhost:27017/newblog',
-        autoRemove: 'native' // Default
-    })
+    store: new redisStore()
+        // store: new MongoStore({
+        //     url: 'mongodb://localhost:27017/newblog',
+        //     autoRemove: 'native' // Default
+        // })
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 routes(app);
