@@ -1,0 +1,9 @@
+{
+	"data": {
+		"id": 123,
+		"name": "lakjf",
+	},
+	"result" : true,
+	"code" : 0,
+	"msg": "success"
+}

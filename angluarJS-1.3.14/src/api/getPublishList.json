@@ -1,0 +1,57 @@
+{
+    "code": 1,
+    "msg": "\u6210\u529f\uff01",
+    "data": {
+        "id": "1",
+        "name": "\u4e13\u989812222",
+        "title": "\u4e13\u98981-\u6807\u9898",
+        "children": [{
+            "id": "354",
+            "name": "\u5b50\u9875\u9762111",
+            "client_id": "1",
+            "title": "afe",
+            "image": null,
+            "parent_id": "3",
+            "position": "1",
+            "warehouse": "\u5317\u4eac\u7ad9",
+            "sale_type": "\u9884\u70ed",
+            "member_type": "A1\/A2",
+            "start_time": "2015-03-19 16:19:08",
+            "end_time": "2015-03-19 16:19:10",
+            "platform": "Android",
+            "operator": null
+        }, {
+            "id": "355",
+            "name": "\u5b50\u9875\u9762",
+            "client_id": "1",
+            "title": "12321",
+            "image": null,
+            "parent_id": "3",
+            "position": "1",
+            "warehouse": "\u5317\u4eac\u7ad9",
+            "sale_type": "\u5728\u552e",
+            "member_type": "A1\/A2\/B0\/C1\/C2\/new\/old",
+            "start_time": "2015-03-19 16:43:00",
+            "end_time": "2015-03-19 00:00:00",
+            "platform": "Android\/iPhone\/iPad\/WAP",
+            "operator": null
+        }, {
+            "id": "379",
+            "name": "\u5b50\u9875\u9762111",
+            "client_id": "1",
+            "title": "afe",
+            "image": null,
+            "parent_id": "3",
+            "position": "1",
+            "warehouse": "\u5317\u4eac\u7ad9",
+            "sale_type": "\u9884\u70ed",
+            "member_type": "",
+            "start_time": "0000-00-00 00:00:00",
+            "end_time": "0000-00-00 00:00:00",
+            "platform": "Android",
+            "operator": null
+        }]
+    },
+    "result": true,
+    "page": null
+}

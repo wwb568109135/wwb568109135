@@ -1,0 +1,41 @@
+{
+	"data": {
+		"id": 11,
+		"name": "模块111",
+		"template": "<div class=\"plugin-pingou\"></div>",
+		"css": ".plugin-pingou img {max-width: 100%;} .plugin-pingou { width: 100%; margin: 0 auto; position: relative;} .plugin-pingou .link { position: absolute; background: #000;}",
+		"js": "(function(){return function(a,b){var d=\"\",e=$(\"<img>\");a=a.find(\".plugin-pingou\");Array.isArray(b.model)||!1===b.model||e.appendTo(a).attr(\"src\",b.model.phone_pic_src).load(function(){$.each(b.data,function(a,e){$.each(b.model.list,function(b,c){a==c.position&&(d+='<a class=\"link\" href=\"'+e+'\" style=\"position:absolute;left:'+c.left+\"px;top:\"+c.top+\"px; width:\"+c.width+\"px; height:\"+c.height+'px;\"></a>')})});a.append(d)})}})();",
+		"page_type_id": 0,
+		"module_type_id": "purchase",
+		"data": ["http://www.baidu.com/id=1", "", "http://www.google.com"],
+		"model": {
+			"phone_pic_src": "/demo/image/pg.png",
+			"pad_pic_src": "/demo/image/pg.png",
+			"list": [{
+				"left": 100,
+				"top": 50,
+				"width": 100,
+				"height": 60,
+				"url": "http://www.baidu.com",
+				"position": 1
+			}, {
+				"left": 100,
+				"top": 150,
+				"width": 100,
+				"height": 20,
+				"url": "http://www.163.com",
+				"position": 5
+			}, {
+				"left": 100,
+				"top": 250,
+				"width": 100,
+				"height": 20,
+				"url": "http://www.qq.com",
+				"position": 7
+			}] 
+		}
+	},
+	"result": true,
+	"code": 1,
+	"msg": "成功"
+}

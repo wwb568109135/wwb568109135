@@ -1,0 +1,30 @@
+{
+	"data": [{
+		"id": 11,
+		"name": "品购",
+		"code": "purchase"
+	},{
+		"id": 11,
+		"name": "图片",
+		"code": "head"
+	},{
+		"id": 11,
+		"name": "档期楼层",
+		"code": "brand"
+	},{
+		"id": 11,
+		"name": "商品楼层",
+		"code": "product"
+	},{
+		"id": 11,
+		"name": "分享组件",
+		"code": "share"
+	},{
+		"id": 11,
+		"name": "倒计时",
+		"code": "countdown"
+	}],
+	"result": true,
+	"code": 1,
+	"msg": "成功"
+}

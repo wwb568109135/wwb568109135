@@ -1,0 +1,28 @@
+{
+    "code": 1,
+    "msg": "success",
+    "data": [{
+        "id": "1",
+        "code": "A1"
+    }, {
+        "id": "2",
+        "code": "A2"
+    }, {
+        "id": "3",
+        "code": "B0"
+    }, {
+        "id": "4",
+        "code": "C1"
+    }, {
+        "id": "5",
+        "code": "C2"
+    }, {
+        "id": "6",
+        "code": "new"
+    }, {
+        "id": "7",
+        "code": "old"
+    }],
+    "result": true,
+    "page": null
+}

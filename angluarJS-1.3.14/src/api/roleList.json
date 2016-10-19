@@ -1,0 +1,59 @@
+{
+	"data": [{
+		"id": 1,
+		"name": "kai",
+		"department": "wap平台",
+		"role": "管理员"
+	},{
+		"id": 2,
+		"name": "松松",
+		"department": "wap平台",
+		"role": "管理员"
+	},{
+		"id": 3,
+		"name": "刘兴",
+		"department": "wap平台",
+		"role": "管理员"
+	},{
+		"id": 4,
+		"name": "kai",
+		"department": "wap平台",
+		"role": "管理员"
+	},{
+		"id": 5,
+		"name": "kai",
+		"department": "wap平台",
+		"role": "管理员"
+	},{
+		"id": 6,
+		"name": "kai",
+		"department": "wap平台",
+		"role": "管理员"
+	},{
+		"id": 7,
+		"name": "kai",
+		"department": "wap平台",
+		"role": "管理员"
+	},{
+		"id": 8,
+		"name": "kai",
+		"department": "wap平台",
+		"role": "管理员"
+	},{
+		"id": 9,
+		"name": "kai",
+		"department": "wap平台",
+		"role": "管理员"
+	},{
+		"id": 10,
+		"name": "kai",
+		"department": "wap平台",
+		"role": "管理员"
+	}],
+	"pageNum": "10",
+	"pageNo": "1",
+	"total": "50",
+	"result" : true,
+	"code" : 0,
+	"msg": "success"
+}

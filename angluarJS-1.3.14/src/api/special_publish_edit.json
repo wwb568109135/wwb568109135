@@ -1,0 +1,105 @@
+{
+	"special_id" : "1",
+	"special_name" : "圣诞节卡机看电视剧的啊的萨克的健康撒娇看",
+	"publish_title" : "2321的撒加快递",
+	"memberTypes" : [
+		{ "name" : "下单多次" , "value" : "1"},
+		{ "name" : "电视剧阿卡" , "value" : "2"},
+		{ "name" : "圣诞卡" , "value" : "3"}
+	],
+	"platforms": [
+		{
+			"name" : "安卓",
+			"check" : "false"
+		},{
+			"name" : "iphone",
+			"check" : "false"
+		},{
+			"name" : "ipad",
+			"check" : "false"
+		},{
+			"name" : "wap",
+			"check" : "false"
+		}
+	],
+	"channels": [
+		{
+			"name" : "首页",
+			"check" : "false"
+		},{
+			"name" : "亲子",
+			"check" : "false"
+		},{
+			"name" : "美妆",
+			"check" : "false"
+		},{
+			"name" : "家居",
+			"check" : "false"
+		}],
+	"iphones": [
+		{
+			"name" : "6",
+			"check" : "false"
+		},{
+			"name" : "7",
+			"check" : "false"
+		},{
+			"name" : "8",
+			"check" : "false"
+		},{
+			"name" : "8.1",
+			"check" : "false"
+		}
+	],
+	"androids": [
+		{
+			"name" : "2.4",
+			"check" : "false"
+		},{
+			"name" : "4",
+			"check" : "false"
+		},{
+			"name" : "4.2",
+			"check" : "false"
+		},{
+			"name" : "4.4",
+			"check" : "false"
+		}
+	],
+	"ipads": [
+		{
+			"name" : "6",
+			"check" : "false"
+		},{
+			"name" : "7",
+			"check" : "false"
+		},{
+			"name" : "8",
+			"check" : "false"
+		},{
+			"name" : "8.1",
+			"check" : "false"
+		}
+	],
+	"pictures": [
+		{
+			"mobile" : "http://placehold.it/150x150",
+			"pad" : "http://placehold.it/150x150",
+			"start_time" : "2015-01-15 12:00",
+			"end_time" : "2015-01-16 12:00"
+		},{
+			"mobile" : "http://placehold.it/150x150",
+			"pad" : "http://placehold.it/150x150",
+			"start_time" : "2015-01-15 12:00",
+			"end_time" : "2015-01-16 12:00"
+		},{
+			"mobile" : "http://placehold.it/150x150",
+			"pad" : "http://placehold.it/150x150",
+			"start_time" : "2015-01-15 12:00",
+			"end_time" : "2015-01-16 12:00"
+		}
+	],
+	"result" : true,
+	"code" : 0,
+	"msg": "success"
+}

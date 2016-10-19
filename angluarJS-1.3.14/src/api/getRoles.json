@@ -1,0 +1,16 @@
+{
+	"data": [{
+		"id": 1,
+		"name": "管理员"
+	},{
+		"id": 2,
+		"name": "打酱油"
+	},{
+		"id": 3,
+		"name": "录入"
+	}],
+	"text": "kai",
+	"result" : true,
+	"code" : 0,
+	"msg": "success"
+}
