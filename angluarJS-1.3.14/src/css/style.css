@@ -1,0 +1,100 @@
+div,
+body,
+html,
+ul,
+ol,
+li,
+p { margin: 0; padding: 0; }
+ul,
+ol,
+li { list-style: none; }
+body { line-height: 1; font-size: 16px; color: #333; font-family: 'arial'; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding-bottom: 6px; }
+.body { background: #E3E3E3; }
+a { text-decoration: none; font-size: 100%; color: #55f; }
+a:visited { color: #222; }
+img { vertical-align: middle; }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 { margin: 0; padding: 0; font-size: 100%; }
+input,
+a,
+button { -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
+input { outline: none; }
+
+.clearfix:after {visibility: hidden;display: block;font-size: 0;content: " ";clear: both;height: 0;}
+
+.wrapper {background: #ccc;}
+.header {background: #aaa; padding: 20px; }
+.container {background: #ccc; padding: 20px; min-height: 200px;}
+.footer {background: #eee; padding: 20px; }
+.loading {width: 100%; position: absolute; left: 0; top: 0; height: 100%; background: #fff; color: #000; text-align: center;}
+
+.view-container {
+  position: relative;
+}
+
+.view-frame.ng-enter, .view-frame.ng-leave {
+  background: white;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.view-frame.ng-enter {
+  -webkit-animation: 0.5s fade-in;
+  -moz-animation: 0.5s fade-in;
+  -o-animation: 0.5s fade-in;
+  animation: 0.5s fade-in;
+  z-index: 100;
+}
+
+.view-frame.ng-leave {
+  -webkit-animation: 0.5s fade-out;
+  -moz-animation: 0.5s fade-out;
+  -o-animation: 0.5s fade-out;
+  animation: 0.5s fade-out;
+  z-index:99;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@-moz-keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@-webkit-keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+@-moz-keyframes fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+@-webkit-keyframes fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+.box { width: 100px; height: 100px; background: #000;}
+
+.module-edit .module {float: left; width: 200px; border: 1px solid #000; margin-right: 10px; min-height: 200px; padding: 10px; background: #fff}
+.module-edit .setting { float: left; width: 400px;border: 1px solid #000; margin-right: 10px;min-height: 200px; padding: 10px; background: #fff}
+.module-edit .preview { float: left; width: 300px;border: 1px solid #000; margin-right: 10px;min-height: 200px; padding: 10px; background: #fff}
+.module-edit .preview-on {opacity: .5;}
+.module-item {width: 80px; height: 80px; float: left; z-index: 100; background: #eff; margin:0 10px 10px 0; color: #000; text-align: center; border: 1px solid #000;}
+.module-item-special {background: #f00;}
+
+.popup { width: 300px; position: absolute;left: 0;top: 0; background: #fff;border: 1px solid #666;}
+
+input[type=file] {display: none;}
