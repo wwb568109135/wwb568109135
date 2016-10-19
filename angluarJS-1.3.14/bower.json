@@ -1,0 +1,28 @@
+{
+  "name": "anti-dns-hijecking",
+  "version": "1.0.0",
+  "main": "",
+  "ignore": [],
+  "dependencies": {
+    "angular": "*",
+    "angular-route": "*",
+    "angular-lazyload": "~0.5.0",
+    "angular-resource": "*",
+    "seajs": "~2.3.0",
+    "angular-animate": "~1.3.13",
+    "angular-dragdrop": "~1.0.11",
+    "jquery-qrcode": "*",
+    "seajs-css": "*",
+    "jquery-ui-touch-punch": "*",
+    "zeroclipboard": "*",
+    "angular-sortable-view": "~0.0.13",
+    "angular-ueditor": "*"
+  },
+  "devDependencies": {
+    "jqueryui-timepicker-addon": "~1.5.0",
+    "angular-file-upload": "~1.1.5",
+    "jquery-tmpl": "*",
+    "angular-utils-pagination": "~0.6.1",
+    "mockjs": "~1.0.0"
+  }
+}
