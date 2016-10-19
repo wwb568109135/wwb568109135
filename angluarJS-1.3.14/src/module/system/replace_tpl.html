@@ -1,0 +1,47 @@
+<style type="text/css">
+    .pop-upload{
+        padding: 50px 20px 30px;
+    }
+    .popAdminBtn{
+        line-height: 74px;
+    }
+    .popAdminBtn2{
+        line-height: 40px;
+        height: 40px;
+    }
+    .popAdminBtn2 a{
+        color: blue;
+        width: auto;
+        vertical-align: initial;
+        text-decoration: underline;
+    }
+
+    .edit-area {padding: 15px;}
+    .edit-area .text {margin-bottom: 15px; line-height: 20px;}
+    .edit-area .text label {float: left; margin-right: 10px;}
+    .edit-area .text input, .edit-area .text textarea{width: 300px; border: none; background-color: #eee;}
+    .edit-area .text textarea {height: 400px;}
+</style>
+
+
+<div class="popAdmin popShouye" ng-show="editsData.showEditsBox" style="position:relative; display:block !important; margin:100px auto; left:0; top:0;">
+    <div class="popAdminTitle">
+        替换后台文件
+    </div>
+
+    <div class="edit-area">
+        <div class="text">
+            <label for="">替换文件路径：</label><input type="text" class="text" ng-model="path" placeholder="相对于client的路径">
+        </div>
+        <div class="text">
+            <label for="">替换文件内容：</label>
+            <textarea ng-model="txt"></textarea>
+        </div>
+    </div>
+
+    <div class="popAdminBtn">
+        <a class="popAdminBtn-Cancel" href="" onclick="history.back()">取消</a>
+        <a class="popAdminBtn-OK" href="" ng-click="postData()">确定</a>
+    </div>
+    <!-- <a class="popAdminBtn-close" href="javascript:;" ng-click="hideEditsBox()"></a> -->
+</div>

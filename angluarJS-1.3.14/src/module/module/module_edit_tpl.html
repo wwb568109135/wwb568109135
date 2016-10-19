@@ -1,0 +1,35 @@
+<div class="module-edit clearfix">
+	<!-- module start -->
+	<div class="module">
+		<div ng-repeat="item in moduleList" ng-class-odd="'module-item'" ng-class-even="'module-item module-item-special'" data-drag="true" data-jqyoui-draggable="{animate:true, onDrag:'drag(item, item)', index:100, onStart:'start', onStop:'stop'}">{{item.name}}</div>
+	</div>
+	<!-- module end -->
+	<!-- preview start -->
+	<div class="preview" ng-class="{'preview-on': previewOn}" data-drop="true" data-jqyoui-droppable="{index:101, onDrop:'drop', onOut :'out', onOver :'over'}" data-jqyoui-options="{accept:'.module-item'}"></div>
+	<!-- preview end -->
+	<!-- setting start -->
+	<div class="setting">
+		<div ng-show="curModule">
+			<h2>基础属性</h2>
+			<div ng-repeat="item in curModule.editable">
+				<label for="">{{item.label}}</label>
+				<input type="{{item.type}}">
+			</div>
+			<h2>样式</h2>
+			<div>
+				<label for="">JS</label>
+				<input type="text" value="{{curModule.js}}">
+			</div>
+			<div>
+				<label for="">CSS</label>
+				<input type="text" value="{{curModule.css}}">
+			</div>
+			<div>
+				<label for="">模板</label>
+				<input type="text" value="{{curModule.template}}">
+			</div>
+		</div>
+	</div>
+	<!-- setting end -->
+</div>
+

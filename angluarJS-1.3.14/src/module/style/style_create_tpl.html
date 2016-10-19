@@ -1,0 +1,351 @@
+<!-- 新建模板start -->
+<div class="content01" crumb="styleCreate"></div>
+
+<div class="content03 content_attribute">
+    <div class="addStyle_content01">
+        <div class="addStyle_content01_left">
+            <label>
+                <b>样式组名称</b>
+                <input type="text" name="name" ng-model="style.name" required>
+            </label>
+            <label>
+                <b>样式组分类</b>
+
+                <div class="popAdminSelect popAdminSelectBatchEdite popXlicon_addStyle" ng-click="isDropType = true; $event.stopPropagation()">
+                    {{curType.name}}
+                    <div class="popXlicon popXlicon_red"></div>
+                </div>
+                <div class="tablexlChecked tablexlChecked_BatchEdit tablexlChecked_BatchEditPic tablexlChecked_BatchEditPicAddStyle" ng-show="isDropType">
+                    <span ng-repeat="cate in cates" ng-click="setSelectValue('curType',cate)">{{cate.name}}</span>
+                </div>
+            </label>
+        </div>
+        <div class="addStyle_content01_right">
+            <b>样式预览图</b>
+
+            <div class="yulanPic" style="background:url({{style.thumb}}) center center no-repeat"></div>
+            <input type="file" nv-file-select="" uploader="uploader" ng-model="style.thumb"/>
+            <a class="addStyleBtn" ng-click="selectFile($event,'thumb')"></a>
+        </div>
+    </div>
+    <div class="addStyle_content02">
+        <div class="fcRadio">
+            是否默认样式
+            <label class="lable-checked lable-checkedNewpageRadio">
+                <input type="radio" name="default" ng-model="style.is_default" value="1">
+                <span></span> 是
+            </label>
+            <label class="lable-checked lable-checkedNewpageRadio">
+                <input type="radio" name="default" ng-model="style.is_default" value="0">
+                <span></span> 否
+            </label>
+        </div>
+    </div>
+    <div class="addStyle_content03" ng-style="curType.style_cate_code == 'custom_config' ? tempStyle : ''">
+        <label>
+            <b>HTML模块</b>
+            <textarea ng-model="style.html_content" placeholder="请添加信息"></textarea>
+        </label>
+        <label>
+            <b>CSS样式</b>
+            <textarea ng-model="style.css_content" placeholder="请添加信息"></textarea>
+        </label>
+        <label>
+            <b>JS交互</b>
+            <textarea ng-model="style.js_content" placeholder="请添加信息"></textarea>
+        </label>
+    </div>
+
+    
+
+<style>
+    
+/* 2:Function(.f-) */
+.f-cl{zoom:1;}
+.f-cl:after{content:'';display:block;clear:both;}
+.f-fl{float:left;}
+.f-fr{float:right;}
+.m-add-arguments,.m-configSign{width:520px;margin:20px;padding:10px;border:1px solid #d6d6d6;background-color:#f0edf0;}
+
+/*tab*/
+.m-add-arguments .tabList{margin-bottom:20px;}
+.m-add-arguments .tabList .title{font-size:26px;margin-bottom:10px;}
+.m-add-arguments .tabList button{height:28px;line-height:28px;text-align:center;}
+
+/*form*/
+.m-add-arguments .form .delete{width:108px;height:28px;line-height:28px;text-align:center;margin-top:10px; opacity: .5;}
+.m-add-arguments .form .delete:hover{ opacity: 1; }
+.m-add-arguments .form{padding:10px 0;border:0;border-bottom:1px solid #d6d6d6;}
+.m-add-arguments .form:last-child{border-bottom:0;}
+.m-add-arguments .form .title{font-size:22px;position:relative;top:10px;}
+.m-add-arguments .form .item, .m-configSign .item{margin-top:10px;}
+.m-add-arguments .item-name input,
+.m-add-arguments .item-des input,
+.m-add-arguments .item-dep input,
+.m-add-arguments .item-comment input,
+.m-add-arguments .item-instruction input,
+.m-add-arguments .item-default input,
+.m-configSign .item input,
+.m-configSign .item select{width:390px;height:30px;padding-left:10px;line-height:30px;border:none;outline:none;}
+.m-add-arguments .item-default textarea{width:390px;height:80px;padding-left:10px;line-height:30px;border:none;outline:none;}/*textarea样式修改*/
+.m-add-arguments .item-name label,
+.m-add-arguments .item-des label,
+.m-add-arguments .item-dep label,
+.m-add-arguments .item-comment label,
+.m-add-arguments .item-instruction label,
+.m-add-arguments .item-default label,.m-configSign .item .label{width:110px;height:30px;line-height:30px;float:left;}
+.m-add-arguments .item-default .links label{float:none;}
+.m-add-arguments .item-need input,
+.m-add-arguments .item-default .type1{width:14px;height:14px;line-height:14px;}
+.m-add-arguments .item-default .type1{margin-right:20px;}
+.m-add-arguments .item-default .type2,
+.m-add-arguments .item-default .type3{display:block;margin-left:110px;}
+.m-add-arguments .item-default .type3 input{width:120px;margin-right:35px;}
+.m-add-arguments .item-default .type3 label{float:none;display:inline-block;width:25px;}
+.m-add-arguments .item-default .add-option{margin-left:110px;}
+.m-add-arguments .item-default .add-option input{width:70px;margin-bottom:8px;margin-right:-3px;}
+.m-add-arguments .item-default .add-option .del{display:inline-block;width:14px;height:14px;line-height:14px;text-align:center;font-style:normal;color:#f00;position:relative;top:-10px;right:10px;border:1px solid #f00;border-radius:50%;cursor:pointer;transform:rotate(45deg);-ms-transform:rotate(45deg);-moz-transform:rotate(45deg);-webkit-transform:rotate(45deg);-o-transform:rotate(45deg);}
+.m-add-arguments .item-default .add-option a{display:inline-block;width:18px;height:18px;line-height:18px;text-align:center;color:#a9a9a9;border:1px solid #a9a9a9;border-radius:50%;cursor:pointer;}
+.m-add-arguments .item-default .color-picker{width:18px;height:22px;padding:4px 5px;background-color:transparent;}
+.m-add-arguments .item-default .color-txt{width:80px;float:left;}
+.m-add-arguments .item-default .img .imgItem{ position: relative;}
+.m-add-arguments .item-default .img .imgItem .delImg{ content: "+"; position: absolute; right: -8px; top: -8px; width: 16px; height: 16px; line-height: 16px; -webkit-transform:rotate(45deg); border-radius: 50%; border: 1px solid red; color: red;  }
+
+
+.m-add-arguments .item-default .addImg{ width: 30px; }
+
+
+
+.m-configSign .item .img .item,.m-add-arguments .item-default .img .imgItem{ width: 130px; height: 160px; text-align: center; margin-right: 10px; margin-bottom: 10px; }
+.m-add-arguments .item-default .img .imgItem input{ width: 100%; padding: 0; text-align: center;}
+.m-add-arguments .item-default .img .idArea input{ position: relative; top: 40px;  }
+.m-configSign .item .img .upload,.m-add-arguments .item-default .img .idArea{ height: 130px; background: #fff; }
+.m-configSign .item .img .label,.m-add-arguments .item-default .img .desArea input{ width: 128px; text-align: center; line-height: 30px; background: #000; color: #fff; }
+.m-configSign .item .img .img-item{ float: left; margin-right: 4px; }
+.m-add-arguments .addSpot .default label{ margin-right: 12px; }
+.m-add-arguments .addSpot .other .spotItem{ padding-left: 4em; }
+
+</style>
+<!-- 自定义参数 start -->
+<div class="m-add-arguments f-fr" ng-if="curType.style_cate_code == 'custom_config'">
+
+    <!-- 具体参数内容 -->
+    <fieldset class="form" ng-repeat="data in style.source.custom_configs track by $index">
+        <div class="f-cl">
+            <legend class="title f-fl">{{data.typeDes}}</legend>
+            <button class="delete f-fr" ng-click="oConfig.fnDeleteConfig($index)">删除此参数</button>
+        </div>
+
+        <div class="item item-need" ng-if="data.type!=='select' && data.type!=='img' && data.type!=='instruction'">
+            <input type="checkbox" id="labelForBox{{$index}}" ng-model="data.bNeed" />
+            <label for="labelForBox{{$index}}">用户是否必填</label>
+        </div>
+
+        <div class="item item-name" ng-if="data.type!=='instruction'">
+            <label for="labelForName{{$index}}">参数名称</label>
+            <input type="text" placeholder="参数标识(id)" id="labelForName{{$index}}" ng-model="data.id" />
+        </div>
+
+        <div class="item item-des" ng-if="data.type!=='img' && data.type!=='instruction'">
+            <label for="labelForDes{{$index}}">给用户的描述</label>
+            <input type="text" placeholder="给用户的描述" id="labelForDes{{$index}}" ng-model="data.des" />
+        </div>
+
+        <div class="item item-comment" ng-if="data.type!=='img' && data.type!=='select' && data.type!=='time' && data.type!=='instruction'">
+            <label for="labelForComment{{$index}}">注释</label>
+            <input type="text" placeholder="组件填写使用说明" id="labelForComment{{$index}}" ng-model="data.comment" />
+        </div>
+
+        <div class="item item-dep" ng-if="data.type!=='instruction'">
+            <label for="labelForDep{{$index}}">依赖</label>
+            <input type="text" placeholder="依赖" id="labelForDep{{$index}}" ng-model="data.dep" />
+        </div>
+
+        <div class="item item-instruction" ng-if="data.type=='instruction'">
+            <label for="labelForInstruction{{$index}}">说明</label>
+            <input type="text" placeholder="说明" id="labelForInstruction{{$index}}" ng-model="data.defaultVal"/>
+        </div>
+
+        <div class="item item-default" ng-if="!data.bNeed && data.type!=='instruction'">
+            <label>选填默认值</label>
+            <!-- 文本 -->
+            <input type="text" placeholder="value(default)" ng-if="data.type=='text'" ng-model="data.defaultVal" />
+
+            <!-- 文本框 -->
+            <textarea placeholder="支持换行" ng-if="data.type=='textarea'" ng-model="data.defaultVal" ></textarea>
+
+            <!-- 文件 -->
+            <input type="file" accept="images/*" ng-if="data.type=='img'" ng-model="data.defaultVal" />
+
+            <!-- 图片 -->
+            <div  ng-if="data.type=='img'">
+                添加图片
+                 <button class="addImg" ng-click="oConfig.fnAddImg($index)">+</button>
+            </div>
+           
+
+            <!-- 各种类型的默认值 -->
+            <div class="defaultVal">
+
+                <!-- 文本 -->
+                <input type="text" placeholder="2015-10-01 10:00:00" ng-if="data.type=='time'" ng-model="data.defaultVal" />
+
+                <!-- 颜色 -->
+               <!--  <div ng-if="data.type=='color'">
+                    <input type="text" ng-model="data.colorValTxt" value="{{data.colorValTxt}}" placeholder="#000000" class="color-txt" />
+                    <input type="color" ng-model="data.colorValTxt" value="{{data.colorValTxt}}" class="color-picker" />
+                </div> -->
+
+                <!-- 下拉 -->
+                <div ng-if="data.type=='select'" class="add-option">
+                    <div class="option" ng-repeat="option in data.options track by $index">
+                        <input type="text" placeholder="value"  ng-model="data.options[$index].val" />
+                        <input type="text" placeholder="描述"  ng-model="data.options[$index].des" />
+                        <i ng-click="oConfig.fnDeleteOption($index,data.options)" ng-if="data.options.length > 2" class="del">+</i>
+                    </div>
+                    <a ng-click="oConfig.fnAddOption($index)">+</a>
+                </div>
+
+                <!-- 链接 -->
+                <div ng-if="data.type=='link'" class="links">
+                    <label for="link1">五仓合一链接</label>
+                    <input type="radio" name="link{{$index}}" value="link1" id="link1" ng-model="linkType" class="type1" ng-model="data.linkVal" />
+
+                    <label for="link2">五仓合一id</label>
+                    <input type="radio" name="link{{$index}}" value="link2" id="link2" ng-model="linkType" class="type1" ng-model="data.linkVal" />
+
+                    <label for="link3">分五仓id</label>
+                    <input type="radio" name="link{{$index}}" value="link3" id="link3" ng-model="linkType" class="type1" ng-model="data.linkVal" />
+
+                    <input type="text" placeholder="五仓合一链接" ng-if="linkType=='link1'" class="type2" ng-model="data.link" />
+                    <input type="text" placeholder="五仓合一id" ng-if="linkType=='link2'" class="type2" ng-model="data.onlyID" />
+                    <span ng-if="linkType=='link3'" class="type3">
+                        <label>nh</label><input type="text" placeholder="nh" ng-model="data.ID1" />
+                        <label>sh</label><input type="text" placeholder="sh" ng-model="data.ID2" />
+                        <label>cd</label><input type="text" placeholder="cd" ng-model="data.ID3" />
+                        <label>bj</label><input type="text" placeholder="bj" ng-model="data.ID4" />
+                        <label>hz</label><input type="text" placeholder="hz" ng-model="data.ID5" />
+                    </span>
+                </div>
+                <!-- 链接-end -->
+
+                <div class="f-cl img" ng-if="data.type=='img'">
+                    <div class="imgItem f-fl" ng-repeat="imgDataItem in data.imgData track by $index">
+                        <div class="f-cl idArea"><input class="f-fl" type="text" placeholder="图片id" ng-model="imgDataItem.id"></div>
+                        <div class="f-cl desArea"><input class="f-fl" type="text" placeholder="图片描述" ng-model="imgDataItem.des"></div>
+                        <span class="delImg" ng-click="oConfig.fnDeleteImg($index, data.imgData)" ng-if="data.imgData.length > 1">+</span>
+                    </div>
+                </div>
+
+            </div>
+            
+
+        </div>
+        <input type="hidden" value="{{data.modelName}}">
+    </fieldset>
+    <!-- 具体参数内容 -->
+
+    <!-- 添加参数tab -->
+    <div class="tabList">
+        <span class="title">添加参数：</span>
+        <button ng-click="oConfig.fnAddConfig('text')">+文本</button>
+        <button ng-click="oConfig.fnAddConfig('textarea')">+文本框</button>
+        <button ng-click="oConfig.fnAddConfig('img')">+图片</button>
+        <!-- <button ng-click="oConfig.fnAddConfig('color')">+颜色</button> -->
+        <button ng-click="oConfig.fnAddConfig('select')">+下拉</button>
+        <button ng-click="oConfig.fnAddConfig('time')">+时间</button>
+        <button ng-click="oConfig.fnAddConfig('instruction')">+说明</button>
+        <!-- <button ng-click="oConfig.fnAddConfig('link')">链接</button> -->
+        <button ng-click="oConfig.fnShowConfig()">显示数据</button>
+    </div>
+
+    <div class="tabList addSpot">
+        <label class="title" >添加热区：</label>
+        <div>
+            <div class="default">
+                <span>默认类型：</span> <label ng-repeat="item in oConfig.defaultSpot track by $index"><input type="checkbox" ng-model="oConfig.defaultSpotSeletType[$index]">{{item.name}}</label>
+            </div>
+            
+            <div class="other">
+                <span>其它类型：</span>
+                <div class="spotItem" ng-repeat="item in oConfig.otherSpot track by $index">
+                    热区id<input type="text" ng-model="item.id" placeholder="id不能是[1,2,3,4,5]" > 热区描述<input type="text" ng-model="item.name"> <button ng-click="oConfig.fnDeleteSpot($index)">删除</button>
+                </div>
+            </div>
+            
+
+            <button ng-click="oConfig.fnAddSpot();">+添加</button>
+        </div>
+    </div>
+
+</div>
+<!-- 自定义参数 end -->
+
+<div class="f-cl"></div>
+
+    <div class="addStyle_content04">
+        <div class="popAddFloorInput popAddFloorInputNewstyleAdd">
+            <b>请添加素材</b>
+            <label>
+                <input type="text" class="text" ng-model="fileName" ng-readonly="true">
+                <input type="file" nv-file-select="" uploader="uploader" multiple>
+                <a ng-click="selectFile($event,'material')">浏览</a>
+            </label>
+        </div>
+    </div>
+    <div class="addStyle_content05">
+        <table>
+            <tbody>
+                <tr>
+                    <th>序号</th>
+                    <th>素材预览图</th>
+                    <th>素材名称</th>
+                    <th width="50%">素材URL</th>
+                    <th>操作</th>
+                </tr>
+                <tr ng-repeat="material in pager.materials">
+                    <td>
+                        {{(pager.pageNo - 1) * pager.pageNum + $index + 1}}
+                    </td>
+                    <td>
+                        <img width="100" ng-src="{{imgFilt.indexOf(material.ext) > -1 ? material.url_path : 'prototype/images/icon11.png'}}" ng-click="showPopupImg(material.url_path,material.ext)"/>
+                    </td>
+                    <td>
+                        {{material.name}}
+                    </td>
+                    <td>
+                        {{material.url_path}}
+                    </td>
+                    <td>
+                        <a class="tabRight deleteZtUser deleteZtFb" href="" ng-click="deleteEnterRow($index)">删 除</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+</div>
+
+
+<div class="content04" ng-if="style.materials.length > 10">
+    <div class="fanye">
+        <span>每页显示</span>
+        <input class="tiaozhuanK" type="text" ng-model="pager.pageNum"/>
+        <span>条</span>
+
+        <a class="syyBtn" ng-class="{backBtnClick : pager.pageNo != 1}" ng-click="pager.prev()">上一页</a>
+
+        <a class="nextBtn " ng-class="{nextBtnClick : pager.pageNo == pager.totalPage}" ng-click="pager.next()">下一页</a>
+    </div>
+</div>
+
+<div class="content03">
+    <div class="addStyle_content07">
+        <a class="btn01_addStyle" href="#/style/list">取消</a>
+        <a class="btn02_addStyle" href="" ng-click="postData()">确定</a>
+    </div>
+</div>
+
+<div popup-img is-popup-show="isPopupShow" show-popup-img="showPopupImg"></div>
+

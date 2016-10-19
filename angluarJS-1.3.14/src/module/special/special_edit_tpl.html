@@ -1,0 +1,101 @@
+<style type="text/css">
+	.attribute .popAdminSelectAttribute {width: 284px; padding-right: 30px;}
+	.tablexlChecked_attribute {width: 312px;margin: 0 77px 0;}
+	.attribute .tablexlChecked_attribute span {height: auto; line-height: 22px; padding: 7px 0;}
+	.attribute label a {line-height: 30px; font-size: 14px;}
+	.attribute .popAdminDrop{ width: 311px; background: #FFF; border: 1px #EEE solid; max-height: 150px; position: relative; left: 77px;  margin-bottom: 20px; overflow: auto;}
+	.attribute .popAdminDrop li{background: #FFFFFF; padding: 0 12px; height: 28px; line-height: 28px; cursor: pointer;}
+	.attribute .popAdminDrop li:hover{background: #EEE;}
+	.icon-info{display: inline-block; width: 22px; height: 26px; background:url(../prototype/images/icon34.png); padding: 0; background-size: 26px; }
+	.icon-info:hover .list-info{display: inline-block;}
+	.attribute .list-info{position: absolute; width: 300px; background-color: #EEE; right: 214px; top: 300px; padding: 5px; display: none; max-height: 360px; }
+	.attribute .list-info li{font-size: 12px; width: 300px; word-wrap: break-word; height: auto; line-height: 24px;}
+	.attribute .list-info .narrow_left{position: absolute;    width: 0; height: 0; border-top: 8px solid transparent; border-bottom: 8px solid transparent; border-right: 6px solid #F0EDF0;left: -12px; top: 58px;}
+	.attribute label b.no_star::after{content: ''}
+</style>
+<!-- 新建模板start -->
+<div class="content01" crumb="specialCreate" ng-if="!id"></div>
+<div class="content01" crumb="specialEditFlow" special-id="specialId" page-type-id="pageTypeId" parent-id="parentId" crumb-index="1" ng-if="id"></div>
+
+<div class="content03 content_attribute">
+	<div class="attribute">
+		<label>
+			<b>MZT名称</b>
+			<input type="text" ng-model="sp.name">
+			<span>(注：“MZT名称”为档期入口图显示名称)</span>
+		</label>
+		<label>
+			<b>标题名称</b>
+			<input type="text" ng-model="sp.title">
+			<span>(注：“标题名称”为活动页导航显示名称)</span>
+		</label>
+		<label>
+			<b>MZT分类</b>
+			<div drop-name="isDropSpType" class="popAdminSelect popAdminSelectAttribute">{{curSpType.name}}<div class="popXlicon"></div></div>
+			<div class="tablexlChecked tablexlChecked_attribute" ng-show="isDropSpType">
+	            <span ng-repeat="item in spTypeList" ng-click="setSpType(item)">{{item.name}}</span>
+	        </div>
+	        <span>新建分类请联系管理员</span>
+		</label>
+		<label>
+			<b>客户端名称</b>
+			<div drop-name="isDropClientType" class="popAdminSelect popAdminSelectAttribute">{{curClient.name}}<div class="popXlicon"></div></div>
+			<div class="tablexlChecked tablexlChecked_attribute" ng-show="isDropClientType">
+	            <span ng-repeat="item in clientList" ng-click="setClientType(item)">{{item.name}}</span>
+	        </div>
+		</label>
+		<label ng-if="!sp.has_child_page || sp.virtual_id">
+			<b class="no_star">虚拟id</b>
+			<input type="text" ng-model="curVirtual.name" ng-if="sp.has_child_page || is_from_dap" readonly>
+			<input type="text" ng-model="sp.virtual_name" ng-if="!sp.has_child_page && !is_from_dap" ng-change="startSearch()" ng-readonly="curVirtual.name && curVirtual.is_created">
+			<span>(非必填)</span>
+			<span class="icon-info">
+				<ul class="list-info" ng-if="curVirtual">
+					<span class="narrow_left"></span>
+					<li>专提名称:{{curVirtual.name}}</li>
+					<li>上线时间:{{curVirtual.sale_time_from}}</li>
+					<li>下线时间:{{curVirtual.sale_time_to}}</li>
+					<li>MZT类型:{{curVirtual.special_type_name}}</li>
+					<li>上线阶段档期操作:{{curVirtual.brand_op_name}}</li>
+					<li>页面形式:{{curVirtual.page_type_name}}</li>
+					<li>功能需求:{{curVirtual.func_requirement}}</li>
+					<li>放出频道:{{curVirtual.channel_id | channel}}</li>
+					<li>放出人群:{{curVirtual.crowd | crowd}}</li>
+					<li>所属营业部:{{curVirtual.sale_department_name}}</li>
+					<li>对接人:{{curVirtual.docking_persion}}</li>
+					<li>仓库:{{curVirtual.warehouse | warehouse}}</li>
+					<li>新老客:{{curVirtual.consumer_type | consumer_type}}</li>
+					<li>销售类型:{{curVirtual.sale_type | sale_type}}</li>
+				</ul>
+			</span>
+			<ul class="popAdminDrop" ng-show="sp.virtual_name && is_show_search_list">
+                <li ng-repeat="item in virtualList | filter: sp.virtual_name" ng-click="setVirtualName(item)" >
+                	{{item.name}}{{item.is_created == 1? '(已绑定)':''}}
+                </li>
+            </ul>
+		</label>
+		<div class="popAdminBtn popAdminBtn_attribute">
+			<a class="popAdminBtn-Cancel popAdminBtn-Cancel-attribute" href="javascript:;" ng-click="toIndex()">取消</a>
+			<a ng-if="!id" class="popAdminBtn-OK popAdminBtn-OK-attripute" href="javascript:;" ng-click="create()">下一步</a>
+			<a ng-if="id" class="popAdminBtn-OK popAdminBtn-OK-attripute" href="javascript:;" ng-click="update()">保存</a>
+		</div>
+	</div>
+</div>
+
+<!-- 弹窗 -->
+<div class="popAdmin popShouye" ng-show="isPopup">
+	<div class="popAdminTitle">
+		新增MZT分类
+	</div>
+	<div class="popAdminInput popAdminInputShouye">
+		<label>
+			<span>MZT分类</span>
+			<input type="text" ng-model="newSpType">
+		</label>
+	</div>
+	<div class="popAdminBtn">
+		<a class="popAdminBtn-Cancel" href="javascript:;" ng-click="cancel()">取消</a>
+		<a class="popAdminBtn-OK" href="javascript:;" ng-click="addSpType()">确定</a>
+	</div>
+	<a class="popAdminBtn-close" href="javascript:;" ng-click="cancel()"></a>
+</div>

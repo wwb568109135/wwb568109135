@@ -1,0 +1,133 @@
+<style type="text/css">
+.popAdmin {
+    margin-top: -160px;
+}
+
+.popShouye .popAdminInputShouye {
+    height: auto;
+    padding: 20px 0;
+}
+
+.popAdmin .popAdminInput label span.type {
+    width: 130px;
+    height: auto;
+    line-height: 22px;
+    padding: 7px 0;
+    color: #909090;
+    vertical-align: middle;
+    margin: 2px 5px;
+    text-align: center;
+    cursor: pointer;
+    display: block;
+    float: none;
+}
+
+.popAdmin .popAdminInput .name {
+    position: absolute;
+    top: 40px;
+    right: -58px;
+    width: 60px;
+    color: #3898ff;
+    text-decoration: underline;
+}
+
+.tablexlChecked {
+    width: 140px;
+    margin: 0 0 0 85px;
+}
+
+.tableUser .name {
+    cursor: pointer;
+}
+
+.popAdminSelect .popXlicon_green {
+    width: 22px;
+    height: 22px;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 4px 4px 0 0;
+    float: right;
+}
+</style>
+<div class="content01" crumb="specialList"></div>
+<div class="content02 content02User">
+    <a class="addZt plEdited" ng-click="popupAddSpType('','','')">新增</a>
+    <a class="tabRight deleteZtUser deleteZtFb" ng-click="preDelete()">删 除</a>
+    <label class="ptSearch ptSearchUser">
+        <input type="text" ng-model="filtText" placeholder="请输入关键字搜索" ng-keyup="searchKeyUp($event,this,'pageChanged')">
+        <a class="searchBtn" ng-click="pageChanged(1)"></a>
+    </label>
+</div>
+<div class="content03">
+    <table class="tableUser">
+        <tbody>
+            <tr>
+                <th>
+                    <label class="lable-checked">
+                        <input name="check" type="checkbox" check-all/>
+                        <span></span>
+                    </label>
+                </th>
+                <th>分类名称</th>
+                <th>分类类型</th>
+                <th>分类MZT数</th>
+            </tr>
+            <tr ng-show="specials.list.length == 0 && !loading" class="no-data">
+                <td colspan="4">没有相应的搜索数据，请换个关键字试试！</td>
+            </tr>
+            <tr dir-paginate="item in specials.list | itemsPerPage: 10" total-items="specials.total">
+                <td>
+                    <label class="lable-checked" ng-if="item.name !== '未分类'">
+                        <input name="check" type="checkbox" ng-model="list.id" value="{{item.id}}" ng-click="check($event)">
+                        <span></span>
+                    </label>
+                </td>
+                <td ng-click="popupAddSpType(item.id,item.name,item.type)" class="name green">{{item.name}}</td>
+                <td>{{types[item.type]}}</td>
+                <td>{{item.cate_num}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<dir-pagination-controls template-url="common/directive/angular-pager.html" on-page-change="pageChanged(newPageNumber)"></dir-pagination-controls>
+<div popup popup-open="popDelOpen" popup-content="确定要删除这些数据吗？" popup-save="delete"></div>
+<!-- 编辑弹窗 -->
+<div class="popAdmin popShouye" ng-show="isPopup">
+    <div class="popAdminTitle">
+        {{itemId ? '编辑' : '新增'}}分类
+    </div>
+    <div class="popAdminInput popAdminInputShouye">
+        <label>
+            <span>分类类型</span>
+            <div drop-name="isSelectVal" class="popAdminSelect popAdminSelectAttribute">{{selectType}}
+                <div class="popXlicon_green"></div>
+            </div>
+            <div class="tablexlChecked tablexlChecked_attribute" ng-show="isSelectVal">
+                <span ng-repeat="type in types" class="type" ng-click="passType(($index+1).toString())">{{types[($index+1).toString()]}}</span>
+            </div>
+            <a href="http://wiki.corp.vipshop.com/pages/viewpage.action?pageId=76226835" class="name" target="_blank">命名须知</a>
+        </label>
+        <label ng-show="realType == '1' || realType == '2'">
+            <span>开售代号</span>
+            <input type="text" ng-model="sellCode" placeholder="如：20151208">
+        </label>
+        <label ng-show="realType == '2'">
+            <span>子品类</span>
+            <input type="text" ng-model="subType" placeholder="如：美妆/亲子/居家等">
+        </label>
+        <label ng-show="realType == '1' || realType == '2' || realType == '3'">
+            <span>在售类型</span>
+            <input type="text" ng-model="sellType" placeholder="预售/开售/不区分预热开售">
+        </label>
+        <label ng-hide="realType == '3'">
+            <span>名称</span>
+            <input type="text" ng-model="name">
+        </label>
+    </div>
+    <div class="popAdminBtn">
+        <a class="popAdminBtn-Cancel" href="javascript:;" ng-click="cancel()">取消</a>
+        <a class="popAdminBtn-OK" href="javascript:;" ng-click="addSpType()" ng-show="!itemId">确定</a>
+        <a class="popAdminBtn-OK" href="javascript:;" ng-click="editSpType(itemId)" ng-show="itemId">确定</a>
+    </div>
+    <a class="popAdminBtn-close" href="javascript:;" ng-click="cancel()"></a>
+</div>

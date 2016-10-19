@@ -1,0 +1,40 @@
+<style type="text/css">
+    .attribute .popAdminSelectAttribute {width: 284px; padding-right: 30px;}
+    .tablexlChecked_attribute {width: 312px;margin: 0 77px 0;}
+    .attribute .tablexlChecked_attribute span {height: auto; line-height: 22px; padding: 7px 0;}
+    .attribute label a {line-height: 30px; font-size: 14px;}
+    .attribute .popAdminBtn-OK-attripute{float: left;}
+    .popAdminBtn span.tips-ok{ text-align: left; float: left; padding: 10px 30px; color: #DA534F;}
+</style>
+<div class="content01" crumb="whiteList"></div>
+
+<div class="content03 content_attribute">
+    <div class="attribute">
+
+    <label>以下输入档期将在预热期间可直接点击进入商品列表页</label>
+        <label>
+            <b>NH_ID:</b>
+            <input type="text" ng-model="ids.nh_ids">
+        </label>
+        <label>
+            <b>SH_ID:</b>
+            <input type="text" ng-model="ids.sh_ids">
+        </label>
+        <label>
+            <b>CD_ID:</b>
+            <input type="text" ng-model="ids.cd_ids">
+        </label>
+        <label>
+            <b>BJ_ID:</b>
+            <input type="text" ng-model="ids.bj_ids">
+        </label>
+        <label>
+            <b>HZ_ID:</b>
+            <input type="text" ng-model="ids.hz_ids">
+        </label>
+        <div class="popAdminBtn popAdminBtn_attribute">
+            <a ng-if="!id" class="popAdminBtn-OK popAdminBtn-OK-attripute" href="javascript:;" ng-click="postData()">确认导入</a>
+            <span class="tips-ok hide">提示：导入档期数据成功，已检查生效</span>
+        </div>
+    </div>
+</div>

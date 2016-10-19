@@ -1,0 +1,42 @@
+<style type="text/css">
+    .pop-upload{
+        padding: 50px 20px 30px;
+    }
+    .popAdminBtn{
+        line-height: 74px;
+    }
+    .popAdminBtn2{
+        line-height: 40px;
+        height: 40px;
+    }
+    .popAdminBtn2 a{
+        color: blue;
+        width: auto;
+        vertical-align: initial;
+        text-decoration: underline;
+    }
+
+</style>
+
+
+<div class="popAdmin popShouye" ng-show="editsData.showEditsBox" style="position:relative; display:block !important; margin:100px auto; left:0; top:0;">
+    <div class="popAdminTitle">
+        一键导入{{uploadType == 1 ? '' : '非'}}品购id
+    </div>
+    <div class="pop-upload">
+    	<input type="file" nv-file-select="" uploader="uploader" id="Jfile">
+    	<input type="text" class="text" ng-model="fileName" ng-readonly="">
+    	<button class="select-btn" ng-click="selectFile($event)">浏览</button>
+    </div>
+
+    <div class="popAdminBtn popAdminBtn2" ng-show="isUplaodShow">
+        <input type="checkbox" ng-model="ischeckShow" />
+        <a href="javascript:;" ng-click="downEcexl()">导入商务execl表格</a>
+    </div>
+
+    <div class="popAdminBtn">
+        <a class="popAdminBtn-Cancel" href="" onclick="history.back()">取消</a>
+        <a class="popAdminBtn-OK" href="" ng-click="postData()">确定</a>
+    </div>
+    <!-- <a class="popAdminBtn-close" href="javascript:;" ng-click="hideEditsBox()"></a> -->
+</div>

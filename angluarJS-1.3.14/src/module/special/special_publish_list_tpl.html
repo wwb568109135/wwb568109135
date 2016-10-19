@@ -1,0 +1,256 @@
+<style type="text/css">
+    /*.detailBox table {height: auto; display: inline-block;}*/
+/*    .content02User{
+        height: auto;
+        min-height: 86px;
+    }
+*/
+    .detailBox table td.no-data {line-height: 50px;}
+    .detailBox table .checkedEditePublish {width: auto; display: inline-block;}
+
+    .tabRightBtns{float: right; margin-top: 32px;}
+    .tabRightBtns .plYulan {float: left; margin-left: 10px; top: 0;}
+    .tabRightBtns .swithBtnClose,
+    .tabRightBtns .swithBtnOpen {
+        float: none; display: inline-block;
+        vertical-align: middle;
+    }
+
+    .mstGroupGlobalSet{
+        width: 220px;
+        background-color: #3399FF;
+        position: relative;
+        float: left;
+        height: 32px;
+        line-height: 32px;
+        border-radius: 5px;
+        text-align: center;
+        color: #fff;
+        margin:0 10px;
+    }
+
+    .mstGroupGlobalSet i{
+        width: 20px;
+        height: 20px;
+        background: url(../../demo/image/mstGroupGlobalSet_icon.png) no-repeat -5px 3px;
+        position: absolute;
+        right: 5px;
+        top: 5px;
+    }
+    .mstGroupGlobalSet .mstGroupGlobalSet_box{
+        display: none;
+        position: absolute;
+        top: 30px;
+        left: 0;
+        border:1px solid #D3D3D3;
+        width: 220px;
+        background-color: #fff;
+        z-index: 1;
+        color: #000;
+    }
+    .mstGroupGlobalSet:hover .mstGroupGlobalSet_box{
+        display: block;
+    }
+    .mstGroupGlobalSet .mstGroupGlobalSet_box .lable-checked{
+        display: inline;
+    }
+
+    .toggle-radio-btn {width: 140px;  background-color: #d8d8d8; position: relative; float: left;}
+    .toggle-radio-btn, .toggle-radio-btn span {height: 32px; border-radius: 16px;}
+    .toggle-radio-btn span{width: 50%; text-align: center; line-height: 32px; color: #fff; cursor: pointer; position: absolute; top: 0;}
+    .toggle-radio-btn span:first-child {left: 0; padding-right: 12%;}
+    .toggle-radio-btn span:last-child {right: 0; padding-left: 12%;}
+
+    .toggle-radio-btn i {width: 28px; height: 28px; border-radius: 14px; position: absolute; left: 50%; top: 2px; margin-left:-14px; background-color: #fff; z-index: 2}
+
+    .toggle-radio-btn-left span:first-child,.toggle-radio-btn-right span:last-child {background-color: #59c893;}
+    .toggle-radio-btn-left span:first-child {padding:0 0 0 12%;}
+    .toggle-radio-btn-right span:last-child {padding:0 12% 0 0;}
+    .toggle-radio-btn-left i{left: 2px; margin:0;}
+    .toggle-radio-btn-right i {left: auto; right: 2px; margin: 0;}
+
+    .detailBox .tableXlStyleManage{margin: 11px 0; background-color: #FFF;  width: 100%; min-width: 90px;}
+    .detailBox table th{position: relative;}
+    .detailBox .checks{padding: 5px 10px; text-align: left;}
+    .detailBox .tablexlChecked{background: #f5f5f5; border: 1px solid #EEE; max-height: 300px; width: 140px;}
+    .detailBox .lable-checked{display: block; margin: 5px 10px;}
+    .detailBox .tableXl span{margin-right: 26px; background-color: #D1D1D1;}
+    .btn-min-ok{background: #59c893; color: #ffffff; border:none; display: block; border-radius: 3px; margin:auto; padding: 3px 20px; font-weight: normal; width: 118px; margin-bottom: 5px;}
+</style>
+<div class="content01" crumb="specialEditFlow" special-id="specialId" page-type-id="pageTypeId" parent-id="parentId" crumb-index="3"></div>
+<div class="content02 content02User">
+    <a class="addZt plEdited" href="" ng-click="goBatchEdit($event)">批量编辑属性</a>
+    <a class="tabRight deleteZtUser deleteZtFb" href="" ng-click="preDelete()">删 除</a>
+    <a class="tabRight deleteZtUser manaUser publishBtn" href="" ng-click="publish()">发布</a>
+    <span class="tabRightBtns">
+
+        <div class="toggle-radio-btn" ng-class="{'toggle-radio-btn-left' : toggleRadioBtn == 'left','toggle-radio-btn-right' : toggleRadioBtn == 'right'}">
+            <span ng-click="toggleBatchShowPage('left')">隐藏</span>
+            <i></i>
+            <span ng-click="toggleBatchShowPage('right')">显示</span>
+        </div>
+        <!-- <div class="mstGroupGlobalSet" ng-init="isMstSetSelect = false"  ng-click="isMstSetSelect? isMstSetSelect=false:isMstSetSelect=true"> -->
+        <div class="mstGroupGlobalSet">
+            MZT组设置
+            <div class="mstGroupGlobalSet_box">
+                <div>
+                    同步开关：
+                    <a class="" href="javascript:;" ng-class="{swithBtnClose: special.autoSyncSwitch == 'close',swithBtnOpen:special.autoSyncSwitch == 'open'}" ng-click="pullAutoSyncSwitch(special.id,$event)" data-action="{{special.autoSyncSwitch == 'open' ? 'close' : 'open'}}"></a>
+                </div>
+
+                <div ng-show="(vreTypeStatusList.length > 0 ) ? true: false">
+                    MZT入口以下人群可见：<br/>
+                    <div>
+                        <label class="lable-checked" ng-repeat="data in vreTypeStatusList" >
+                            <input type="checkbox" name="mstSet_vreRule" value="{{data.name}}" ng-checked="data.vre_type_status == 1 ? true : false">
+                            <span></span>
+                            {{data.name}}
+                        </label>
+                        <button class="btn-min-ok" ng-click="mstSet_vreRule()">确定修改</button>
+                    </div>
+
+                </div>
+
+            </div>
+            <i></i>
+        </div>
+
+        <a class="addZt plEdited plYulan" href="" ng-click="outUrl($event)">导出url</a>
+        <a class="addZt plEdited plYulan" href="" ng-click="goPreview()">预览</a>
+    </span>
+</div>
+<div class="content03 content03Publish">
+
+    <div class="summaryBox summaryBoxPublish">
+        <div class="summaryBox-pos summaryBox_selected summaryBox_selectedPublish">NO.{{special.id}}</div>
+        <a class="summaryBox-name summaryBox_selected summaryBox-namePublish">{{special.name}}</a>
+    </div>
+    <div class="detailBox">
+        <table>
+            <tbody>
+                <tr>
+                    <th width="4%">
+                    	<!-- <input type="checkbox" ng-model="chkall" ng-click="selectAll(chkall)" >全选 -->
+                        <label class="lable-checked">
+                        	<input type="checkbox" ng-model="chkall" name="check" ng-click="selectAll(chkall)">
+                        	<span></span>
+                        </label>
+                    </th>
+                    <th width="10%">档期图预览</th>
+                    <th width="4%">排序</th>
+                    <th>
+                        <div class="tableXl tableXlStyleManage ng-binding" ng-init="isDropSelect = false" ng-click="isDropSelect? isDropSelect=false:isDropSelect=true">
+                            用户群体
+                            <span></span>
+                        </div>
+                        <div class="tablexlChecked tablexlChecked_user tablexlChecked_usernew tablexlChecked_usernewStyle " ng-show="isDropSelect">
+                            <div class="checks">
+                                <label class="lable-checked" >
+                                    <input type="checkbox" name="rule_name" check-all>
+                                    <span></span>
+                                    全选
+                                </label>
+                                <label class="lable-checked" ng-repeat="rule in rule_names track by $index" >
+                                    <input type="checkbox" name="rule_name" value="{{rule}}" ng-click="check($event)" >
+                                    <span></span>
+                                    {{rule}}
+                                </label>
+                                <button class="btn-min-ok" ng-click="isDropSelect=false; select_confirm('rule_name')">确定</button>
+                            </div>
+                        </div>
+                    </th>
+                    <th width="6%">
+                        <div class="tableXl tableXlStyleManage ng-binding" ng-init="isDropSelect2 = false" ng-click="isDropSelect2? isDropSelect2=false:isDropSelect2=true">
+                            仓位
+                            <span></span>
+                        </div>
+                        <div class="tablexlChecked tablexlChecked_user tablexlChecked_usernew tablexlChecked_usernewStyle " ng-show="isDropSelect2">
+                            <div class="checks">
+                                <label class="lable-checked" >
+                                    <input type="checkbox" name="warehouse" check-all>
+                                    <span></span>
+                                    全选
+                                </label>
+                                <label class="lable-checked" ng-repeat="warehouse in warehouses track by $index" >
+                                    <input type="checkbox" name="warehouse" value="{{warehouse}}" ng-click="check($event)" >
+                                    <span></span>
+                                    {{warehouse}}
+                                </label>
+                                <button class="btn-min-ok" ng-click="isDropSelect2=false; select_confirm('warehouse')">确定</button>
+                            </div>
+                        </div>
+                    </th>
+                    <th width="8%">
+                        <div class="tableXl tableXlStyleManage ng-binding" ng-init="isDropSelect3 = false" ng-click="isDropSelect3? isDropSelect3=false:isDropSelect3=true">
+                            在售类型
+                            <span></span>
+                        </div>
+                        <div class="tablexlChecked tablexlChecked_user tablexlChecked_usernew tablexlChecked_usernewStyle " ng-show="isDropSelect3">
+                            <div class="checks">
+                                <label class="lable-checked" >
+                                    <input type="checkbox" name="sale_type" check-all>
+                                    <span></span>
+                                    全选
+                                </label>
+                                <label class="lable-checked" ng-repeat="sale_type in sale_types track by $index" >
+                                    <input type="checkbox" name="sale_type" value="{{sale_type}}" ng-click="check($event)" >
+                                    <span></span>
+                                    {{sale_type}}
+                                </label>
+                                <button class="btn-min-ok" ng-click="isDropSelect3=false; select_confirm('sale_type')">确定</button>
+                            </div>
+                        </div>
+                    </th>
+                    <th width="12%">客户类型</th>
+                    <th width="6%">
+                        <span>开始时间</span>
+                        <!-- <a class="timeBox" href="#"></a> -->
+                    </th>
+                    <th width="6%">
+                        <span>结束时间</span>
+                        <!-- <a class="timeBox" href="#"></a> -->
+                    </th>
+                    <th width="10%">插入频道</th>
+                    <!-- <th>MZT分类</th> -->
+                    <th width="25%">操 作</th>
+                </tr>
+                <tr ng-show="special.children.length == 0 && !loading">
+                    <td colspan="10" class="no-data">该MZT没有生成子页面！</td>
+                </tr>
+				<tr ng-repeat="publish in special.children | filter: filter_rule | filter: filter_warehouse | filter: filter_sale">
+
+                    <td>
+		 				<label class="lable-checked">
+                            <input name="check" type="checkbox" ng-model="publish.check" value="{{publish.id}}" ng-click="check($event)">
+                            <span></span> {{publish.id}}
+                        </label>
+		 			</td>
+		 			<td>
+                        <img width="100" ng-src="{{publish.image ? publish.image : 'prototype/images/icon11.png'}}" ng-click="showPopupImg(publish.image)">
+                    </td>
+		 			<td>{{publish.position}}</td>
+                    <td>{{publish.rule_name}}</td>
+		 			<td>{{publish.warehouse}}</td>
+		 			<td>{{publish.sale_type}}</td>
+		 			<td>{{publish.member_type}}</td>
+		 			<td>{{publish.start_time}}</td>
+		 			<td>{{publish.end_time}}</td>
+		 			<td>{{publish.channel_name}}</td>
+		 			<!-- <td>{{publish.version}}</td> -->
+
+		 			<td>
+                        <a class="" href="javascript:;" ng-class="{checkedHide: publish.display == 0, checkedXshi:publish.display == 1}" ng-click="toggleShowPage(publish)"></a>
+		 				<div class="checkedEdite checkedEditePublish">
+		 				    <a class="edictListPublish edictListPublishsx" href="#/special/{{special.id}}/publish/edit/{{publish.id}}?{{urlParams}}">编辑属性</a>
+		 				    <a class="edictListPublish edictListPublishxg" href="" ng-click="goEditLayout(publish.id)">修改布局</a>
+		 				</div>
+		 			</td>
+		 		</tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div popup-img is-popup-show="isPopupShow" show-popup-img="showPopupImg"></div>
+
+<div popup popup-content="每个子页面都有其用处，特殊原因请咨询管理员后再确认是否删除" popup-open="popDelOpen" popup-save="delete"></div>

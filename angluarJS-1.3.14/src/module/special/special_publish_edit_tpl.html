@@ -1,0 +1,205 @@
+<style type="text/css">
+    .content_BatchEdit_01 {height: 100px;}
+</style>
+<form name="publishEditForm">
+<div class="content01" crumb="specialEditFlow" special-id="specialId" page-type-id="pageTypeId" parent-id="parentId" crumb-index="3"></div>
+<div class="content03 content_BatchEdit">
+    <div class="content_BatchEdit_top">
+        <h1>{{special.name}}</h1>
+        <a class="content_BatchEdit_top_btn01" onclick="history.back()">取消</a>
+        <a class="content_BatchEdit_top_btn02" href="" ng-click="postData(publishEditForm.$valid)">保存</a>
+    </div>
+    <div class="content_BatchEdit_01">
+        <div class="colspan-2"><b>MZT名称</b>
+            <input type="text" name="name" ng-model="special.name" required>
+        </div>
+        <div class="colspan-2"><b>标题名称</b>
+            <input type="text" name="title" ng-model="special.title" required>
+        </div>
+
+        <div class="colspan-2">
+            <b>开始时间</b>
+
+            <div class="popAdminSelect popAdminSelectBatchEdite popXlicon_time" >
+                <input ng-model="special.start_time" ui-time="global_start_time" ui-time-time="{'hour' : '10','minute' : '0','second' : '0'}" ui-min-range="global_end_time" ng-readonly="true" ng-change="setGlobalTime(special.start_time,'start')"></input>
+                <div class="popXlicon"></div>
+            </div>
+        </div>
+        <div class="colspan-2">
+            <b>结束时间</b>
+            <div class="popAdminSelect popAdminSelectBatchEdite popXlicon_time" >
+                <input ng-model="special.end_time" ui-time="global_end_time" ui-time-time="{'hour' : '9','minute' : '59','second' : '59'}" ui-max-range="global_start_time" ng-readonly="true" ng-change="setGlobalTime(special.end_time,'end')"></input>
+                <div class="popXlicon"></div>
+            </div>
+        </div>
+    </div>
+    <div class="content_BatchEdit_02 content_BatchEdit_04">
+        <b>是否添加计划任务　</b>
+        <label class="lable-checked lable-checkedNewpageRadio">
+            <input type="radio" name="default" ng-model="special.is_sync_time" value="1">
+            <span></span> 是
+        </label>
+        <label class="lable-checked lable-checkedNewpageRadio">
+            <input type="radio" name="default" ng-model="special.is_sync_time" value="2">
+            <span></span> 否
+        </label>
+    </div>
+    <!-- <div class="content_BatchEdit_02 content_BatchEdit_04">
+        <b>是否显示　　　　　</b>
+        <label class="lable-checked lable-checkedNewpageRadio">
+            <input type="radio" name="display" ng-model="special.display" value="1">
+            <span></span> 是
+        </label>
+        <label class="lable-checked lable-checkedNewpageRadio">
+            <input type="radio" name="display" ng-model="special.display" value="0">
+            <span></span> 否
+        </label>
+    </div> -->
+    <div class="content_BatchEdit_02 content_BatchEdit_04">
+        <div class="xianshiChecked">
+            <b class="xianshiChecked_b04">MZT位置</b>
+            <table width="726" class="inko_BatchEdit">
+                <tbody>
+                    <tr>
+                        <th>位置</th>
+                        <th class="inko_BatchEdit_time">开始时间</th>
+                        <th class="inko_BatchEdit_time">结束时间</th>
+                        <th>操作</th>
+                    </tr>
+
+                    <tr ng-repeat="position in positions">
+                        <td>
+                            <input name="position" type="text" class="input-gray" ng-model="position.pos" ng-change="changeStatus(position)">
+                        </td>
+                        <td class="inko_BatchEdit_time_td">
+                            <div class="ac-date">
+                                <input ui-time="position_start_time{{$index}}" ui-min-range="position_end_time{{$index}}" ng-model="position.start_time" ui-time-time="{'hour' : '10','minute' : '0','second' : '0'}" ng-readonly="true" />
+                                <a class="inko_BatchEdit_time_tdtime" href="javascript:;"></a>
+                            </div>
+                        </td>
+                        <td class="inko_BatchEdit_time_td">
+                            <div class="ac-date">
+                                <input ui-time="position_end_time{{$index}}" ui-max-range="position_start_time{{$index}}" ng-model="position.end_time" ui-time-time="{'hour' : '9','minute' : '59','second' : '59'}" ng-readonly="true" />
+                                <a class="inko_BatchEdit_time_tdtime" href="javascript:;"></a>
+                            </div>
+                        </td>
+                        <td>
+                            <a class="inko_BatchEdit_rubbish" href="" ng-click="deleteEnterRow($index, 'position')"></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <a class="addDq_BatchEdit" href="" ng-click="addEnterRow('position')">+新增MZT位置</a>
+        </div>
+    </div>
+    <div class="content_BatchEdit_02">
+        <div class="xianshiTitle">用户类型</div>
+        <div class="ptxianshiChecked">
+            <label class="lable-checked">
+            	<input type="checkbox" name="memberType" check-all>
+            	<span></span> 全选
+            </label><label class="lable-checked" ng-repeat="memberType in memberTypes">
+				<input type="checkbox" name="memberType" value="{{memberType.id}}" ng-model="memberType.check" ng-click="check($event)">
+				<span></span> {{memberType.code}}
+			</label>
+        </div>
+    </div>
+    <div class="content_BatchEdit_02">
+        <div class="xianshiTitle">显示平台</div>
+        <div class="ptxianshiChecked">
+            <label class="lable-checked">
+            	<input type="checkbox" name="platform" check-all>
+            	<span></span> 全选
+            </label><label class="lable-checked" ng-repeat="platform in platforms">
+				<input type="checkbox" name="platform" value="{{platform.id}}" ng-model="platform.check" ng-click="check($event)">
+				<span></span> {{platform.name}}
+			</label>
+        </div>
+    </div>
+    <div class="content_BatchEdit_02 content_BatchEdit_03">
+        <div class="xianshiTitle">插入频道</div>
+        <div class="ptxianshiChecked">
+            <label class="lable-checked">
+            	<input type="checkbox" name="channel" check-all>
+            	<span></span> 全选
+            </label><label class="lable-checked" ng-repeat="channel in channels">
+				<input type="checkbox" name="channel" value="{{channel.id}}" ng-model="channel.check" ng-click="check($event)">
+				<span></span> {{channel.channel_name}}
+			</label>
+        </div>
+    </div>
+    <div class="content_BatchEdit_02 content_BatchEdit_04">
+        <div class="xianshiChecked">
+            <b class="xianshiChecked_b04">档期图　</b>
+            <table class="inko_BatchEdit">
+                <tbody>
+                    <tr>
+                        <th>手机档期图</th>
+                        <th>iPad档期图</th>
+                        <th class="inko_BatchEdit_time">开始时间</th>
+                        <th class="inko_BatchEdit_time">结束时间</th>
+                        <th>操作</th>
+                    </tr>
+
+                    <tr ng-repeat="picture in pictures">
+                        <td>
+                        	<div class="ac-img">
+                        		<img width="100" ng-src="{{picture.phone_pic_src}}"/>
+                        		<input type="file" alias="phone_pic_src" nv-file-select="" uploader="uploader" ng-model="phone_pic_src"/>
+                        		<a class="inko_BatchEdit_add" href="" ng-click="selectFile($event,'phone', $index)">+</a>
+                        	</div>
+
+                        	<!-- <a class="inko_BatchEdit_close" href="" >x</a> -->
+                        </td>
+                        <td>
+                        	<div class="ac-img">
+                        		<img width="100" ng-src="{{picture.pad_pic_src}}">
+                        		<input type="file" alias="pad_pic_src" nv-file-select="" uploader="uploader" ng-model="pad_pic_src"/>
+                        		<a class="inko_BatchEdit_add" href="" ng-click="selectFile($event,'pad', $index)">+</a>
+                        	</div>
+                        	<!-- <a class="inko_BatchEdit_close" href="javascript:;">x</a> -->
+                        </td>
+                        <td class="inko_BatchEdit_time_td">
+                        	<div class="ac-date">
+                        		<input ui-time="picture_start_time{{$index}}" ui-min-range="picture_end_time{{$index}}" ng-model="picture.start_time" ui-time-time="{'hour' : '10','minute' : '0','second' : '0'}" ng-readonly="true" />
+                            	<a class="inko_BatchEdit_time_tdtime" href="javascript:;"></a>
+                        	</div>
+                        </td>
+                        <td class="inko_BatchEdit_time_td">
+                        	<div class="ac-date">
+                        		<input ui-time="picture_end_time{{$index}}" ui-max-range="picture_start_time{{$index}}" ng-model="picture.end_time" ui-time-time="{'hour' : '9','minute' : '59','second' : '59'}" ng-readonly="true" />
+                            	<a class="inko_BatchEdit_time_tdtime" href="javascript:;"></a>
+                        	</div>
+                        </td>
+                        <td>
+                        	<a class="inko_BatchEdit_rubbish" href="" ng-click="deleteEnterRow($index, 'picture')"></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <a class="addDq_BatchEdit" href="" ng-click="addEnterRow('picture')">+新增档期图</a>
+        </div>
+    </div>
+
+    <div class="content_BatchEdit_02 content_BatchEdit_05">
+        <div class="xianshiChecked">
+            <b class="content_BatchEdit_b05">显示版本号</b>
+            <div class="content_BatchEdit_05lb" ng-repeat="(key,values) in clients">
+                <div class="xianshiTitle">{{key}}版本号</div>
+                <div class="ptxianshiChecked">
+                    <label class="lable-checked">
+                    	<input type="checkbox" name="{{key.replace(' ','_')}}" check-all>
+                    	<span></span> 全选
+                    </label>
+
+    				<label class="lable-checked" ng-repeat="list in values">
+    					<input type="checkbox" name="{{key.replace(' ','_')}}" value="{{list.id}}" ng-model="list.check" ng-click="check($event)">
+    					<span></span> {{list.number}}
+    				</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</form>

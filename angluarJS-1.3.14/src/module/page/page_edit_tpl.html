@@ -1,0 +1,1078 @@
+<style>
+	.templetZtmb-content{float: left; width: 355px; border: 5px dashed #60bae9; margin: 0 0 20px 20px;}
+	.templetZtmb-neirongiPhone{left:0; width: 640px; height: auto; top:0; position: static; padding-bottom: 0; min-height: 500px;}
+	.templetZtmb-contentiPhone{background: none; height: auto; width: auto;}
+	.templetZtmb-contentUploadDraw { width: 100%; height: 100%; z-index: 30;}
+	.templetZtmb-contentUploadpic {width: 640px; margin: 0;}
+	.header {width: 1600px;}
+	.content {width: 1600px; overflow: inherit;}
+	.footer {width: 1600px;}
+	.footer p {width: 1600px;}
+	.content01 {width: 1550px;}
+	.content03-right {width: 1264px;}
+	.templetZtmb {width: 1264px; overflow: inherit;}
+	.popAdd {left: 67%; top:79px; position: fixed;}
+	.ui-resizable {position: absolute; font-weight: bold; color: #fff; z-index: 20;}
+	.ui-icon { width: 30px; height: 30px; z-index: 99;}
+	.PadPic {width: 123px; padding-left:8px;}
+	.popAddImg { padding: 15px 0 15px 15px; height: auto; width: 100%; box-sizing: border-box; overflow-y: auto; max-height: 700px;}
+	.uploadPhone, .uploadPad {display: inline-block; position: static;vertical-align: top;}
+	.uploadPad {/* right: 40px; */}
+	.uploadPhone {/* left: 65px; */ margin-right: 16px;}
+	.popAdminBtn {width: 100%; margin-top: 20px;}
+	.content03-right { overflow: inherit;}
+	.relative-label {position: relative;}
+	.tablexlChecked_BatchEditPic {  position: absolute; margin: 0; left: 106px; top: 30px; width: 193px;}
+	.hotspot-wrapper {overflow: hidden; width: 0; height: 0; left: 0; top: 0; position: absolute; z-index: 20;}
+	.special-module {min-height: 100px;}
+	.popAddFloorInput { width: 100%; height: auto;}
+	.popAddFloorInput label {margin: 10px auto;}
+	.pop-style {left: 50%; margin-left: -260px; z-index: 1000;}
+	.pop-style img {width: 100%;}
+	.popAdd {left: 50%; width: 386px; margin-left: 293px; z-index: 1000;}
+	.popAdd .popAddTitle {width: 386px;}
+	.templetZtmb-top {width: auto; margin: 0; padding: 20px;}
+	.dqmubanSelect { right: 20px; overflow: hidden;}
+	.dqmubanSelectXla {right: 20px; z-index: 500;}
+	.popPiczjEdite {width: 384px;}
+	.templetZtmb-contentUploadDrawicon a, .templetZtmb-contentUploadDrawRight a {position: static; float: left; margin-right: 10px; margin-bottom: 10px;}
+	.templetZtmb-contentUploadDrawRightpad {right: -140px; top: 0; width: 120px;}
+	.templetZtmb-contentUploadDrawRightpad .templetZtmb-contentUploadDrawEditenew02 { top: 88px;}
+	.templetZtmb-contentUploadDrawRight .templetZtmb-contentUploadDrawRightpad {background: #000; width: 200px;}
+	.templetZtmb-contentUploadDrawTop .templetZtmb-contentUploadDrawicon a {position: absolute; right: -8px; top: -6px; margin: 0;}
+	.popAdminBtn-left{ text-align: left; padding: 0 20px; box-sizing: border-box;}
+	.popAddChecked{  padding: 20px 0;}
+	.popAddChecked .lable-checked{min-width: 55px; margin-bottom: 5px;}
+	.label-left {display: inline-block; width: 65px;}
+
+	.templetZtmb-contentUploadDrawTop-float {position: static; float: left;}
+	.templetZtmb-contentUploadDrawTop-float .templetZtmb-contentUploadDraw {position: static; float: left;}
+	.popPicchecked {width:360px;}
+
+	.module .actived {opacity: 1; background-color: rgba(0, 0, 100, .3)}
+
+	.pad .header, .pad .content, .pad .footer, .pad .footer p {width: 1900px;}
+	.pad .content01 {width: 1846px;}
+	.pad .content03-right {width: 1560px;}
+	.pad .templetZtmb {margin: 0; width: auto;}
+	.pad .templetZtmb-contentUploadpic {width: 1024px;}
+	.pad .templetZtmb-neirongiPhone {width: 1024px;}
+	.pad .popAdd {margin-left: 520px;
+	 }
+	.pad .dqmubanSelectXla {right: 20px;}
+	.pad .templetZtmb-contentUploadDrawRightpad {right: -136px;}
+
+	.popAdd .dropdown {position: absolute; background: #eee; border: 1px solid #ccc; left: 134px; width: 190px; text-align: left; line-height: 22px; max-height: 110px; overflow-y: scroll;}
+	.popAdd .dropdown li {padding: 5px 10px; line-height: 16px; border-bottom: 1px solid #ddd;}
+
+	.popAddImgCoupon .uploadTips {margin: 0; text-align: center; height: 25px; line-height: 25px;}
+	.popAddImgCoupon {height: 360px;}
+	.popAddImgCoupon .uploadPhone {left: 10px;}
+	.popAddImgCoupon .uploadPad {left: 140px;}
+	.popAddImgCoupon .uploadSaleout {left: 270px;}
+	.popAddImgCoupon .uploadPic {width: 100px; height: 100px}
+	.popAddImgCoupon .uploadPic img {width: 100%; height: 100%;}
+	.popAddImgCoupon .uploadPhone,.popAddImgCoupon .uploadPad {width: 104px;}
+
+	.popCouponEdite label { display: block; padding-left: 30px; text-align: left;}
+
+	.popAdminSelect .time-picker {background-color: #d9d1d7; border: none;}
+
+	/* 悬浮球特殊 start */
+	.popAddImgSuspend .upload-tit {margin: 0 0 10px; text-align: center; height: 24px; line-height: 24px; clear: both; }
+	.popAddImgSuspend .uploadPhone, .popAddImgSuspend .uploadPad {position: static; left: 0; top: 0; float: left; width: 50%; }
+	.popAddImgSuspend .uploadPic {margin: 0 auto;}
+	.popAddFloorInput {height: auto;}
+	.popAddFloorInput label {margin: 15px auto;}
+	/* 悬浮球特殊 end */
+
+	.uploadMultiPic {width: auto; margin: 0 10px; background: url(/prototype/images/icon19.png) #f6f5f6 no-repeat center 45px; cursor: pointer;}
+	.uploadMultiPic span {width: 100%; height: 45px; padding-top: 80px; display: block;}
+
+	.popPiczjEditeHaitao .tablexlChecked_BatchEditPic {left: 65px}
+	.uploadCenter .uploadPic{ margin: 0 auto;}
+
+	/* 悬浮球特殊 start */
+	.popAddImgSuspend .upload-tit {margin: 0 0 10px; text-align: center; height: 24px; line-height: 24px; clear: both; }
+	.popAddImgSuspend .uploadPhone, .popAddImgSuspend .uploadPad {position: static; left: 0; top: 0; float: left; width: 50%; }
+	.popAddImgSuspend .uploadPic {margin: 0 auto;}
+	.popAddFloorInput {height: auto;}
+	.popAddFloorInput label {margin: 15px auto;}
+	/* 悬浮球特殊 end */
+
+	.popStyle {width: auto; height: 396px; overflow-y: scroll; overflow-x: hidden; margin: 10px 0px 10px 5px;}
+
+	/* dap */
+	.popup-dap {height: auto;}
+	.popup-dap .popAdminDap {width: auto; padding: 15px 15px; height: auto; text-align: left; background-color: #fff; overflow: hidden;}
+	.popup-dap .popAdminDap .tableUser {margin:0 0 15px;}
+	.popup-dap .popAdminDap .tableUser th,.popup-dap .popAdminDap .tableUser td{border: 1px solid #dfdcdf}
+	.popAdminSelectBatchEdite{width: 128px; /*background-color: #FFF;*/ text-align: left; }
+	.popAdminSelectBatchEdite>input{width: 126px;  border: 1px solid #dfdcdf; font-size: 12px; padding: 4px 0;}
+
+	/* 档期标签设置 */
+	.btn-blue { display: inline-block; background: #f1f1f1; line-height: 28px; border-radius: 5px;  color: #fff; background: #60bae9; text-align: center;}
+	.brand-label-line .popPicInput {width: 150px}
+	.brand-label-line .btn-blue {width: 36px; font-size: 12px;}
+
+	body .table-user-sm td,body .table-user-sm th {height: auto; padding: 10px 0; border: 1px solid #dfdcdf;}
+	.table-user-sm td:last-child, .table-user-sm th:last-child {border-right: 1px solid #dfdcdf;}
+	.scroll-table {max-height: 300px; overflow-x: hidden; overflow-y: auto;}
+
+	/* 子页面同步 */
+	.popStyle {width: auto; height: 396px; overflow-y: scroll; overflow-x: hidden; margin: 10px 0px 10px 5px;}
+	.dqmubanSelect {top: 118px;}
+	.dqmubanSelectXla {top: 148px;}
+
+	.templetZtmb-top a {padding: 0 10px;}
+
+	.popup-normal {z-index: 999;}
+	.popup-mark {z-index: 998;}
+	.line {padding-left: 15px; margin-bottom: 15px;}
+	.line i {padding-top: 12px;display: inline-block; font-style: normal; vertical-align: middle;}
+	.popup-dap .line .lable-checkedNewpageRadio {display: inline-block;}
+
+	.dap-search {margin: 15px 0;}
+	.dap-search input,.dap-search .btn-blue {float: left;}
+	.dap-search input {width: 200px; height: 30px; line-height: 30px; text-indent: 5px; margin-right: 5px; border: 1px solid #dfdcdf}
+	.dap-search .btn-blue {width: 60px; line-height: 32px;}
+
+	/* 品牌标签搜索 */
+	.brand-label {padding: 0 15px;}
+	.brand-label-sort {margin-bottom: 5px;}
+	.brand-label-sort b, .brand-label-sort span {padding: 5px; margin-bottom: 5px; float: left;}
+	.brand-label-sort b {padding: 6px 5px;}
+	.brand-label-sort span {border: 1px solid #60bae9; margin-right: 5px; border-radius: 5px;}
+	.brand-label-sort span em{display: inline-block; width: 10px; font-style: normal; text-align: center; color: #60bae9; padding: 0 5px; cursor: pointer;}
+	.brand-label-sort span em:hover {color: #f00}
+
+	.brand-label-search {margin-bottom: 10px;}
+	.brand-label-search input,.brand-label-search .btn-blue {float: left;}
+	.brand-label-search input {width: 200px; height: 30px; line-height: 30px; text-indent: 5px; margin-right: 5px; border: 1px solid #dfdcdf}
+	.brand-label-search .btn-blue {width: 60px; line-height: 32px;}
+	.brand-show-type {padding-left: 20px; text-align: left;}
+
+	.link-blue {color: #60bae9}
+	.link-blue:hover {text-decoration: underline;}
+
+	.popup-sync {width: 600px; height: auto; margin-left: -300px;}
+	.popup-sync .popAdminSync {width: 100%; height: auto; margin-bottom: 20px;}
+	.x .popAdminSync .tableUser label{ padding: 0;}
+	.resuse {text-align: left; padding-left: 20px; line-height: 25px; margin-bottom: 20px;}
+
+	.popup-sync tr:first-child {border-top: 1px solid #dfdcdf;}
+	.popup-sync .sync-cur-page {padding: 5px 20px 0; line-height: 30px; font-size: 14px; text-align: left;}
+	.popup-sync .sync-filter {margin:0 20px; padding: 5px 0 0; overflow: hidden; border-bottom: 1px solid #f1f1f1;}
+	.popup-sync .sync-filter:hover {background-color: #f1f1f1;}
+	.popup-sync .sync-filter .lable-checked {float: left;}
+	.popup-sync .sync-filter p {text-align: left; padding: 10px 20px;}
+	.popup-sync .sync-filter label {min-width: auto; margin-bottom: 5px; padding-top: 0;}
+	.popup-sync .sync-filter label span {width: 35px;}
+
+	.popup-sync .edit-page-list {display: inline-block; margin: 10px 50px;}
+	.popup-sync .edit-page-list li {text-align: left; line-height: 22px; padding: 5px; border-bottom: 1px solid #efefef;}
+	.popup-sync .sync-page-list-wrap {max-height: 400px; text-align: left; padding: 0 20px; overflow-x: hidden; overflow-y: auto;}
+	.popup-sync .sync-page-parent {font-size: 16px; text-align: center; line-height: 30px;}
+	.popup-sync .sync-page-rule {margin-bottom: 5px; display: block; font-weight: bold;}
+	.popup-sync .sync-page-item {margin-bottom: 10px; line-height: 22px;}
+	.popup-sync .sync-page-item li {cursor: pointer;}
+	.popup-sync .sync-page-selected {background-color: #60bae9; color: #fff;}
+
+	.popup-snapshot {width: 360px; height:200px;min-height:200px;
+		position: fixed;top: 50%;left: 50%;margin-left: -180px;margin-top: -100px;}
+	.popup-snapshot .popAdminsnapshot {width: 100%; height: auto; margin-bottom: 20px;}
+	.popup-snapshot.popAdmin .popAdminInput label input{
+		display: inline-block;
+		width: 180px;
+	}
+
+	.templetZt-Zujian {margin-top: 0;}
+
+	.template-list {margin-bottom: 20px;}
+
+	/*拖动期间缩小组件高度*/
+	/*.sv-mover .special-module,.sv-mover .module-content {height: 100px !important;}
+	.special-module, .module-content{ -webkit-transition: height .2s;
+	-o-transition: height .2s;
+	transition: height .2s;}*/
+
+	/*富文本*/
+	.popPiczjEditor {width: auto; padding: 20px; text-align: left;}
+	.tabhead span { display: none;}
+	.tabhead span[data-content-id=upload] {display: inline-block;}
+
+	.special-module {background-color: #ccc;}
+	.special-module-editor {background-color: #fff;}
+
+	.snapshot .leixing{
+		margin-right: 0;
+		width: 100%;
+	}
+	.snapshot .tpl-title{
+		width: 270px;
+		height: 50px;
+		font: 16px/50px "Microsoft YaHei";
+		color: #ffffff;
+		background: #60bae9;
+		text-align: center;
+	}
+
+	.snapshot .tpl-title span {
+		position: absolute;
+		width: 20px;
+		height: 20px;
+		background: url(../../../prototype/images/icon15.png) #ffffff no-repeat center;
+		border-radius: 50%;
+		right: 12px;
+		top: 15px;
+	}
+	.snapshot .tpl-content .J_module{
+		padding: 15px 5px 5px 5px;
+		box-sizing: border-box;
+		font-size: 12px;
+		line-height: 25px;
+	}
+
+	.snapshot .tpl-content .J_module em{
+		position: absolute;
+		z-index: 2;
+		right: 2px;
+		top: 2px;
+		width: 18px;
+		height: 18px;
+		font: 12px/18px "Microsoft YaHei";
+		color: #ffffff;
+		background: #60bae9;
+		text-align: center;
+		border-radius: 50%;
+	}
+
+	.snapshot .content04{
+/*		padding-left: 10px;*/
+		box-sizing:border-box;
+		width: 100%;
+		height: 60px;
+		text-align: center;
+	}
+	.snapshot .content04 .fanye{
+		height: 60px;
+	}
+	.snapshot .content04 .fanye p{
+		display: none;
+	}
+	.snapshot .content04 .fanye a.goNext{
+		display: none;
+	}
+	.snapshot .content04 .fanye a{
+		margin: 0 3px;
+		display: inline-block;
+		float: none;
+	}
+	.snapshot .content04 .fanye a.syyBtn,
+	.snapshot .content04 .fanye a.nextBtn{
+		display: none;
+	}
+
+	.upload-pic .uploadPhone {top: 20px}
+</style>
+
+<!-- 面包屑 start -->
+
+<div class="content01" crumb="specialEditFlow" parent-id="parentId" crumb-index="2"></div>
+<!-- 面包屑 end -->
+
+<!-- 左侧编辑区 start -->
+<div class="content03-left">
+	<div class="templetZt templetZt-Leixing" ng-if="false">
+		<div class="mubanLeixing">
+			MZT模板类型
+			<span></span>
+		</div>
+		<div class="leixing clearfix">
+			<div class="template">
+				<div class="tpl-title"></div>
+				<div class="tpl-content"></div>
+			</div>
+			<a href="javascript:;" ng-repeat="template in templateList" ng-click="setTemplate()">{{template.name}}</a>
+		</div>
+	</div>
+
+	<div class="templetZt templetZt-Leixing snapshot" ng-if="true">
+		<div class="tpl-title">
+			组件快照
+			<span></span>
+		</div>
+		<div class="leixing clearfix">
+			<div class="template">
+
+				<div class="tpl-content clearfix">
+					<div dir-paginate="module in snapshotListData.list | itemsPerPage: snapshotListData.pageNum" total-items="snapshotListData.total" current-page="watchCurPage">
+						<a title="{{module.name}}" href="javascript:;" class="J_module is_snapshot" data-drag="true" data-jqyoui-draggable="{animate:true}" data-jqyoui-options="{revert: true, helper: 'clone'}">{{module.name}}
+							<em ng-click="delSnapshot(module.id,module.name)">X</em>
+						</a>
+					</div>
+				</div>
+
+				<dir-pagination-controls max-size="8" template-url="common/directive/angular-pager.html" on-page-change="getsnapshotList(newPageNumber)"></dir-pagination-controls>
+
+			</div>
+		</div>
+	</div>
+
+	<div class="templetZt templetZt-Zujian">
+		<div class="gnZujian clearfix">
+			<a class="gnZujianSelected" href="javascript:;">功能组件</a>
+			<a href="javascript:;">上传组件</a>
+		</div>
+		<div class="zujianBg">
+			<div class="zujian clearfix">
+				<a class="J_module" href="javascript:;" ng-repeat="module in moduleList"  data-drag="true" data-jqyoui-draggable="{animate:true}" data-jqyoui-options="{revert: true, helper: 'clone'}">{{module.name}}</a>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 左侧编辑区 end -->
+
+
+<!-- 右侧编辑区 start -->
+<div class="content03-right">
+	<div class="templetZtmb">
+
+		<!-- 页面功能区 start -->
+		<div class="templetZtmb-top">
+			<div class="BtnTabphonepad">
+				<span ng-class="{'BtnTabphonepad-checked': pageModel == 0 }" ng-click="changePageModel(0)">
+					简约模式
+				</span>
+				<span ng-class="{'BtnTabphonepad-checked': pageModel == 1 }" ng-click="changePageModel(1)">
+					预览模式
+				</span>
+			</div>
+
+			<div class="BtnTabphonepad">
+				<span ng-class="{'BtnTabphonepad-checked': pageClass == 'phone'}" ng-click="toOtherClient('phone')">Phone</span>
+				<span ng-class="{'BtnTabphonepad-checked': pageClass == 'pad'}" ng-click="toOtherClient('pad')">Pad</span>
+			</div>
+			<!-- <a ng-if="page_type_id == 0" href="javascript:;" ng-click="copyPage()">复制本页</a> -->
+			<!-- <a ng-if="page_type_id == 0" href="javascript:;" ng-click="createPage()">新增父页面</a> -->
+			<a ng-if="page_type_id == 0" href="javascript:;" ng-click="toCreateChildrenPage()">生成子页面</a>
+			<a href="javascript:;" ng-click="toUploadExcel(1)">导入品购id</a>
+			<a href="javascript:;" ng-click="toUploadExcel(0)">导入非品购id</a>
+			<a href="javascript:;" ng-click="bindDapSort()">绑定DAP排序</a>
+			<a href="javascript:;" ng-click="toSyncOthers()" ng-show="page_type_id == 1">同步到其他子页面</a>
+			<a href="javascript:;" ng-click="toPreview()">预览</a>
+
+			<span class="swithBtnClose" ng-click="pullAutoSyncSwitch(special_id,$event)" data-action="open"></span>
+		</div>
+		<!-- 页面功能区 end -->
+
+		<!-- 可视化窗口 start -->
+		<div class="templetZtmb-content templetZtmb-contentiPhone" data-drop="true" data-jqyoui-droppable="{index:101, onDrop:'drop'}" data-jqyoui-options="{accept:'.J_module'}" ng-class="{'sv-mover' : svMove}">
+			<div class="templetZtmb-contentUploadpic">
+				<div class="templetZtmb-neirongiPhone" sv-on-sort="onSort($item, $partFrom, $partTo, $indexFrom, $indexTo)" sv-root sv-part="page.moduleList" sv-on-start="onSortStart($item, $part, $index,$event)" sv-on-stop="onSortStop($item, $part, $index)">
+					<div class="special-module" sv-element special-module="module" index="$index" ng-repeat="module in page.moduleList" ng-class="{'special-module-editor' : module.module_type_id == 'editor'}"></div>
+				</div>
+			</div>
+		</div>
+		<!-- 可视化窗口 end -->
+
+		<!-- 模板列表 -->
+		<div class="template-list">
+			<!-- <div class="template-list-current" ng-click="triggerPageList($event, item)">
+				<span>当前模板：</span>{{curPage.name}}
+			</div> -->
+
+			<div class="template-list-content" ng-repeat="parent in pageList">
+				<div class="page-parent">
+					<div class="page-parent-title" ng-class="{'on': curPage.id == parent.parent_id }" ng-click="toEditPage($event, parent.parent_id, parent.page_type, parent.parent_id)">{{parent.parent_name}}</div>
+					<div class="page-parent-content">
+						<div class="page-rule-list" ng-repeat="rule in parent.data">
+							<div class="page-rule-title" ng-click="rule.extended = !rule.extended">
+								<i class="iconfont">{{rule.extended ? '&#xe602;' : '&#xe603;'}}</i>
+								{{rule.rule_name}}
+							</div>
+							<div class="page-rule-content">
+								<div class="page-content" ng-show="rule.extended">
+									<ul>
+										<li ng-repeat="item in rule.data" ng-class="{'on': curPage.id == item.page_id }" ng-click="toEditPage($event, item.page_id, item.page_type, parent.parent_id)" title="{{item.page_name}}">
+											<i class="iconfont">{{item.is_modify ? '&#xe601;' : '&#xe600;'}}</i> {{item.page_name}}
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<!-- 组件编辑区 start -->
+		<module-editor></module-editor>
+		<!-- 组件编辑区 end -->
+
+	</div>
+</div>
+<!-- 右侧编辑区 end -->
+
+<div class="clearfix"></div>
+
+
+<!-- 选择样式组 start -->
+
+<div ng-if="isShowPopStyle" class="pop-style popAdd popAddPad popPic">
+    <div class="popAddTitle popAddTitlePic">选择样式</div>
+    <div class="popPicchecked popStyle">
+        <div ng-repeat="style in styleList">
+        	<a ng-class="{ 'on': curModule.style_group_id == style.id }" title="{{style.name}}" href="javascript:;" ng-click="curModule.module_type_id =='custom_config' ? setStyle(style,true) : setStyle(style)">
+        		<img ng-src="{{style.thumb}}">
+    		</a>
+        	{{style.name}}
+        </div>
+    </div>
+    <div class="popPicFanye hide">
+        <a class="popPicSyiye" href="javascript:;">上一页</a>
+        <a class="popPicfanyeChecked" href="javascript:;">1</a>
+        <a href="javascript:;">2</a>
+        <a href="javascript:;">3</a>
+        <a href="javascript:;">...</a>
+        <a href="javascript:;">6</a>
+        <a class="popPicNext" href="javascript:;">下一页</a>
+    </div>
+    <a class="popAdminBtn-close" href="javascript:;" ng-click="$root.isShowPopStyle=false"></a>
+</div>
+<!-- 选择样式组 end -->
+
+<!-- 添加组件快照 start -->
+<div popup popup-open="isShowAddSnapshot" popup-template="'addSnapshot.html'" popup-data="addSnapshotData"></div>
+<script type="text/ng-template" id="addSnapshot.html">
+	<div class="popAdmin popup-normal popup-snapshot" ng-show="popupOpen" ng-if="template">
+	    <div class="popAdminTitle">
+	        添加提示
+	    </div>
+	    <div class="popAdminInput popAdminsnapshot">
+	    	<div class="snapshot-filter" >
+	    		<label>
+	    			组件快照名称:
+	    		    <input type="text" ng-model="data.inputname" />
+	    		</label>
+	    	</div>
+	    	<div class="snapshot-filter">
+	    		<label>
+    				确认保存当前组件为组件快照吗？
+	    		</label>
+
+	    	</div>
+	    </div>
+	    <div class="popAdminBtn">
+	    	<span>
+		        <a class="popAdminBtn-OK popAdminBtn-OK-attripute" href="" ng-click="data.confirmInfo()">确定</a>
+	        </span>
+	    </div>
+	    <a class="popAdminBtn-close" href="" ng-click="cancle()"></a>
+	</div>
+</script>
+
+<!-- 添加组件快照 end -->
+
+
+<div popup popup-open="dapData.show" popup-template="'dap.html'" popup-data="dapData"></div>
+
+<script type="text/ng-template" id="dap.html">
+<div class="popAdmin popup-normal popup-dap" ng-show="popupOpen" ng-if="template">
+    <div class="popAdminTitle">
+        绑定DAP排序
+    </div>
+    <div class="popAdminInput popAdminDap" ng-if="data.step == 1">
+    	<div class="line">
+    		<i>绑定dap排序：</i>
+	    	<label class="lable-checked lable-checkedNewpageRadio">
+	            <input type="radio" ng-model="data.dap_switch" ng-value="1">
+	            <span></span> 是
+	        </label>
+	        <label class="lable-checked lable-checkedNewpageRadio">
+	            <input type="radio" ng-model="data.dap_switch" ng-value="0">
+	            <span></span> 否
+	        </label>
+        </div>
+
+        <div ng-if="data.dap_switch == 1">
+        	<table class="tableUser table-user-sm"  ng-if="data.type == '1' || data.type == '3'">
+        	    <tbody>
+        	        <tr>
+        	            <th width="20%">
+        	                销售类型
+        	            </th>
+        	            <th width="10%">ID</th>
+        	            <th>名称</th>
+        	            <th width="10%">操作</th>
+        	        </tr>
+        	        <tr>
+        	            <td>
+        	                预热
+        	            </td>
+        	            <td>{{data.data.pre.id == -1 ? '' : data.data.pre.id}}</td>
+        	            <td>
+        	            	{{data.data.pre.name}}
+        	            </td>
+        	            <td><a href="javascript:" ng-click="data.updateDap('1')" class="link-blue">更改</a></td>
+        	        </tr>
+        	    </tbody>
+        	</table>
+
+        	<table class="tableUser table-user-sm" ng-if="data.type == '2' || data.type == '3'">
+        	    <tbody>
+        	        <tr>
+        	            <th width="20%">
+        	                在售类型
+        	            </th>
+        	            <th width="10%">ID</th>
+        	            <th>名称</th>
+        	            <th width="10%">操作</th>
+        	        </tr>
+        	        <tr>
+        	            <td>
+        	                在售
+        	            </td>
+        	            <td>{{data.data.onsale.id == -1 ? '' : data.data.onsale.id}}</td>
+        	            <td>
+        	            	{{data.data.onsale.name}}
+        	            </td>
+        	            <td><a href="javascript:" ng-click="data.updateDap('2')" class="link-blue">更改</a></td>
+        	        </tr>
+        	    </tbody>
+        	</table>
+
+        	<table class="tableUser table-user-sm" ng-if="data.type == '0'">
+        	    <tbody>
+        	        <tr>
+        	            <th width="20%">
+        	                在售类型
+        	            </th>
+        	            <th width="10%">ID</th>
+        	            <th>名称</th>
+        	            <th width="10%">操作</th>
+        	        </tr>
+        	        <tr>
+        	            <td>
+        	                不区分
+        	            </td>
+        	            <td>{{data.data.pre.id == -1 ? '' : data.data.pre.id}}</td>
+        	            <td>
+        	            	{{data.data.pre.name}}
+        	            </td>
+        	            <td><a href="javascript:" ng-click="data.updateDap('0')" class="link-blue">更改</a></td>
+        	        </tr>
+        	    </tbody>
+        	</table>
+        </div>
+    </div>
+
+    <div class="popAdminInput popAdminDap" ng-if="data.step == 2">
+
+    	<div class="dap-search clearfix">
+    		<input type="text" ng-model="data.searchKey" placeholder="请输入排序名称或者ID" ng-keyup="data.search($event)">
+    		<a href="" ng-click="data.search()" class="btn-blue">搜索</a>
+    	</div>
+        <table class="tableUser table-user-sm" style="margin-bottom:0">
+            <tbody>
+                <tr>
+                    <th width="12%">ID</th>
+                    <th>名称</th>
+                    <th width="10%">操作</th>
+                </tr>
+            </tbody>
+        </table>
+        <div class="scroll-table">
+	        <table class="tableUser table-user-sm">
+	            <tbody>
+	                <tr ng-repeat="list in data.dapList">
+	                    <td width="12%">
+	                        {{list.id == -1 ? '' : list.id}}
+	                    </td>
+	                    <td>{{list.name}}</td>
+	                    <td width="10%"><a href="javascript:" ng-click="data.setDap(list.id,list.name)" class="link-blue">绑定</a></td>
+	                </tr>
+	                <tr ng-if="data.dapList.length == 0">
+	                    <td colspan="3">
+	                        没有对应数据，请重新搜索！
+	                    </td>
+	                </tr>
+	            </tbody>
+	        </table>
+        </div>
+    </div>
+
+    <div class="popAdminBtn" ng-if="data.step == 1">
+        <a class="popAdminBtn-Cancel popAdminBtn-Cancel-attribute" ng-click="cancle()">取消</a>
+        <a class="popAdminBtn-OK popAdminBtn-OK-attripute" href="" ng-click="data.confirmInfo()">确定</a>
+    </div>
+
+    <div class="popAdminBtn" ng-if="data.step == 2">
+        <a class="popAdminBtn-Cancel popAdminBtn-Cancel-attribute" ng-click="data.step = 1">取消</a>
+    </div>
+    <a class="popAdminBtn-close" href="" ng-click="cancle()"></a>
+</div>
+</script>
+
+<div popup popup-open="popupSyncOpen" popup-template="'sync.html'" popup-data="syncData"></div>
+
+<script type="text/ng-template" id="sync.html">
+<div class="popAdmin popup-normal popup-sync" ng-show="popupOpen" ng-if="template">
+    <div class="popAdminTitle">
+        {{data.step == 1 ? '同步到其他子页面' : '请确认要覆盖的页面'}}
+    </div>
+    <div class="popAdminInput popAdminSync" ng-if="data.step == 1">
+    	<p class="sync-cur-page">当前页面：{{data.curPage.name}}</p>
+
+    	<div class="sync-filter">
+    		<label class="lable-checked">
+    		    <input type="checkbox" ng-model="data.rule.checked" ng-click="data.toCheckAll('rule', $event);" ng-true-value="true" ng-false-value="false">
+    		    <span></span> 全选
+    		</label>
+
+    		<label class="lable-checked" ng-repeat="rule in data.rule.list">
+    		    <input type="checkbox" value="{{rule.rule_id}}" ng-model="rule.checked" ng-click="data.switchFilter()" ng-true-value="true" ng-false-value="false">
+    		    <span></span> {{rule.rule_name}}
+    		</label>
+    	</div>
+
+    	<div class="sync-filter">
+    		<label class="lable-checked">
+    		    <input type="checkbox" ng-model="data.warehouse.checked" ng-click="data.toCheckAll('warehouse', $event);" ng-true-value="true" ng-false-value="false">
+    		    <span></span> 全选
+    		</label>
+
+    		<label class="lable-checked" ng-repeat="warehouse in data.warehouse.list">
+    		    <input type="checkbox" value="{{warehouse.id}}" ng-model="warehouse.checked" ng-click="data.switchFilter()" ng-true-value="true" ng-false-value="false">
+    		    <span></span> {{warehouse.name}}
+    		</label>
+    	</div>
+
+    	<div class="sync-filter">
+    		<label class="lable-checked">
+    		    <input type="checkbox" ng-model="data.consumerType.checked" ng-click="data.toCheckAll('consumerType', $event);" ng-true-value="true" ng-false-value="false">
+    		    <span></span> 全选
+    		</label>
+
+    		<label class="lable-checked" ng-repeat="consumerType in data.consumerType.list">
+    		    <input type="checkbox" value="{{consumerType.id}}" ng-model="consumerType.checked" ng-click="data.switchFilter()" ng-true-value="true" ng-false-value="false">
+    		    <span></span> {{consumerType.name}}
+    		</label>
+    	</div>
+
+    	<div class="sync-filter">
+    		<label class="lable-checked">
+    		    <input type="checkbox" ng-model="data.saleType.checked" ng-click="data.toCheckAll('saleType', $event);" ng-true-value="true" ng-false-value="false">
+    		    <span></span> 全选
+    		</label>
+
+    		<label class="lable-checked" ng-repeat="saleType in data.saleType.list">
+                <input type="checkbox" value="{{saleType.id}}" ng-model="saleType.checked" ng-click="data.switchFilter()" ng-true-value="true" ng-false-value="false">
+                <span></span> {{saleType.name}}
+            </label>
+    	</div>
+        <div class="sync-page-list">
+        	<div ng-repeat="parent in data.pageList" class="sync-page-list-wrap">
+        		<p class="sync-page-parent">{{parent.parent_name}}</p>
+        		<div ng-repeat="rule in parent.data">
+        			<b class="sync-page-rule">{{rule.rule_name}}：</b>
+        			<ul class="sync-page-item">
+        				<li ng-class="{'sync-page-selected':page.checked}" ng-repeat="page in rule.data" data-parent-id="{{parent.parent_id}}" data-rule-id="{{rule.rule_id}}" data-page-id="{{page.page_id}}" ng-click="page.checked = !page.checked" ng-if="page.page_id != data.curPage.id">{{page.page_name}}</li>
+        			</ul>
+        		</div>
+        	</div>
+        </div>
+
+        <!--<div class="resuse">
+	        是否同步Excel数据：
+	        <input type="radio" ng-model="data.isReuseExcel" ng-value="true"> 继续用旧Excel的数据
+	        <input type="radio" ng-model="data.isReuseExcel" ng-value="false"> 重新上传
+        </div>-->
+    </div>
+
+    <div class="popAdminInput popAdminSync popAdminSyncConfirm" ng-if="data.step == 2">
+    	<div class="sync-page-list">
+    		<div ng-repeat="parent in data.pageList" class="sync-page-list-wrap">
+    			<p class="sync-page-parent">{{parent.parent_name}}</p>
+    			<div ng-repeat="rule in parent.data">
+    				<b class="sync-page-rule">{{rule.rule_name}}：</b>
+    				<ul class="sync-page-item">
+    					<li ng-repeat="page in rule.data" ng-if="page.checked && page.page_id != data.curPage.id">{{page.page_name}}</li>
+    				</ul>
+    			</div>
+    		</div>
+    	</div>
+    </div>
+
+    <div class="popAdminBtn">
+    	<span ng-if="data.step == 1">
+	        <a class="popAdminBtn-Cancel popAdminBtn-Cancel-attribute" ng-click="cancle()">取消</a>
+	        <a class="popAdminBtn-OK popAdminBtn-OK-attripute" href="" ng-click="data.confirmInfo()">确定</a>
+        </span>
+    	<span ng-if="data.step == 2">
+	        <a class="popAdminBtn-Cancel popAdminBtn-Cancel-attribute" ng-click="data.toStep(1)">返回修改</a>
+	        <a class="popAdminBtn-OK popAdminBtn-OK-attripute" href="" ng-click="data.postData()">确定</a>
+        </span>
+    </div>
+    <a class="popAdminBtn-close" href="" ng-click="cancle()"></a>
+</div>
+</script>
+
+
+
+<!-- 商品推荐 start -->
+<div popup popup-open="data.showLayer" popup-template="'product_recommend.html'" popup-data="proRecData"></div>
+<style type="text/css">
+
+	/* 2:Function(.f-) */
+	.f-cl{zoom:1;}
+	.f-cl:after{content:'';display:block;clear:both;}
+	.f-fl{float:left;}
+	.f-fr{float:right;}
+
+	.m-proRecRule{ position: fixed; width: 900px; left: 0; right: 0;  top: 50%; margin: auto;  text-align: center; background: #fff;border-radius: 3px;box-shadow: 0px 0px 20px #d4d1d4; -webkit-transform: translateY(-50%);  -o-transform: translateY(-50%); -ms-transform: translateY(-50%); -moz-transform: translateY(-50%); transform: translateY(-50%);  z-index: 1001; }
+	.m-proRecRule .pointer,.m-proRecRule .close{ cursor: pointer; }
+	.m-proRecRule .close:active{ background: #bbb!important; }
+	.m-proRecRule .tit{ padding-left: 30px; background: #60bae9; color: #fff; font: 22px/58px "Microsoft YaHei";border-radius: 3px 3px 0 0; }
+	.m-proRecRule .tit .close{ width: 58px; color: #000; font-size: 28px;  }
+	.m-proRecRule .tit .close:active{ background: #40AAE2; }
+	/*规则列表*/
+	.m-proRecRule .ruleList{  padding: 0 10%; padding-top: 18px;  }
+	.m-proRecRule .ruleList .ctn{  height: 72px; overflow: hidden; max-height: 108px; }
+	.m-proRecRule .ruleList .ctn.showMore{ height: auto; overflow-y:scroll; }
+	.m-proRecRule .ruleList .addRule{ outline: none; }
+	.m-proRecRule .ruleList .addRule:active{   background: #60bae9;color: #fff; }
+	.m-proRecRule .ruleList .item,.m-proRecRule .ruleList .addRule{ position: relative; display: inline-block; min-width: 18%; height: 26px; line-height: 26px; margin-bottom: 8px; margin-right: 8px; background: #eee; border: 1px solid #ddd;  }
+	.m-proRecRule .ruleList .item .des{ box-sizing: border-box; height: 100%; padding-right: 32px; padding-left: 5px; cursor: pointer; }
+	.m-proRecRule .ruleList .item .des.on{ background: #60bae9; color: #fff; }
+	.m-proRecRule .ruleList .item .close{ position: absolute; right: 0; top: 0; width: 26px; border-left: 1px solid #ddd; background: #eee; color :#000;}
+	.m-proRecRule .ruleList .toggle span{  display: inline-block; transform: rotate(90deg); }
+	.m-proRecRule .ruleList .toggle.up span{ position: relative; top: -6px; transform: rotate(-90deg); }
+	/*规则内容*/
+	.m-proRecRule .ruleCtn{ padding: 30px 10% 0; border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; }
+	.m-proRecRule .ruleCtn .more{ text-align: left; padding-left: 50px; text-decoration: underline; color: blue; cursor: pointer; line-height: 36px; }
+	.m-proRecRule .ruleCtn .tips{    text-align: left;
+    text-decoration: underline;
+    color: blue;
+    cursor: pointer;
+    line-height: 36px; }
+	.m-proRecRule .ruleCtn .ctn{  height: 318px; overflow: hidden; }
+	.m-proRecRule .ruleCtn .ctn.showMore{ height: auto; max-height: 428px; overflow-y: scroll; }
+	.m-proRecRule .ruleCtn .item{ position: relative; width: 50%; height: 28px; margin-bottom: 8px; }
+	.m-proRecRule .ruleCtn .ctn.showMore .item{ width: 48.5%; }
+	.m-proRecRule .ruleCtn .item .delTime{  position: absolute;width: 22px; line-height: 21px; }
+	.m-proRecRule .ruleCtn .item .des{ display: inline-block; width: 30%; }
+	.m-proRecRule .ruleCtn .item .input{ display: inline-block; width: 60%; border: 1px solid #DFDFDF; }
+	.m-proRecRule .ruleCtn .item .item-time{ position: relative; display: inline-block; width: 30%; }
+	.m-proRecRule .ruleCtn .item .item-time .input{ width: 100%; padding-right: 22px; }
+	.m-proRecRule .ruleCtn .item .input.noBd{ border:0; }
+
+	.m-proRecRule .btm{ padding: 10px 0; }
+	.m-proRecRule .btm .confirm{ width: 15%; line-height: 28px; }
+</style>
+<script type="text/ng-template" id="product_recommend.html" >
+
+
+	  <div class="m-proRecRule " ng-if="data.showLayer">
+	    <div class="tit">推荐规则<span class="close f-fr" ng-click="data.fnResetData();" >x</span></div>
+
+	    <div class="ruleList">
+	      <div class="ctn f-cl" ng-class="{ 'showMore': data.showMoreRuleList }" >
+	        <button class="addRule f-fl" ng-click="data.fnAddRule();">添加规则</button>
+	        <div class="item f-fl" ng-repeat="rule in data.ruleList track by $index"><div class="des" ng-class="{ 'on': $index=== data.curRuleIndex}" ng-click="data.fnSwitchRule($index);">{{rule.fields.name}}</div><span class="close" ng-click="data.fnDelRule($index);">X</span></div>
+	      </div>
+
+	      <div class="toggle" ng-class="{ up: data.showMoreRuleList }" ng-click="data.fnShowMoreList()" ng-if="data.ruleList.length"><span>》</span></div>
+	    </div>
+
+	    <div class="ruleCtn " ng-if="data.ruleList.length">
+	      <div class="ctn f-cl" ng-class="{ 'showMore': data.showMoreRuleCtn }">
+		      <div class="item f-fl"><span class="des">规则名称：</span><input type="text" class="input" ng-model="data.curRuleData.fields.name" ></div>
+		      <div class="item f-fl"><span class="des"><a class="tips" target="_blank" href="http://wiki.corp.vipshop.com/pages/viewpage.action?pageId=58767224">填写说明</a></span><div class="input noBd"></div></div>
+		      <div class="item f-fl"><span class="des">售卖平台：</span>
+		        <select class="input" name="" id="" ng-model="data.curRuleData.fields.sale_platform" >
+		        	<option value=""></option>
+		          	<option value="1">B2C</option>
+					<option value="2">移动app</option>
+					<option value="3">Ebay</option>
+					<option value="4">微博</option>
+					<option value="5">微信</option>
+					<option value="6">宝宝树</option>
+					<option value="7">VIPLUXU</option>
+					<option value="8">我是妈咪APP</option>
+					<option value="9">唯美APP</option>
+					<option value="a">尤物APP</option>
+					<option value="b">汽车APP</option>
+					<option value="c">唯旅行APP</option>
+					<option value="d">最搭APP</option>
+					<option value="e">全球特卖APP</option>
+					<option value="f">正点APP</option>
+					<option value="g">Hey购物APP</option>
+					<option value="h">居家APP</option>
+					<option value="i">户外APP</option>
+					<option value="j">花海仓APP</option>
+					<option value="k">唯美旅行APP</option>
+					<option value="l">大码家APP</option>
+					<option value="m">乐蜂APP</option>
+					<option value="n">花芯APP</option>
+					<option value="o">唯觅APP</option>
+		        </select>
+		      </div>
+		      <div class="item f-fl"><span class="des">排序</span>
+		        <select class="input" name="" id="" ng-model="data.curRuleData.fields.sort">
+		            <option value=""></option>
+		            <option value="boom-asc">爆款(升序)</option>
+					<option value="boom-desc">爆款(降序)</option>
+					<option value="agio-asc">折扣(升序)</option>
+					<option value="agio-desc">折扣(降序)</option>
+					<option value="price-asc">唯品价(升序)</option>
+					<option value="price-desc">唯品价(降序)</option>
+					<option value="operate-asc">运营排序(升序)</option>
+					<option value="operate-desc">运营排序(降序)</option>
+		        </select>
+		      </div>
+
+
+
+		      <div class="item f-fl" style="display:none;"><span class="des">个数：</span><input type="text" class="input" placeholder="推荐商品个数，默认为30个" ng-model="data.curRuleData.fields.ps"></div>
+
+
+		      <div class="item f-fl">
+		      	<span class="des">开售时间：</span>
+		      	<input type="text" class="input" placeholder="只填这个，则是指定开售时间" ng-model="data.curRuleData.fields.pc_show_from"  ui-time="global_start_time" ui-time-time="{'hour' : '10','minute' : '0','second' : '0'}" ui-min-range="global_end_time" ng-readonly="true" ><button class="delTime" ng-click="data.curRuleData.fields.pc_show_from=''">x</button>
+
+		      </div>
+		      <div class="item f-fl">
+		      	<span class="des">--------&gt;</span>
+                <input type="text" class="input" placeholder="再填这个则是开售时间范围" ng-model="data.curRuleData.fields.pc_show_from_2"  ui-time="global_end_time" ui-time-time="{'hour' : '10','minute' : '0','second' : '0'}" ui-max-range="global_start_time" ng-readonly="true" ><button class="delTime" ng-click="data.curRuleData.fields.pc_show_from_2=''">x</button>
+
+		      </div>
+
+
+		      <div class="item f-fl"><span class="des">档期id：</span><input type="text" class="input" placeholder="多个可以使用英文半角','隔开" ng-model="data.curRuleData.fields.brand_id"></div>
+		      <div class="item f-fl"><span class="des">部类id：</span><input type="text" class="input" placeholder="多个可以使用英文半角','隔开" ng-model="data.curRuleData.fields.department_id"></div>
+
+		      <div class="item f-fl"><span class="des">预热/开售：</span>
+		        <select class="input" name="" id="" ng-model="data.curRuleData.fields.is_warmup">
+		          <option value=""></option>
+		          <option value="0">开售</option>
+		          <option value="1">预售</option>
+		        </select>
+		      </div>
+
+		      <div class="item f-fl"><span class="des">频道：</span>
+		        <select class="input" name="" id="" ng-model="data.curRuleData.fields.channel">
+		          <option value=""></option>
+		          <option value="index">首页</option>
+		          <option value="kid">亲子</option>
+		          <option value="home">居家</option>
+		          <option value="beauty">美妆</option>
+		        </select>
+		      </div>
+		      <div class="item f-fl"><span class="des">售卖模式：</span><input type="text" class="input" placeholder="多值英文逗号隔开" ng-model="data.curRuleData.fields.sale_style"></div>
+
+		      <div class="item f-fl"><span class="des">价格：</span><input type="text" class="input" placeholder="范围用'-'分隔" ng-model="data.curRuleData.fields.price"></div>
+		      <div class="item f-fl"><span class="des">折扣：</span><input type="text" class="input" placeholder="范围用'-'分隔" ng-model="data.curRuleData.fields.agio"></div>
+		      <div class="item f-fl"><span class="des">年龄：</span><input type="text" class="input" placeholder="范围用'-'分隔" ng-model="data.curRuleData.fields.age"></div>
+
+		      <div class="item f-fl"><span class="des">性别：</span>
+		        <select class="input" name="" id="" ng-model="data.curRuleData.fields.sex">
+		          <option value=""></option>
+		          <option value="0">女性</option>
+		          <option value="1">男性</option>
+		          <option value="255">中性</option>
+		        </select>
+		      </div>
+
+		      <div class="item f-fl"><span class="des">老分类：</span><input type="text" class="input" placeholder="(支持1~3级分类, 多个可以使用英文半角','隔开)" ng-model="data.curRuleData.fields.cat_id" ></div>
+		      <div class="item f-fl"><span class="des">新分类：</span><input type="text" class="input" placeholder="(仅支持3级分类, 多个可以使用英文半角','隔开)" ng-model="data.curRuleData.fields.new_cat_id" ></div>
+		      <div class="item f-fl"><span class="des">物品词：</span><input type="text" class="input" placeholder="多个可以使用英文半角','隔开" ng-model="data.curRuleData.fields.item" ></div>
+		      <div class="item f-fl"><span class="des">品牌名：</span><input type="text" class="input" placeholder="多个可以使用英文半角','隔开" ng-model="data.curRuleData.fields.brand" ></div>
+		      <div class="item f-fl"><span class="des">颜色：</span><input type="text" class="input" placeholder="多个可以使用英文半角','隔开" ng-model="data.curRuleData.fields.color" ></div>
+		      <div class="item f-fl"><span class="des">风格：</span><input type="text" class="input" placeholder="多个可以使用英文半角','隔开" ng-model="data.curRuleData.fields.style" ></div>
+		      <div class="item f-fl"><span class="des">人群：</span><input type="text" class="input" placeholder="多个可以使用英文半角','隔开" ng-model="data.curRuleData.fields.group_age" ></div>
+		      <div class="item f-fl"><span class="des">属性：</span><input type="text" class="input" placeholder="多个可以使用英文半角','隔开" ng-model="data.curRuleData.fields.attribute" ></div>
+		      <div class="item f-fl"><span class="des">色系：</span><input type="text" placeholder="多个可以使用英文半角','隔开" class="input" ng-model="data.curRuleData.fields.color_class" ></div>
+		      <div class="item f-fl"><span class="des">材质：</span><input type="text" placeholder="多个可以使用英文半角','隔开" class="input" ng-model="data.curRuleData.fields.attribute_material" ></div>
+		      <div class="item f-fl"><span class="des">档期屏蔽字段：</span><input type="text" placeholder="多个可以使用英文半角','隔开" class="input" ng-model="data.curRuleData.fields.show_in" ></div>
+		      <div class="item f-fl"><span class="des">商品屏蔽字段：</span><input type="text" placeholder="多个可以使用英文半角','隔开" class="input" ng-model="data.curRuleData.fields.m_show_in" ></div>
+		    </div>
+	      <div class="more"><span class="des" ng-click="data.fnShowMoreCtn()" ng-bind="data.showMoreRuleCtn ? '收起' : '更多'"></span></div>
+	    </div>
+
+	    <div class="btm" ng-if="data.ruleList.length">
+	      <button class="confirm pointer" ng-click="data.fnUpdate();" ng-bind="data.curEditType=='edit'?'确认':'添加' "></button>
+	      <button ng-click="data.fnShowData();" style="display:none;">显示数据</button>
+	    </div>
+	  </div>
+	</div>
+</script>
+<!-- 商品推荐 end -->
+
+
+
+<!-- 档期推荐 start -->
+<!--
+档期推荐 (http://wiki.corp.vipshop.com/pages/viewpage.action?pageId=33657836)
+	和
+商品推荐 ( http://wiki.corp.vipshop.com/pages/viewpage.action?pageId=26651123 )
+	相比
+-
+	m_show_in
+	pg
+	age
+	agio
+	price
++
+	label_id
+ -->
+<div popup popup-open="data.showLayer" popup-template="'brand_recommend.html'" popup-data="brandRecData"></div>
+<script type="text/ng-template" id="brand_recommend.html" >
+	  <div class="m-proRecRule " ng-if="data.showLayer">
+	    <div class="tit">推荐规则brand<span class="close f-fr" ng-click="data.fnResetData();" >x</span></div>
+
+	    <div class="ruleList">
+	      <div class="ctn f-cl" ng-class="{ 'showMore': data.showMoreRuleList }" >
+	        <button class="addRule f-fl" ng-click="data.fnAddRule();">添加规则</button>
+	        <div class="item f-fl" ng-repeat="rule in data.ruleList track by $index"><div class="des" ng-class="{ 'on': $index=== data.curRuleIndex}" ng-click="data.fnSwitchRule($index);">{{rule.fields.name}}</div><span class="close" ng-click="data.fnDelRule($index);">X</span></div>
+	      </div>
+
+	      <div class="toggle" ng-class="{ up: data.showMoreRuleList }" ng-click="data.fnShowMoreList()" ng-if="data.ruleList.length"><span>》</span></div>
+	    </div>
+
+	    <div class="ruleCtn " ng-if="data.ruleList.length">
+	      <div class="ctn f-cl" ng-class="{ 'showMore': data.showMoreRuleCtn }">
+		      <div class="item f-fl"><span class="des">规则名称：</span><input type="text" class="input" ng-model="data.curRuleData.fields.name" ></div>
+		      <div class="item f-fl"><span class="des"><a class="tips" target="_blank" href="http://wiki.corp.vipshop.com/pages/viewpage.action?pageId=70502840#">填写说明</a></span><div class="input noBd"></div></div>
+		      <div class="item f-fl"><span class="des">售卖平台：</span>
+		        <select class="input" name="" id="" ng-model="data.curRuleData.fields.sale_platform" >
+		        	<option value=""></option>
+		          	<option value="1">B2C</option>
+					<option value="2">移动app</option>
+					<option value="3">Ebay</option>
+					<option value="4">微博</option>
+					<option value="5">微信</option>
+					<option value="6">宝宝树</option>
+					<option value="7">VIPLUXU</option>
+					<option value="8">我是妈咪APP</option>
+					<option value="9">唯美APP</option>
+					<option value="a">尤物APP</option>
+					<option value="b">汽车APP</option>
+					<option value="c">唯旅行APP</option>
+					<option value="d">最搭APP</option>
+					<option value="e">全球特卖APP</option>
+					<option value="f">正点APP</option>
+					<option value="g">Hey购物APP</option>
+					<option value="h">居家APP</option>
+					<option value="i">户外APP</option>
+					<option value="j">花海仓APP</option>
+					<option value="k">唯美旅行APP</option>
+					<option value="l">大码家APP</option>
+					<option value="m">乐蜂APP</option>
+					<option value="n">花芯APP</option>
+					<option value="o">唯觅APP</option>
+		        </select>
+		      </div>
+		      <div class="item f-fl"><span class="des">排序</span>
+		        <select class="input" name="" id="" ng-model="data.curRuleData.fields.sort">
+		            <option value=""></option>
+		            <option value="boom-asc">爆款(升序)</option>
+					<option value="boom-desc">爆款(降序)</option>
+					<option value="agio-asc">折扣(升序)</option>
+					<option value="agio-desc">折扣(降序)</option>
+					<option value="price-asc">唯品价(升序)</option>
+					<option value="price-desc">唯品价(降序)</option>
+					<option value="operate-asc">运营排序(升序)</option>
+					<option value="operate-desc">运营排序(降序)</option>
+		        </select>
+		      </div>
+
+
+
+		      <div class="item f-fl" style="display:none;"><span class="des">个数：</span><input type="text" class="input" placeholder="推荐商品个数，默认为30个" ng-model="data.curRuleData.fields.ps"></div>
+
+
+		      <div class="item f-fl">
+		      	<span class="des">开售时间：</span>
+		      	<input type="text" class="input" placeholder="只填这个，则是指定开售时间" ng-model="data.curRuleData.fields.pc_show_from"  ui-time="global_start_time" ui-time-time="{'hour' : '10','minute' : '0','second' : '0'}" ui-min-range="global_end_time" ng-readonly="true" ><button class="delTime" ng-click="data.curRuleData.fields.pc_show_from=''">x</button>
+
+		      </div>
+		      <div class="item f-fl">
+		      	<span class="des">--------&gt;</span>
+                <input type="text" class="input" placeholder="再填这个则是开售时间范围" ng-model="data.curRuleData.fields.pc_show_from_2"  ui-time="global_end_time" ui-time-time="{'hour' : '10','minute' : '0','second' : '0'}" ui-max-range="global_start_time" ng-readonly="true" ><button class="delTime" ng-click="data.curRuleData.fields.pc_show_from_2=''">x</button>
+
+		      </div>
+
+
+		      <div class="item f-fl"><span class="des">档期id：</span><input type="text" class="input" placeholder="多个可以使用英文半角','隔开" ng-model="data.curRuleData.fields.brand_id"></div>
+		      <div class="item f-fl"><span class="des">部类id：</span><input type="text" class="input" placeholder="多个可以使用英文半角','隔开" ng-model="data.curRuleData.fields.department_id"></div>
+
+		      <div class="item f-fl"><span class="des">预热/开售：</span>
+		        <select class="input" name="" id="" ng-model="data.curRuleData.fields.is_warmup">
+		          <option value=""></option>
+		          <option value="0">开售</option>
+		          <option value="1">预售</option>
+		        </select>
+		      </div>
+
+		      <div class="item f-fl"><span class="des">频道：</span>
+		        <select class="input" name="" id="" ng-model="data.curRuleData.fields.channel">
+		          <option value=""></option>
+		          <option value="index">首页</option>
+		          <option value="kid">亲子</option>
+		          <option value="home">居家</option>
+		          <option value="beauty">美妆</option>
+		        </select>
+		      </div>
+		      <div class="item f-fl"><span class="des">售卖模式：</span><input type="text" class="input" placeholder="多值英文逗号隔开" ng-model="data.curRuleData.fields.sale_style"></div>
+
+		      <div class="item f-fl"><span class="des">年龄：</span><input type="text" class="input" placeholder="范围用'-'分隔" ng-model="data.curRuleData.fields.age"></div>
+
+		      <div class="item f-fl"><span class="des">性别：</span>
+		        <select class="input" name="" id="" ng-model="data.curRuleData.fields.sex">
+		          <option value=""></option>
+		          <option value="0">女性</option>
+		          <option value="1">男性</option>
+		          <option value="255">中性</option>
+		        </select>
+		      </div>
+
+		      <div class="item f-fl"><span class="des">老分类：</span><input type="text" class="input" placeholder="支持1~3级分类, 多个可以使用英文半角','隔开" ng-model="data.curRuleData.fields.cat_id" ></div>
+		      <div class="item f-fl"><span class="des">新分类：</span><input type="text" class="input" placeholder="仅支持3级分类, 多个可以使用英文半角','隔开" ng-model="data.curRuleData.fields.new_cat_id" ></div>
+		      <div class="item f-fl"><span class="des">标签id：</span><input type="text" class="input" placeholder="多个可以使用英文半角','隔开" ng-model="data.curRuleData.fields.label_id" ></div>
+		      <div class="item f-fl"><span class="des">物品词：</span><input type="text" class="input" placeholder="多个可以使用英文半角','隔开" ng-model="data.curRuleData.fields.item" ></div>
+		      <div class="item f-fl"><span class="des">品牌名：</span><input type="text" class="input" placeholder="多个可以使用英文半角','隔开" ng-model="data.curRuleData.fields.brand" ></div>
+		      <div class="item f-fl"><span class="des">颜色：</span><input type="text" class="input" placeholder="多个可以使用英文半角','隔开" ng-model="data.curRuleData.fields.color" ></div>
+		      <div class="item f-fl"><span class="des">风格：</span><input type="text" class="input" placeholder="多个可以使用英文半角','隔开" ng-model="data.curRuleData.fields.style" ></div>
+		      <div class="item f-fl"><span class="des">属性：</span><input type="text" class="input" placeholder="多个可以使用英文半角','隔开" ng-model="data.curRuleData.fields.attribute" ></div>
+		      <div class="item f-fl"><span class="des">色系：</span><input type="text" placeholder="多个可以使用英文半角','隔开" class="input" ng-model="data.curRuleData.fields.color_class" ></div>
+		      <div class="item f-fl"><span class="des">材质：</span><input type="text" placeholder="多个可以使用英文半角','隔开" class="input" ng-model="data.curRuleData.fields.attribute_material" ></div>
+		      <div class="item f-fl"><span class="des">档期屏蔽字段：</span><input type="text" placeholder="多个可以使用英文半角','隔开" class="input" ng-model="data.curRuleData.fields.show_in" ></div>
+		    </div>
+	      <div class="more"><span class="des" ng-click="data.fnShowMoreCtn()" ng-bind="data.showMoreRuleCtn ? '收起' : '更多'"></span></div>
+	    </div>
+
+	    <div class="btm" ng-if="data.ruleList.length">
+	      <button class="confirm pointer" ng-click="data.fnUpdate();" ng-bind="data.curEditType=='edit'?'确认':'添加' "></button>
+	      <button ng-click="data.fnShowData();" style="display:none;">显示数据</button>
+	    </div>
+	  </div>
+	</div>
+</script>
+
+<!-- 档期推荐 end -->
+
+<style>
+	/*.templetZtmb-contentiPhone{ height: 300px; overflow-y: scroll;  }*/
+</style>
+<script>
+	// window.onmousewheel= function (ev){
+	// 	console.log(ev.wheelDelta);
+	// 	var o = $('.templetZtmb-content')[0];
+	// 	o.scrollTop = o.scrollTop - ev.wheelDelta;
+	// 	console.log(o.scrollTop)
+	// 		return false;
+
+	// }
+</script>

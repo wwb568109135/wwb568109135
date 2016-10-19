@@ -1,0 +1,102 @@
+<style type="text/css">
+    .popAdmin .popAdminInputShouye{width: 436px;}
+    .popAdminInputShouye p {line-height: 150px; font-size: 16px;}
+    .popShouye {margin-top: -130px;}
+</style>
+<style type="text/css">
+    .popAdmin .popAdminInput .other-type {padding-top: 15px; overflow: hidden;}
+    .popAdmin .popAdminInput .other-type label {display: inline;}
+    .popAdmin .popAdminInput .other-type label span {width: 16px; float: none;}
+    .popAdmin .popAdminInput .other-type p {float: left; width: 76px;font:14px/30px "Microsoft YaHei";}
+</style>
+<div class="content01" crumb="componentList"></div>
+
+<div class="content02 content02User">
+    <a class="addZt plEdited" href="" ng-click="showPopup()">新增</a>
+    <a class="tabRight deleteZtUser deleteZtFb" href="" ng-click="preDelete()" >删 除</a>
+    <a class="tabRight deleteZtUser manaUser publishBtn" href="#/style/cate/list">样式分组管理</a>
+
+    <label class="ptSearch ptSearchUser">
+        <input type="text" placeholder="请输入关键字搜索" ng-model="filtText" ng-keyup="searchKeyUp($event,this,'pageChanged')"/>
+        <a class="searchBtn" ng-click="pageChanged(1)"></a>
+    </label>
+</div>
+<div class="content03">
+    <table class="tableUser">
+        <tbody>
+            <tr>
+                <th width="10%">
+                    <!-- <input type="checkbox" ng-model="chkall" ng-click="selectAll(chkall)" >全选 -->
+                    <label class="lable-checked">
+                        <input type="checkbox" ng-model="chkall" name="check" check-all>
+                        <span></span>
+                    </label>
+                </th>
+                <th>组件名称</th>
+                <th>样式分类名称</th>
+            </tr>
+            <tr ng-show="components.list.length == 0 && !loading">
+                <td colspan="3">没有相应的搜索数据，请换个关键字试试！</td>
+            </tr>
+            <tr dir-paginate="component in components.list | itemsPerPage: 10" total-items="components.total">
+                <td>
+                    <label class="lable-checked">
+                        <input name="check" type="checkbox" value="{{component.id}}" ng-model="component.check" ng-click="check($event)">
+                        <span></span>
+                    </label>
+                </td>
+                <td><a href="" ng-click="showPopup(component.id)" class="green">{{component.name}}</a></td>
+                <td>
+                    {{component.style_cate_name}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<dir-pagination-controls template-url="common/directive/angular-pager.html" on-page-change="pageChanged(newPageNumber)"></dir-pagination-controls>
+
+<div popup popup-content="确定要删除？" popup-open="popDelOpen" popup-save="delete"></div>
+
+<div popup popup-open="popupOpen" popup-template="'modifyForm.html'" popup-data="component"></div>
+
+<script type="text/ng-template" id="modifyForm.html">
+<div class="popAdmin popup-normal" ng-show="popupOpen" ng-if="template">
+    <div class="popAdminTitle">
+        {{data.id ? '编辑' : '新增'}}组件
+    </div>
+    <div class="popAdminInput">
+        <label>
+            <span>组件名称</span>
+            <input type="text" ng-model="data.name">
+        </label>
+        <label>
+            <span>样式组分类</span>
+            <div class="popAdminSelect" drop-name="isDropStyleCate">
+                {{data.curStyleCate.name}}
+                <div class="popXlicon popXlicon_green"></div>
+            </div>
+            <div class="tablexlChecked tablexlChecked_user tablexlChecked_usernew" ng-show="data.isDropStyleCate">
+                <span ng-repeat="cate in data.cates" ng-click="data.curStyleCate = cate">{{cate.name}}</span>
+            </div>
+        </label>
+        <div class="other-type">
+            <p>是否常用</p>
+            <label class="lable-checked lable-checkedNewpageRadio">
+                <input type="radio" name="common" ng-model="data.is_common" value="1">
+                <span></span> 是
+            </label>
+            <label class="lable-checked lable-checkedNewpageRadio">
+                <input type="radio" name="common" ng-model="data.is_common" value="0">
+                <span></span> 否
+            </label>
+        </div>
+    </div>
+
+    <div class="popAdminBtn">
+        <a class="popAdminBtn-Cancel popAdminBtn-Cancel-attribute" ng-click="cancle()">取消</a>
+        <a class="popAdminBtn-OK popAdminBtn-OK-attripute" href="" ng-click="data.postData()">确定</a>
+    </div>
+    <a class="popAdminBtn-close" href="" ng-click="cancle()"></a>
+</div>
+</script>
