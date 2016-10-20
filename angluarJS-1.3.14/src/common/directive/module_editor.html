@@ -1,0 +1,1924 @@
+<!-- 模块编辑区 start-->
+<div ng-switch="curEditType">
+
+    <div class="popAdd">
+        <!-- 图片组件 start -->
+        <div ng-switch-when="head">
+            <div ng-if="step == 1">
+                <div class="popAddTitle">图片组件</div>
+                <div class="popAddFloorInput">
+                    <label>
+                        <input type="text" placeholder="请选择样式" ng-model="curModule.style_group">
+                        <a href="javascript:;" ng-click="popStyle()">浏览</a>
+                    </label>
+                </div>
+                <div class="popAddImg">
+                    <label>默认：</label>
+                    <div class="uploadPhone">
+                        <div class="uploadPic" ng-click="selectFile($event,'phone')">
+                            <img ng-src="{{curModule.model.phone_pic_src}}"></div>
+                        <input style="display:none" type="file" alias="phone_pic_src" nv-file-select="" uploader="uploader"/>
+                        <div class="PadPic">
+                            Phone图片
+                            <a ng-if="curModule.model.phone_pic_src" ng-click="deleteImg('phone_pic_src')"></a>
+                        </div>
+                    </div>
+                    <div class="uploadPad">
+                        <div class="uploadPic" ng-click="selectFile($event,'pad')">
+                            <img ng-src="{{curModule.model.pad_pic_src}}"></div>
+                        <input style="display:none" type="file" alias="pad_pic_src" nv-file-select="" uploader="uploader" ng-model="pad_pic_src" />
+                        <div class="PadPic">
+                            Pad图片
+                            <a ng-if="curModule.model.phone_pic_src" ng-click="deleteImg('pad_pic_src')"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="popAdminBtn popAdminBtn-left">
+                    <label>个性化：</label>
+                    <a class="popAdminBtn-OK" href="javascript:;" ng-click="setPersonality()">个性化头图设置</a>
+                </div>
+                <div class="popAdminBtn">
+                    <a class="popAdminBtn-Cancel" href="javascript:;" ng-click="cancelBlock()">关闭</a>
+                </div>
+            </div>
+
+            <div ng-if="step == 2">
+                <div class="popAddTitle">图片组件 - 个性化头图编辑</div>
+                <div class="popAddImg">
+                    <label>请勾选需要配置个性化头图的人群：</label>
+                    <div class="popAddChecked">
+                        <div class="checks">
+                            <label class="lable-checked" ng-repeat="rule in curModule.model.rules">
+                                <input type="checkbox" value="rule" ng-model="rule.checked">
+                                <span></span>
+                                {{rule.name}}
+                            </label>
+                        </div>
+                    </div>
+
+                    <div ng-repeat="rule in curModule.model.rules" ng-if="rule.checked">
+                        <label class="label-left" >{{rule.name}}：</label>
+                        <div class="uploadPhone">
+                            <div class="uploadPic" ng-click="selectFile($event,'phone','',rule.id)">
+                                <img ng-src="{{curModule.model.rule_pic_src[rule.id].phone_pic_src}}"></div>
+                            <input style="display:none" type="file" nv-file-select="" uploader="uploader" ng-model="curModule.model.rule_pic_src[rule.id].phone_pic_src"/>
+                            <div class="PadPic">
+                                Phone图片
+                                <a ng-if="curModule.model.rule_pic_src[rule.id].phone_pic_src" ng-click="deleteImg('phone_pic_src',rule.id)"></a>
+                            </div>
+                        </div>
+                        <div class="uploadPad">
+                            <div class="uploadPic" ng-click="selectFile($event,'pad','',rule.id)">
+                                <img ng-src="{{curModule.model.rule_pic_src[rule.id].pad_pic_src}}"></div>
+                            <input style="display:none" type="file" nv-file-select="" uploader="uploader" ng-model="curModule.model.rule_pic_src[rule.id].pad_pic_src" />
+                            <div class="PadPic">
+                                Pad图片
+                                <a ng-if="curModule.model.rule_pic_src[rule.id].phone_pic_src" ng-click="deleteImg('pad_pic_src',rule.id)"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="popAdminBtn">
+                    <a class="popAdminBtn-OK" href="javascript:;" ng-click="updatePersonality()">确定</a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- 图片组件 end -->
+
+        <!-- 图片组件 - 热区 start -->
+        <div ng-switch-when="headHotspot">
+            <div class="popAddTitle">图片组件 - {{options[curBlock.type-1].name}} - 编辑</div>
+            <div class="popPiczjEdite">
+                <label class="relative-label">
+                    <b>请输入跳转类型</b>
+                    <div ng-click="triggerHotspotType($event)" class="popAdminSelect popAdminSelectBatchEdite popAddpicEditeInput">
+                        {{options[curBlock.type-1].name}}<div class="popXlicon popXlicon_green"></div>
+                    </div>
+                    <div ng-show="isDropHotspotType" class="tablexlChecked tablexlChecked_BatchEdit tablexlChecked_BatchEditPic">
+                        <span ng-repeat="item in options" ng-click="curBlock.type = item.id">
+                            {{item.name}}
+                        </span>
+                    </div>
+                </label>
+                <div ng-switch="curBlock.type">
+                    <div ng-switch-when="1">
+                        <label>
+                            <b>请输入跳转URL</b>
+                            <input type="text" ng-model="curBlock.url" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl">
+                        </label>
+                        <label>
+                            <b>标题</b>
+                            <input type="text" ng-model="curBlock.title" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl">
+                        </label>
+                        <label>
+                            <div class="fcRadio">
+                                是否打开新窗口
+                                <label ng-click="curBlock.isBlank = 'true'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curBlock.isBlank == 'true'" type="radio"><span></span><b>是</b></label>
+                                <label ng-click="curBlock.isBlank = 'false'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curBlock.isBlank == 'false'" type="radio"><span></span><b>否</b></label>
+                            </div>
+                        </label>
+                    </div>
+                    <div ng-switch-when="2">
+                        <label>
+                            <b>请输入档期ID</b>
+                            <input type="text" ng-model="curBlock.brand_id" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl">
+                        </label>
+                    </div>
+                    <div ng-switch-when="3">
+                        <label>
+                            <b>请输入档期ID</b>
+                            <input type="text" ng-model="curBlock.brand_id" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl">
+                        </label>
+                        <label>
+                            <b>请输入商品ID</b>
+                            <input type="text" ng-model="curBlock.product_id" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl">
+                        </label>
+                    </div>
+                    <div ng-switch-when="4">
+                        <label>
+                            <b>锚点点击跳转到</b>
+                            <input type="text" ng-model="curBlock.anchor" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl">
+                        </label>
+                    </div>
+                    <div ng-switch-when="5">
+                        <!-- <label>
+                            <b>返回首页</b>
+                            <input type="text" ng-model="curBlock.anchor" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl">
+                        </label> -->
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="popAdminBtn popAdminBtnNewpagelast">
+                <a ng-click="updateBlock()" class="popAdminBtn-Cancel popAdminBtn-CancelFloor" href="javascript:;">关闭</a>
+            </div>
+        </div>
+        <!-- 图片组件 - 热区 end -->
+
+        <!-- 图片锚点 start -->
+        <div ng-switch-when="headAnchor">
+            <div class="popAddTitle">图片组件 - 锚点设置</div>
+            <div class="popPiczjEdite">
+                    <b>锚点名称</b>
+                    <input type="text" ng-model="curModule.model.anchor" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl">
+                </label>
+            </div>
+            <div class="popAdminBtn popAdminBtnNewpagelast">
+                <a ng-click="cancelBlock()" class="popAdminBtn-Cancel popAdminBtn-CancelFloor" href="javascript:;">关闭</a>
+            </div>
+        </div>
+        <!-- 图片锚点 end -->
+
+        <!-- 图片定时任务 start -->
+        <div ng-switch-when="timing">
+            <div class="popAddTitle">定时任务</div>
+            <div class="popPiczjEdite">
+                <label> <b>开始时间</b>
+                    <div class="popAdminSelect popAdminSelectBatchEdite popXlicon_time" >
+                        <input class="time-picker" ng-model="curModule.model.live.start_time" ui-time="live_start_time" ui-time-time="{'hour' : '10','minute' : '0','second' : '0'}" ui-min-range="live_end_time"  ng-change="setTiming(curModule.model.live.start_time,'start')">
+                        <div class="popXlicon"></div>
+                    </div>
+                </label>
+                <label> <b>结束时间</b>
+                    <div class="popAdminSelect popAdminSelectBatchEdite popXlicon_time">
+                        <input class="time-picker" ng-model="curModule.model.live.end_time" ui-time="live_end_time" ui-time-time="{'hour' : '10','minute' : '0','second' : '0'}" ui-max-range="live_start_time"  ng-change="setTiming(curModule.model.live.end_time,'end')">
+                        <div class="popXlicon"></div>
+                    </div>
+                </label>
+            </div>
+            <div class="popAdminBtn popAdminBtnNewpagelast">
+                <a ng-click="cancelBlock()" class="popAdminBtn-Cancel popAdminBtn-CancelFloor" href="javascript:;">关闭</a>
+            </div>
+        </div>
+        <!-- 图片定时任务 end -->
+
+
+        <!-- 品购组件 start -->
+        <div ng-switch-when="purchase">
+            <div class="popAddTitle">品购组件</div>
+            <div class="popAddFloorInput">
+                <label><input type="text" placeholder="请选择样式" ng-model="curModule.style_group"><a href="javascript:;" ng-click="popStyle()">浏览</a></label>
+            </div>
+            <div class="popAddImg">
+
+                <div class="uploadPhone">
+                    <div class="uploadPic" ng-click="selectFile($event,'phone','splice')"><img ng-src="{{curModule.model.phone_pic_src.source}}"></div>
+                    <input style="display:none" type="file" alias="phone_pic_src.source" nv-file-select="" uploader="uploader" ng-model="phone_pic_src.source" />
+                    <div class="PadPic">Phone图片
+                        <a ng-if="curModule.model.phone_pic_src.source" ng-click="deleteImg('phone_pic_src','source')"></a>
+                    </div>
+                </div>
+                <div class="uploadPad">
+                    <div class="uploadPic" ng-click="selectFile($event,'pad','splice')"><img ng-src="{{curModule.model.pad_pic_src.source}}"></div>
+                    <input style="display:none" type="file" alias="pad_pic_src.source" nv-file-select="" uploader="uploader" ng-model="pad_pic_src.source" />
+                    <div class="PadPic">Pad图片
+                        <a ng-if="curModule.model.pad_pic_src.source" ng-click="deleteImg('pad_pic_src')"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="popAdminBtn">
+                <a class="popAdminBtn-Cancel" href="javascript:;" ng-click="cancelBlock()">关闭</a>
+            </div>
+        </div>
+        <!-- 品购 end -->
+
+        <!-- 品购热区 - 商品 start -->
+        <div ng-switch-when="purchaseProductHotspot">
+            <div class="popAddTitle">品购热区 - 档期商品 - 编辑</div>
+            <div class="popPiczjEdite">
+                <label class="relative-label">
+                    <b>请输入跳转类型</b>
+                    <div ng-click="triggerHotspotType($event)" class="popAdminSelect popAdminSelectBatchEdite popAddpicEditeInput">
+                        档期商品<div class="popXlicon popXlicon_green"></div>
+                    </div>
+                    <div ng-show="isDropHotspotType" class="tablexlChecked tablexlChecked_BatchEdit tablexlChecked_BatchEditPic">
+                        <span ng-click="changeToProductHotspot()">档期商品</span>
+                        <span ng-click="changeToUrlHotspot()">普通URL</span>
+                        <span ng-click="changeToIndexHotspot()">返回首页</span>
+                        <span ng-click="changeToVirtualProductHotspot()">虚拟商品</span>
+                        <span ng-click="changeToAppCategoryHotspot()">分类结果页</span>
+                    </div>
+                </label>
+                <label>
+                    <b>请输入设置序号</b>
+                    <input type="text" ng-model="newBlockPosition.key" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl">
+                </label>
+            </div>
+            <div class="popAdminBtn popAdminBtnNewpagelast">
+                <a ng-click="updateBlock()" class="popAdminBtn-Cancel popAdminBtn-CancelFloor" href="javascript:;">关闭</a>
+            </div>
+        </div>
+        <!-- 品购热区 - 商品 end -->
+
+        <!-- 品购热区 - url start -->
+        <div ng-switch-when="purchaseUrlHotspot">
+            <div class="popAddTitle">品购热区 - 普通URL - 编辑</div>
+            <div class="popPiczjEdite">
+                <label class="relative-label">
+                    <b>请输入跳转类型</b>
+                    <div ng-click="triggerHotspotType($event)" class="popAdminSelect popAdminSelectBatchEdite popAddpicEditeInput">
+                        普通URL<div class="popXlicon popXlicon_green"></div>
+                    </div>
+                    <div ng-show="isDropHotspotType" class="tablexlChecked tablexlChecked_BatchEdit tablexlChecked_BatchEditPic">
+                        <span ng-click="changeToProductHotspot()">档期商品</span>
+                        <span ng-click="changeToUrlHotspot()">普通URL</span>
+                        <span ng-click="changeToIndexHotspot()">返回首页</span>
+                        <span ng-click="changeToVirtualProductHotspot()">虚拟商品</span>
+                        <span ng-click="changeToAppCategoryHotspot()">分类结果页</span>
+                    </div>
+                </label>
+                <label>
+                    <b>请输入跳转URL</b>
+                    <input ng-model="curBlock.url" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl" type="text">
+                </label>
+                <label>
+                    <b>标题</b>
+                    <input ng-model="curBlock.title" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl" type="text">
+                </label>
+                <label>
+                    <div class="fcRadio">
+                        是否打开新窗口
+                        <label ng-click="curBlock.isBlank = 'true'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curBlock.isBlank == 'true'" type="radio"><span></span><b>是</b></label>
+                        <label ng-click="curBlock.isBlank = 'false'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curBlock.isBlank == 'false'" type="radio"><span></span><b>否</b></label>
+                    </div>
+                </label>
+            </div>
+            <div class="popAdminBtn popAdminBtnNewpagelast">
+                <a ng-click="updateBlock()" class="popAdminBtn-Cancel popAdminBtn-CancelFloor" href="javascript:;">关闭</a>
+            </div>
+        </div>
+        <!-- 品购热区 - url end -->
+
+        <!-- 品购热区 - index start -->
+        <div ng-switch-when="purchaseIndexHotspot">
+            <div class="popAddTitle">品购热区 - 返回首页 - 编辑</div>
+            <div class="popPiczjEdite">
+                <label class="relative-label">
+                    <b>请输入跳转类型</b>
+                    <div ng-click="triggerHotspotType($event)" class="popAdminSelect popAdminSelectBatchEdite popAddpicEditeInput">
+                        返回首页<div class="popXlicon popXlicon_green"></div>
+                    </div>
+                    <div ng-show="isDropHotspotType" class="tablexlChecked tablexlChecked_BatchEdit tablexlChecked_BatchEditPic">
+                        <span ng-click="changeToProductHotspot()">档期商品</span>
+                        <span ng-click="changeToUrlHotspot()">普通URL</span>
+                        <span ng-click="changeToIndexHotspot()">返回首页</span>
+                        <span ng-click="changeToVirtualProductHotspot()">虚拟商品</span>
+                        <span ng-click="changeToAppCategoryHotspot()">分类结果页</span>
+                    </div>
+                </label>
+            </div>
+            <div class="popAdminBtn popAdminBtnNewpagelast">
+                <a ng-click="updateBlock()" class="popAdminBtn-Cancel popAdminBtn-CancelFloor" href="javascript:;">关闭</a>
+            </div>
+        </div>
+        <!-- 品购热区 - index end -->
+
+        <!-- 品购热区 - 虚拟商品 start -->
+        <div ng-switch-when="purchaseVirtualProductHotspot">
+            <div class="popAddTitle">品购热区 - 虚拟商品 - 编辑</div>
+            <div class="popPiczjEdite">
+                <label class="relative-label">
+                    <b>请输入跳转类型</b>
+                    <div ng-click="triggerHotspotType($event)" class="popAdminSelect popAdminSelectBatchEdite popAddpicEditeInput">
+                        虚拟商品<div class="popXlicon popXlicon_green"></div>
+                    </div>
+                    <div ng-show="isDropHotspotType" class="tablexlChecked tablexlChecked_BatchEdit tablexlChecked_BatchEditPic">
+                        <span ng-click="changeToProductHotspot()">档期商品</span>
+                        <span ng-click="changeToUrlHotspot()">普通URL</span>
+                        <span ng-click="changeToIndexHotspot()">返回首页</span>
+                        <span ng-click="changeToVirtualProductHotspot()">虚拟商品</span>
+                        <span ng-click="changeToAppCategoryHotspot()">分类结果页</span>
+                    </div>
+                </label>
+                <label>
+                    <b>虚拟商品id</b>
+                    <input type="text" ng-model="curBlock.virtualProductId" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl">
+                </label>
+            </div>
+            <div class="popAdminBtn popAdminBtnNewpagelast">
+                <a ng-click="updateBlock()" class="popAdminBtn-Cancel popAdminBtn-CancelFloor" href="javascript:;">关闭</a>
+            </div>
+        </div>
+        <!-- 品购热区 - 虚拟商品 end -->
+
+
+        <!-- 品购热区 - MZT支持跳转到原生品类页 start -->
+        <div ng-switch-when="purchaseAppCategoryHotspot">
+            <div class="popAddTitle">品购热区 - 分类结果页 - 编辑</div>
+            <div class="popPiczjEdite">
+                <label class="relative-label">
+                    <b>请输入跳转类型</b>
+                    <div ng-click="triggerHotspotType($event)" class="popAdminSelect popAdminSelectBatchEdite popAddpicEditeInput">
+                        分类结果页<div class="popXlicon popXlicon_green"></div>
+                    </div>
+                    <div ng-show="isDropHotspotType" class="tablexlChecked tablexlChecked_BatchEdit tablexlChecked_BatchEditPic">
+                        <span ng-click="changeToProductHotspot()">档期商品</span>
+                        <span ng-click="changeToUrlHotspot()">普通URL</span>
+                        <span ng-click="changeToIndexHotspot()">返回首页</span>
+                        <span ng-click="changeToVirtualProductHotspot()">虚拟商品</span>
+                        <span ng-click="changeToAppCategoryHotspot()">分类结果页</span>
+                    </div>
+                </label>
+                <label>
+
+                    <b>一级分类ID</b>
+                    <input type="text" placeholder="必填值" ng-model="curBlock.category_one_id" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl">
+                </label>
+                <label>
+                    <b>二级分类ID</b>
+                    <input type="text" placeholder="必填值" ng-model="curBlock.category_two_id" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl">
+                </label>
+                <label>
+                    <b>二级分类名称</b>
+                    <input type="text" ng-model="curBlock.category_two_title" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl">
+                </label>
+            </div>
+            <div class="popAdminBtn popAdminBtnNewpagelast">
+                <a ng-click="updateBlock()" class="popAdminBtn-Cancel popAdminBtn-CancelFloor" href="javascript:;">关闭</a>
+            </div>
+        </div>
+        <!-- 品购热区 - MZT支持跳转到原生品类页 end -->
+
+
+        <!-- 档期商品组件 start -->
+        <div ng-switch-when="brand_with_product">
+            <div class="popAddTitle">档期商品组件</div>
+            <div class="popAddFloorInput">
+              <label><input type="text" placeholder="请选择样式" ng-model="curModule.style_group"><a href="javascript:;" ng-click="popStyle()">浏览</a></label>
+            </div>
+            <div class="popPiczjEdite">
+                <label>
+                    <b>　商品展示数量：</b>
+                    <input ng-model="curModule.model.extend_product_num" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl" type="text">
+                </label>
+                <label>
+                    <div class="fcRadio">
+                        　　　　是否分页：
+                        <label ng-click="curModule.extend.page.isPaging = 'true'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curModule.extend.page.isPaging == 'true'" type="radio"><span></span><b>是</b></label>
+                        <label ng-click="curModule.extend.page.isPaging = 'false'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curModule.extend.page.isPaging == 'false'" type="radio"><span></span><b>否</b></label>
+                    </div>
+                </label>
+
+                <label>
+                    <b>　每页条数：</b>
+                    <input ng-model="curModule.extend.page.limit" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl" type="text">
+                </label>
+                <label class="brand-label-line">
+                    <b>　　　标签：</b>
+                    <input class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl" type="text" ng-readonly="true" ng-model="curModule.model.labelName">
+                    <a href="javascript:" class="btn-blue" ng-click="changeToBrandProductLabel()">设置</a>
+                </label>
+
+
+            </div>
+            <div class="popAdminBtn">
+                <a class="popAdminBtn-Cancel" href="javascript:;" ng-click="cancelBlock()">关闭</a>
+            </div>
+        </div>
+        <!-- 档期商品组件 end -->
+
+        <!-- 档期商品组件 - 设置标签 start -->
+        <div ng-switch-when="brandProductLabel">
+            <div class="popAddTitle">档期组件 - 设置标签</div>
+            <div class="popPiczjEdite">
+                <div class="brand-label-sort">
+                    开售时间：
+                    <div class="popAdminSelect popAdminSelectBatchEdite popXlicon_time" >
+                        <input ng-model="curModule.model.brand_start_time" ui-time="brand_start_time" ui-time-time="{'hour' : '10','minute' : '0','second' : '0'}"  ng-change="setTimeRange(curModule.model.brand_start_time,'start')">
+                    </div>
+                    至
+                    <div class="popAdminSelect popAdminSelectBatchEdite popXlicon_time" >
+                        <input ng-model="curModule.model.brand_end_time" ui-time="brand_end_time" ui-time-time="{'hour' : '9','minute' : '59','second' : '59'}"  ng-change="setTimeRange(curModule.model.brand_end_time,'end')">
+
+                    </div>
+                </div>
+                <div class="brand-show-type clearfix">
+                    <div class="fcRadio">
+                        展示方式：
+                        <label ng-click="curModule.model.show_type = 'inter'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curModule.model.show_type == 'inter'" type="radio"><span></span><b>交集</b></label>
+                        <label ng-click="curModule.model.show_type = 'uion'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curModule.model.show_type == 'uion'" type="radio"><span></span><b>并集</b></label>
+                    </div>
+                </div>
+                <div class="brand-label">
+
+                    <div class="brand-label-sort clearfix">
+                        <b>当前档期标签：</b> <span ng-repeat="label in curModule.labels">{{label.name}}<em ng-click="removeBrandLabel($index);">x</em></span>
+                    </div>
+
+                    <div class="brand-label-search clearfix">
+                        <input type="text" ng-model="curModule.searchKey" placeholder="请输入排序名称或者ID" ng-keyup="searchBrandLabel($event)">
+                        <a href="" ng-click="searchBrandLabel()" class="btn-blue">搜索</a>
+                    </div>
+
+                    <table class="tableUser table-user-sm">
+                        <thead>
+                            <tr>
+                                <th width="12%">ID</th>
+                                <th>名称</th>
+                                <th width="15%">分组</th>
+                                <th width="10%">操作</th>
+                            </tr>
+                        </thead>
+                    </table>
+                    <div class="scroll-table">
+                        <table class="tableUser table-user-sm">
+                            <tbody>
+                                <tr ng-repeat="list in curModule.brandLabels" ng-if="curModule.brandLabels.length > 0">
+                                    <td width="12%">
+                                        {{list.tagId}}
+                                    </td>
+                                    <td>{{list.name}}</td>
+                                    <td width="15%">{{list.groupName}}</td>
+                                    <td width="10%"><a href="javascript:" ng-click="addBrandLabel(list)" class="link-blue">绑定</a></td>
+                                </tr>
+                                <tr ng-if="curModule.brandLabels.length == 0">
+                                    <td colspan="4">
+                                        没有对应数据，请重新搜索！
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="popAdminBtn">
+                <a class="popAdminBtn-Cancel" href="javascript:;" ng-click="changeToBrandProduct()">关闭</a>
+            </div>
+        </div>
+        <!-- 档期商品组件 - 设置标签 end -->
+
+
+        <!-- 档期组件 start -->
+        <div ng-switch-when="brand">
+            <div class="popAddTitle">档期组件</div>
+            <div class="popAddFloorInput">
+              <label><input type="text" placeholder="请选择样式" ng-model="curModule.style_group"><a href="javascript:;" ng-click="popStyle()">浏览</a></label>
+            </div>
+            <div class="popPiczjEdite">
+                <label>
+                    <div class="fcRadio">
+                        　　　　是否分页：
+                        <label ng-click="curModule.extend.page.isPaging = 'true'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curModule.extend.page.isPaging == 'true'" type="radio"><span></span><b>是</b></label>
+                        <label ng-click="curModule.extend.page.isPaging = 'false'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curModule.extend.page.isPaging == 'false'" type="radio"><span></span><b>否</b></label>
+                    </div>
+                </label>
+
+                <label>
+                    <b>　每页条数：</b>
+                    <input ng-model="curModule.extend.page.limit" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl" type="text">
+                </label>
+                <label class="brand-label-line">
+                    <b>　　　标签：</b>
+                    <input class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl" type="text" ng-readonly="true" ng-model="curModule.model.labelName">
+                    <a href="javascript:" class="btn-blue" ng-click="changeToBrandLabel()">设置</a>
+                </label>
+
+                <label for="" class="u-proRec">
+                    <div class="search">
+                        推荐引擎：
+                        <div class="searchArea">
+                            <input type="text" ng-model="curModule.search.name" ng-click="fnShowList()">
+                            <ul ng-show="(curModule.search.name&&bShowList)">
+                                <li ng-repeat="item in brandRecData.ruleList | filter: curModule.search" ng-click="fnSetSearchName(item)" >{{item.name}}</li>
+                            </ul>
+                        </div>
+                        <button ng-click="fnSetRule()">设置</button>
+
+                    </div>
+                </label>
+
+                <label>
+                    <div class="fcRadio">
+                        　　　是否可点击进入：
+                        <label ng-click="curModule.model.is_click = 'true'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curModule.model.is_click == 'true'" type="radio"><span></span><b>是</b></label>
+                        <label ng-click="curModule.model.is_click = 'false'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curModule.model.is_click == 'false'" type="radio"><span></span><b>否</b></label>
+                    </div>
+                </label>
+                <label>
+                    <div class="fcRadio">
+                        　　是否显示收藏人数：
+                        <label ng-click="curModule.model.is_collect = 'true'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curModule.model.is_collect == 'true'" type="radio"><span></span><b>是</b></label>
+                        <label ng-click="curModule.model.is_collect = 'false'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curModule.model.is_collect == 'false'" type="radio"><span></span><b>否</b></label>
+                    </div>
+                </label>
+                <label>
+                    <div class="fcRadio">
+                        pad是否显示phone样式：
+                        <label ng-click="curModule.model.is_phone_style = 'true'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curModule.model.is_phone_style == 'true'" type="radio"><span></span><b>是</b></label>
+                        <label ng-click="curModule.model.is_phone_style = 'false'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curModule.model.is_phone_style == 'false'" type="radio"><span></span><b>否</b></label>
+                    </div>
+                </label>
+            </div>
+            <div class="popAdminBtn">
+                <a class="popAdminBtn-Cancel" href="javascript:;" ng-click="cancelBlock()">关闭</a>
+            </div>
+        </div>
+        <!-- 档期组件 end -->
+
+        <!-- 档期组件 - 设置标签 start -->
+        <div ng-switch-when="brandLabel">
+            <div class="popAddTitle">档期组件 - 设置标签</div>
+            <div class="popPiczjEdite">
+                <div class="brand-label-sort">
+                    开售时间：
+                    <div class="popAdminSelect popAdminSelectBatchEdite popXlicon_time" >
+                        <input ng-model="curModule.model.brand_start_time" ui-time="brand_start_time" ui-time-time="{'hour' : '10','minute' : '0','second' : '0'}"  ng-change="setTimeRange(curModule.model.brand_start_time,'start')">
+                    </div>
+                    至
+                    <div class="popAdminSelect popAdminSelectBatchEdite popXlicon_time" >
+                        <input ng-model="curModule.model.brand_end_time" ui-time="brand_end_time" ui-time-time="{'hour' : '9','minute' : '59','second' : '59'}"  ng-change="setTimeRange(curModule.model.brand_end_time,'end')">
+
+                    </div>
+                </div>
+                <div class="brand-show-type clearfix">
+                    <div class="fcRadio">
+                        展示方式：
+                        <label ng-click="curModule.model.show_type = 'inter'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curModule.model.show_type == 'inter'" type="radio"><span></span><b>交集</b></label>
+                        <label ng-click="curModule.model.show_type = 'uion'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curModule.model.show_type == 'uion'" type="radio"><span></span><b>并集</b></label>
+                    </div>
+                </div>
+                <div class="brand-label">
+
+                    <div class="brand-label-sort clearfix">
+                        <b>当前档期标签：</b> <span ng-repeat="label in curModule.labels">{{label.name}}<em ng-click="removeBrandLabel($index);">x</em></span>
+                    </div>
+
+                    <div class="brand-label-search clearfix">
+                        <input type="text" ng-model="curModule.searchKey" placeholder="请输入排序名称或者ID" ng-keyup="searchBrandLabel($event)">
+                        <a href="" ng-click="searchBrandLabel()" class="btn-blue">搜索</a>
+                    </div>
+
+                    <table class="tableUser table-user-sm">
+                        <thead>
+                            <tr>
+                                <th width="12%">ID</th>
+                                <th>名称</th>
+                                <th width="15%">分组</th>
+                                <th width="10%">操作</th>
+                            </tr>
+                        </thead>
+                    </table>
+                    <div class="scroll-table">
+                        <table class="tableUser table-user-sm">
+                            <tbody>
+                                <tr ng-repeat="list in curModule.brandLabels" ng-if="curModule.brandLabels.length > 0">
+                                    <td width="12%">
+                                        {{list.tagId}}
+                                    </td>
+                                    <td>{{list.name}}</td>
+                                    <td width="15%">{{list.groupName}}</td>
+                                    <td width="10%"><a href="javascript:" ng-click="addBrandLabel(list)" class="link-blue">绑定</a></td>
+                                </tr>
+                                <tr ng-if="curModule.brandLabels.length == 0">
+                                    <td colspan="4">
+                                        没有对应数据，请重新搜索！
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="popAdminBtn">
+                <a class="popAdminBtn-Cancel" href="javascript:;" ng-click="changeToBrand()">关闭</a>
+            </div>
+        </div>
+        <!-- 档期组件 - 设置标签 end -->
+
+        <!-- 档期组件 - 批量编辑 start -->
+        <div ng-switch-when="brandEditAll">
+            <div class="popAddTitle">档期组件 - 批量编辑</div>
+            <div class="popPiczjEdite">
+                <!-- <label>
+                    <div class="fcRadio">
+                        是否可点击进入
+                        <label ng-click="curModule.model.batch.is_click = 'true'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curModule.model.batch.is_click == 'true'" type="radio"><span></span><b>是</b></label>
+                        <label ng-click="curModule.model.batch.is_click = 'false'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curModule.model.batch.is_click == 'false'" type="radio"><span></span><b>否</b></label>
+                    </div>
+                </label>
+                <label>
+                    <div class="fcRadio">
+                        是否显示收藏人数
+                        <label ng-click="curModule.model.batch.is_collect = 'true'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curModule.model.batch.is_collect == 'true'" type="radio"><span></span><b>是</b></label>
+                        <label ng-click="curModule.model.batch.is_collect = 'false'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curModule.model.batch.is_collect == 'false'" type="radio"><span></span><b>否</b></label>
+                    </div>
+                </label> -->
+                <label>
+                    <div class="fcRadio">
+                        是否显示红包
+                        <label ng-click="curModule.model.batch.is_coupon = 'true'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curModule.model.batch.is_coupon == 'true'" type="radio"><span></span><b>是</b></label>
+                        <label ng-click="curModule.model.batch.is_coupon = 'false'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curModule.model.batch.is_coupon == 'false'" type="radio"><span></span><b>否</b></label>
+                    </div>
+                </label>
+                <label>
+                    <div class="fcRadio">
+                        是否添加水印
+                        <label ng-click="curModule.model.batch.is_watermark = 'true'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curModule.model.batch.is_watermark == 'true'" type="radio"><span></span><b>是</b></label>
+                        <label ng-click="curModule.model.batch.is_watermark = 'false'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curModule.model.batch.is_watermark == 'false'" type="radio"><span></span><b>否</b></label>
+                    </div>
+                </label>
+                <label ng-if="curModule.model.batch.is_watermark == 'true'">
+                    <b>水印</b>
+                    <input ng-model="curModule.model.batch.watermark" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl" type="text" readonly>
+                    <a class="uploadPic" href="javascript:void(0)" ng-click="selectFile($event,'floorBatch')"><span>修改</span></a>
+                    <input style="display:none" type="file" alias="phone_pic_src" nv-file-select="" uploader="uploader" ng-model="phone_pic_src" />
+                </label>
+            </div>
+            <div class="popAdminBtn">
+                <a class="popAdminBtn-Cancel" href="javascript:;" ng-click="saveEditingAll(curModule.model.batch)">关闭</a>
+            </div>
+        </div>
+        <!-- 档期组件 - 批量编辑 end -->
+
+        <!-- 档期组件 - 单个档期 start -->
+        <div ng-switch-when="brandHotspot">
+            <div class="popAddTitle">档期组件 - 单个档期</div>
+            <div class="popPiczjEdite">
+                <label>
+                    <b>档期id</b>
+                    <input ng-model="curBlock.extend.brand_id" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl" type="text">
+                </label>
+                <label>
+                    <b>档期名称</b>
+                    <input ng-model="curBlock.extend.brand_name" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl" type="text">
+                </label>
+                <!-- <label>
+                    <div class="fcRadio">
+                        是否可点击进入
+                        <label ng-click="curBlock.extend.is_click = 'true'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curBlock.extend.is_click == 'true'" type="radio"><span></span><b>是</b></label>
+                        <label ng-click="curBlock.extend.is_click = 'false'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curBlock.extend.is_click == 'false'" type="radio"><span></span><b>否</b></label>
+                    </div>
+                </label>
+                <label>
+                    <div class="fcRadio">
+                        是否显示收藏人数
+                        <label ng-click="curBlock.extend.is_collect = 'true'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curBlock.extend.is_collect == 'true'" type="radio"><span></span><b>是</b></label>
+                        <label ng-click="curBlock.extend.is_collect = 'false'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curBlock.extend.is_collect == 'false'" type="radio"><span></span><b>否</b></label>
+                    </div>
+                </label> -->
+                <label>
+                    <div class="fcRadio">
+                        是否显示红包
+                        <label ng-click="curBlock.extend.is_coupon = 'true'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curBlock.extend.is_coupon == 'true'" type="radio"><span></span><b>是</b></label>
+                        <label ng-click="curBlock.extend.is_coupon = 'false'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curBlock.extend.is_coupon == 'false'" type="radio"><span></span><b>否</b></label>
+                    </div>
+                </label>
+                <label>
+                    <div class="fcRadio">
+                        是否添加水印
+                        <label ng-click="curBlock.extend.is_watermark = 'true'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curBlock.extend.is_watermark == 'true'" type="radio"><span></span><b>是</b></label>
+                        <label ng-click="curBlock.extend.is_watermark = 'false'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curBlock.extend.is_watermark == 'false'" type="radio"><span></span><b>否</b></label>
+                    </div>
+                </label>
+                <label ng-show="curBlock.extend.is_watermark == 'true'">
+                    <b>水印</b>
+                    <input ng-model="curBlock.extend.watermark" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl" type="text" readonly>
+                    <a class="uploadPic" href="javascript:void(0)" ng-click="selectFile($event,'floorSingle')"><span>修改</span></a>
+                    <input style="display:none" type="file" alias="phone_pic_src" nv-file-select="" uploader="uploader" ng-model="phone_pic_src" />
+                </label>
+            </div>
+            <div class="popAdminBtn">
+                <a class="popAdminBtn-Cancel" href="javascript:;" ng-click="cancelBlock()">关闭</a>
+            </div>
+        </div>
+        <!-- 档期组件 - 单个档期 end -->
+
+        <!-- 商品组件 start -->
+        <div ng-switch-when="product">
+            <div class="popAddTitle">商品组件</div>
+            <div class="popAddFloorInput">
+              <label><input type="text" placeholder="请选择样式" ng-model="curModule.style_group"><a href="javascript:;" ng-click="popStyle()">浏览</a></label>
+            </div>
+            <div class="popPiczjEdite">
+                <label>
+                    <div class="fcRadio">
+                        是否个性化
+                        <label ng-click="curModule.extend.page.is_personality = 'true'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curModule.extend.page.is_personality == 'true'" type="radio"><span></span><b>是</b></label>
+                        <label ng-click="curModule.extend.page.is_personality = 'false'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curModule.extend.page.is_personality == 'false'" type="radio"><span></span><b>否</b></label>
+                    </div>
+                </label>
+
+                <label>
+                    <div class="fcRadio">
+                        是否分页
+                        <label ng-click="curModule.extend.page.isPaging = 'true'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curModule.extend.page.isPaging == 'true'" type="radio"><span></span><b>是</b></label>
+                        <label ng-click="curModule.extend.page.isPaging = 'false'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curModule.extend.page.isPaging == 'false'" type="radio"><span></span><b>否</b></label>
+                    </div>
+                </label>
+                <label>
+                    <b>每页条数</b>
+                    <input ng-model="curModule.extend.page.limit" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl" type="text">
+                </label>
+                <label for="" class="u-proRec">
+                    <div class="search">
+                        推荐引擎：
+                        <div class="searchArea">
+                            <input type="text" ng-model="curModule.search.name" ng-click="fnShowList()">
+                            <ul ng-show="(curModule.search.name&&bShowList)">
+                                <li ng-repeat="item in proRecData.ruleList | filter: curModule.search" ng-click="fnSetSearchName(item)" >{{item.name}}</li>
+                            </ul>
+                        </div>
+                        <button ng-click="fnSetRule()">设置</button>
+
+                    </div>
+                </label>
+
+                <label>
+                    <div class="fcRadio">
+                        pad是否显示phone样式：
+                        <label ng-click="curModule.model.is_phone_style = 'true'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curModule.model.is_phone_style == 'true'" type="radio"><span></span><b>是</b></label>
+                        <label ng-click="curModule.model.is_phone_style = 'false'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curModule.model.is_phone_style == 'false'" type="radio"><span></span><b>否</b></label>
+                    </div>
+                </label>
+            </div>
+            <div class="popAdminBtn">
+                <a class="popAdminBtn-Cancel" href="javascript:;" ng-click="cancelBlock()">关闭</a>
+            </div>
+        </div>
+        <!-- 商品组件 end -->
+
+        <!-- 商品组件 - 批量编辑 start -->
+        <div ng-switch-when="productEditAll">
+            <div class="popAddTitle">商品组件 - 批量编辑</div>
+            <div class="popPiczjEdite">
+                <label>
+                    <div class="fcRadio">
+                        是否添加水印
+                        <label ng-click="curModule.model.batch.is_watermark = 'true'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curModule.model.batch.is_watermark == 'true'" type="radio"><span></span><b>是</b></label>
+                        <label ng-click="curModule.model.batch.is_watermark = 'false'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curModule.model.batch.is_watermark == 'false'" type="radio"><span></span><b>否</b></label>
+                    </div>
+                </label>
+                <label ng-if="curModule.model.batch.is_watermark == 'true'">
+                    <b>水印</b>
+                    <input ng-model="curModule.model.batch.watermark" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl" type="text" readonly>
+                    <a class="uploadPic" href="javascript:void(0)" ng-click="selectFile($event,'floorBatch')"><span>修改</span></a>
+                    <input style="display:none" type="file" alias="phone_pic_src" nv-file-select="" uploader="uploader" ng-model="phone_pic_src" />
+                </label>
+            </div>
+            <div class="popAdminBtn">
+                <a class="popAdminBtn-OK" href="javascript:;" ng-click="saveEditingAll(curModule.model.batch)">关闭</a>
+            </div>
+        </div>
+        <!-- 商品组件 - 批量编辑 end -->
+
+        <!-- 商品组件 - 单个商品 start -->
+        <div ng-switch-when="productHotspot">
+            <div class="popAddTitle">商品组件 - 单个商品</div>
+            <div class="popPiczjEdite">
+                <label>
+                    <b>档期id</b>
+                    <input ng-model="curBlock.extend.brand_id" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl" type="text">
+                </label>
+                <label>
+                    <b>商品id</b>
+                    <input ng-model="curBlock.extend.product_id" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl" type="text">
+                </label>
+                <label>
+                    <b>商品名称</b>
+                    <input ng-model="curBlock.extend.product_name" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl" type="text">
+                </label>
+                <label>
+                    <div class="fcRadio">
+                        是否添加水印
+                        <label ng-click="curBlock.extend.is_watermark = 'true'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curBlock.extend.is_watermark == 'true'" type="radio"><span></span><b>是</b></label>
+                        <label ng-click="curBlock.extend.is_watermark = 'false'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curBlock.extend.is_watermark == 'false'" type="radio"><span></span><b>否</b></label>
+                    </div>
+                </label>
+                <label ng-show="curBlock.extend.is_watermark == 'true'">
+                    <b>水印</b>
+                    <input ng-model="curBlock.extend.watermark" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl" type="text" readonly>
+                    <a class="uploadPic" href="javascript:void(0)" ng-click="selectFile($event,'floorSingle')"><span>修改</span></a>
+                    <input style="display:none" type="file" alias="phone_pic_src" nv-file-select="" uploader="uploader" ng-model="phone_pic_src" />
+                </label>
+            </div>
+            <div class="popAdminBtn">
+                <a class="popAdminBtn-Cancel" href="javascript:;" ng-click="cancelBlock()">关闭</a>
+            </div>
+        </div>
+        <!-- 商品组件 - 单个商品 end -->
+
+        <!-- 分享组件 start -->
+        <div ng-switch-when="share">
+            <div class="popAddTitle">分享组件</div>
+            <div class="popAddFloorInput">
+              <label><input type="text" placeholder="请选择样式" ng-model="curModule.style_group"><a href="javascript:;" ng-click="popStyle()">浏览</a></label>
+            </div>
+            <div class="popPiczjEdite">
+                <label>
+                    <b>　　　分享icon</b>
+                    <input ng-model="curModule.model.bg" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl" type="text" readonly>
+                    <a class="uploadPic" href="javascript:void(0)" ng-click="selectFile($event,'share')"><span>修改</span></a>
+                    <input style="display:none" type="file" alias="phone_pic_src" nv-file-select="" uploader="uploader" ng-model="phone_pic_src" />
+                </label>
+                <label>
+                    <b>　　分享id</b>
+                    <input ng-model="curModule.model.share_id" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl" type="text">
+                </label>
+                <label>
+                    <b>分享组件id</b>
+                    <input ng-model="curModule.keyword" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl" type="text">
+                    <ul class="dropdown" ng-if="curModule.droplist"><li ng-click="chooseSharedId(item)"  ng-repeat="item in curModule.droplist">{{item.id}} {{item.name}}</li></ul>
+                </label>
+                <label>
+                    <b>　　已选id</b>
+                    <input ng-model="curModule.model.plugin_id" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl" type="text">
+                </label>
+                <label>
+                    <div class="fcRadio">
+                        是否在Tab栏显示
+                        <label ng-click="curModule.model.is_tab = 'true'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curModule.model.is_tab == 'true'" type="radio"><span></span><b>是</b></label>
+                        <label ng-click="curModule.model.is_tab = 'false'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curModule.model.is_tab == 'false'" type="radio"><span></span><b>否</b></label>
+                    </div>
+                </label>
+            </div>
+            <div class="popAdminBtn">
+                <a class="popAdminBtn-Cancel" href="javascript:;" ng-click="cancelBlock()">关闭</a>
+            </div>
+        </div>
+        <!-- 分享组件 end -->
+
+        <!-- 倒计时组件 start -->
+        <div ng-switch-when="countdown">
+            <div class="popAddTitle">倒计时组件</div>
+            <div class="popPiczjEdite">
+                <div class="popAddFloorInput">
+                  <label><input type="text" placeholder="请选择样式" ng-model="curModule.style_group"><a href="javascript:;" ng-click="popStyle()">浏览</a></label>
+                </div>
+                <label>
+                    <b>开始时间</b>
+                    <div class="popAdminSelect popAdminSelectBatchEdite popXlicon_time" >
+                        <input class="time-picker" ng-model="curModule.model.start_time" ui-time="global_start_time" ui-time-time="{'hour' : '10','minute' : '0','second' : '0'}" ui-min-range="global_end_time" ng-readonly="true"></input>
+                        <div class="popXlicon"></div>
+                    </div>
+                </label>
+                <label>
+                    <b>截止时间</b>
+                    <div class="popAdminSelect popAdminSelectBatchEdite popXlicon_time" >
+                        <input class="time-picker" ng-model="curModule.model.end_time" ui-time="global_end_time" ui-time-time="{'hour' : '10','minute' : '0','second' : '0'}" ui-min-range="global_end_time" ng-readonly="true"></input>
+                        <div class="popXlicon"></div>
+                    </div>
+                </label>
+                <label>
+                    <div class="fcRadio">
+                        是否悬浮
+                        <label ng-click="curModule.model.is_float = 'true'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curModule.model.is_float == 'true'" type="radio"><span></span><b>是</b></label>
+                        <label ng-click="curModule.model.is_float = 'false'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curModule.model.is_float == 'false'" type="radio"><span></span><b>否</b></label>
+                    </div>
+                    <div class="fcRadio">
+                        浮动位置
+                        <label ng-click="curModule.model.float_pos = 'top'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curModule.model.float_pos == 'top'" type="radio"><span></span><b>顶部</b></label>
+                        <label ng-click="curModule.model.float_pos = 'bottom'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curModule.model.float_pos == 'bottom'" type="radio"><span></span><b>底部</b></label>
+                    </div>
+                </label>
+
+                <label>
+                    <b>　　　　背景色</b>
+                    <input ng-model="curModule.model.bgcolor" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl" type="text">
+                </label>
+                <label>
+                    <b>倒计时提示文案</b>
+                    <input ng-model="curModule.model.text" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl" type="text">
+                </label>
+
+                <label>
+                    <div class="fcRadio">
+                        与头图叠加
+                        <label ng-click="curModule.model.is_overlap = 'true'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curModule.model.is_overlap == 'true'" type="radio"><span></span><b>是</b></label>
+                        <label ng-click="curModule.model.is_overlap = 'false'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curModule.model.is_overlap == 'false'" type="radio"><span></span><b>否</b></label>
+                    </div>
+
+                </label>
+
+
+            </div>
+            <div class="popAdminBtn">
+                <a class="popAdminBtn-Cancel" href="javascript:;" ng-click="cancelBlock()">关闭</a>
+            </div>
+        </div>
+        <!-- 分享组件 end -->
+
+
+        <!-- 领券组件 start -->
+        <div ng-switch-when="coupon">
+            <div class="popAddTitle">领券组件</div>
+            <div class="popAddFloorInput">
+              <label><input type="text" placeholder="请选择样式" ng-model="curModule.style_group"><a href="javascript:;" ng-click="popStyle()">浏览</a></label>
+            </div>
+            <div class="popAddImg popAddImgCoupon">
+
+                <div class="uploadPhone">
+                    <p class="uploadTips">领券前</p>
+                    <div class="uploadPic" ng-click="selectFile($event,'phone')"><img ng-src="{{curModule.model.phone_pic_src}}"></div>
+                    <input style="display:none" type="file" alias="phone_pic_src" nv-file-select="" uploader="uploader" ng-model="phone_pic_src" />
+                    <div class="PadPic">Phone图片
+                        <a ng-if="curModule.model.phone_pic_src" ng-click="deleteImg('phone_pic_src')"></a>
+                    </div>
+
+                    <div class="uploadPic" ng-click="selectFile($event,'pad')"><img ng-src="{{curModule.model.pad_pic_src}}"></div>
+                    <input style="display:none" type="file" alias="pad_pic_src" nv-file-select="" uploader="uploader" ng-model="pad_pic_src" />
+                    <div class="PadPic">Pad图片
+                        <a ng-if="curModule.model.pad_pic_src" ng-click="deleteImg('pad_pic_src')"></a>
+                    </div>
+                </div>
+                <div class="uploadPad">
+                    <p class="uploadTips">领券后</p>
+                    <div class="uploadPic" ng-click="selectFile($event,'phone_after')"><img ng-src="{{curModule.model.phone_after_pic_src}}"></div>
+                    <input style="display:none" type="file" alias="phone_after_pic_src" nv-file-select="" uploader="uploader" ng-model="phone_after_pic_src" />
+                    <div class="PadPic">Phone图片
+                        <a ng-if="curModule.model.phone_after_pic_src" ng-click="deleteImg('phone_after_pic_src')"></a>
+                    </div>
+
+                    <div class="uploadPic" ng-click="selectFile($event,'pad_after')"><img ng-src="{{curModule.model.pad_after_pic_src}}"></div>
+                    <input style="display:none" type="file" alias="pad_after_pic_src" nv-file-select="" uploader="uploader" ng-model="pad_after_pic_src" />
+                    <div class="PadPic">Pad图片
+                        <a ng-if="curModule.model.pad_after_pic_src" ng-click="deleteImg('pad_after_pic_src')"></a>
+                    </div>
+                </div>
+                <div class="uploadPad uploadSaleout">
+                    <p class="uploadTips">已领完</p>
+                    <div class="uploadPic" ng-click="selectFile($event,'phone_saleout')"><img ng-src="{{curModule.model.phone_saleout_pic_src}}"></div>
+                    <input style="display:none" type="file" alias="phone_saleout_pic_src" nv-file-select="" uploader="uploader" ng-model="phone_saleout_pic_src" />
+                    <div class="PadPic">Phone图片
+                        <a ng-if="curModule.model.phone_saleout_pic_src" ng-click="deleteImg('phone_saleout_pic_src')"></a>
+                    </div>
+
+                    <div class="uploadPic" ng-click="selectFile($event,'pad_saleout')"><img ng-src="{{curModule.model.pad_saleout_pic_src}}"></div>
+                    <input style="display:none" type="file" alias="pad_saleout_pic_src" nv-file-select="" uploader="uploader" ng-model="pad_saleout_pic_src" />
+                    <div class="PadPic">Pad图片
+                        <a ng-if="curModule.model.pad_saleout_pic_src" ng-click="deleteImg('pad_saleout_pic_src')"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="popAdminBtn">
+                <a class="popAdminBtn-Cancel" href="javascript:;" ng-click="cancelBlock()">关闭</a>
+                <a class="popAdminBtn-OK" href="javascript:;" ng-click="goToStep('couponNext')">下一步</a>
+            </div>
+        </div>
+        <!-- 领券组件 end -->
+
+        <!-- 领券组件 - 基本信息 start -->
+        <div ng-switch-when="couponNext">
+            <div class="popAddTitle">领券组件 - 其他信息</div>
+            <div class="popPiczjEdite popCouponEdite">
+                <label>
+                    <div class="fcRadio">
+                        <b>&nbsp;是否跳转url：</b>
+                        <input ng-model="curModule.model.is_jump" ng-checked="curModule.model.is_jump == 'true'" type="radio" ng-value="'true'"> 是
+                        <input ng-model="curModule.model.is_jump" ng-checked="curModule.model.is_jump == 'false'" type="radio" ng-value="'false'"> 否
+                    </div>
+                </label>
+
+                <div ng-show="curModule.model.is_jump == 'false'">
+                    <label>
+                        <b>　区分新老客：</b>
+                        <input ng-model="curModule.model.is_diff_new_old" type="checkbox" ng-true-value="'true'" ng-false-value="'false'"> 区分
+                    </label>
+                    <label>
+                        <b>　　　红包ID：</b>
+                        <input ng-model="curModule.model.coupon_id.new" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl" type="text">
+                    </label>
+                    <label ng-show="curModule.model.is_diff_new_old == 'true'">
+                        <b>　老客红包ID：</b>
+                        <input ng-model="curModule.model.coupon_id.old" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl" type="text">
+                    </label>
+                    <label>
+                        <b>领取成功文案：</b>
+                        <input ng-model="curModule.model.text_success" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl" type="text">
+                    </label>
+                    <label>
+                        <b>领取失败文案：</b>
+                        <input ng-model="curModule.model.text_fail" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl" type="text">
+                    </label>
+                    <label>
+                        <b>券已领完文案：</b>
+                        <input ng-model="curModule.model.text_saleout" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl" type="text">
+                    </label>
+                    <label>
+                        <b>重复领取文案：</b>
+                        <input ng-model="curModule.model.text_already" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl" type="text">
+                    </label>
+                    <label>
+                        <b>　非目标用户：</b>
+                        <input ng-model="curModule.model.text_unsupport" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl" type="text">
+                    </label>
+                </div>
+                <div ng-show="curModule.model.is_jump == 'true'">
+                    <label>
+                        <b>　　&nbsp;跳转url：</b>
+                        <input ng-model="curModule.model.jump_url" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl" type="text">
+                    </label>
+                    <label>
+                        <b>跳转标题：</b>
+                        <input ng-model="curModule.model.jump_title" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl" type="text">
+                    </label>
+                    <label>
+                        <b>是否新开窗口：</b>
+                        <input ng-model="curModule.model.is_blank" ng-checked="curModule.model.is_blank == 'true'" type="radio" ng-value="'true'"> 是
+                        <input ng-model="curModule.model.is_blank" ng-checked="curModule.model.is_blank == 'false'" type="radio" ng-value="'false'"> 否
+                    </label>
+                </div>
+            </div>
+            <div class="popAdminBtn">
+                <a class="popAdminBtn-Cancel" href="javascript:;" ng-click="cancelBlock()">关闭</a>
+                <a class="popAdminBtn-Cancel" href="javascript:;" ng-click="goToStep('coupon')">上一步</a>
+            </div>
+        </div>
+        <!-- 领券组件 - 基本信息 end -->
+
+        <!-- 导航组件 start -->
+        <div ng-switch-when="nav">
+            <div class="popAddTitle">导航组件</div>
+            <div class="popAddFloorInput">
+              <label><input type="text" placeholder="请选择样式" ng-model="curModule.style_group"><a href="javascript:;" ng-click="popStyle()">浏览</a></label>
+            </div>
+            <div class="popAddImg">
+                <div class="uploadPhone">
+                    <div class="uploadPic" ng-click="selectFile($event,'phone')"><img ng-src="{{curModule.model.phone_pic_src}}"></div>
+                    <input style="display:none" type="file" alias="phone_pic_src" nv-file-select="" uploader="uploader" />
+                    <div class="PadPic">Phone图片
+                        <a ng-if="curModule.model.phone_pic_src" ng-click="deleteImg('phone_pic_src')"></a>
+                    </div>
+                </div>
+                <div class="uploadPad">
+                    <div class="uploadPic" ng-click="selectFile($event,'pad')"><img ng-src="{{pad_pic_src}}"></div>
+                    <input style="display:none" type="file" alias="pad_pic_src" nv-file-select="" uploader="uploader" />
+                    <div class="PadPic">Pad图片
+                        <a ng-if="pad_pic_src" ng-click="deleteImg('pad_pic_src')"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="popPiczjEdite">
+                <label>
+                    <b>总tab数量</b>
+                    <input ng-change="changeTabCount()" ng-model="curModule.model.total" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl" type="text">
+                </label>
+                <label>
+                    <b>每行tab数量</b>
+                    <input ng-model="curModule.model.per_line" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl" type="text">
+                </label>
+                <label>
+                    <b>选中序号：</b>
+                    <input ng-model="curModule.model.selected" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl" type="text">
+                </label>
+            </div>
+            <div class="popAdminBtn">
+                <a class="popAdminBtn-Cancel" href="javascript:;" ng-click="cancelBlock()">关闭</a>
+            </div>
+        </div>
+        <!-- 导航组件 end -->
+
+        <!-- 导航组件 - 热区 start -->
+        <div ng-switch-when="navHotspot">
+            <div class="popAddTitle">导航组件{{curBlock.type}} - {{options[curBlock.type-1].name}} - 编辑</div>
+            <div class="popPiczjEdite">
+                <label class="relative-label">
+                    <b>请输入跳转类型</b>
+                    <div ng-click="triggerHotspotType($event)" class="popAdminSelect popAdminSelectBatchEdite popAddpicEditeInput">
+                        {{options[curBlock.type-1].name}}<div class="popXlicon popXlicon_green"></div>
+                    </div>
+                    <div ng-show="isDropHotspotType" class="tablexlChecked tablexlChecked_BatchEdit tablexlChecked_BatchEditPic">
+                        <span ng-repeat="item in options" ng-click="curBlock.type = item.id">{{item.name}}</span>
+                    </div>
+                </label>
+                <div ng-switch="curBlock.type">
+                    <div ng-switch-when="1">
+                        <label>
+                            <b>请输入跳转URL</b>
+                            <input type="text" ng-model="curBlock.url" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl">
+                        </label>
+                        <label>
+                            <b>目标标题</b>
+                            <input type="text" ng-model="curBlock.title" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl">
+                        </label>
+                        <label>
+                            <div class="fcRadio">
+                                是否打开新窗口
+                                <label ng-click="curBlock.isBlank = 'true'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curBlock.isBlank == 'true'" type="radio"><span></span><b>是</b></label>
+                                <label ng-click="curBlock.isBlank = 'false'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curBlock.isBlank == 'false'" type="radio"><span></span><b>否</b></label>
+                            </div>
+                        </label>
+                    </div>
+                    <div ng-switch-when="2">
+                        <label>
+                            <b>请输入档期ID</b>
+                            <input type="text" ng-model="curBlock.brand_id" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl">
+                        </label>
+                    </div>
+                    <div ng-switch-when="3">
+                        <label>
+                            <b>请输入档期ID</b>
+                            <input type="text" ng-model="curBlock.brand_id" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl">
+                        </label>
+                        <label>
+                            <b>请输入商品ID</b>
+                            <input type="text" ng-model="curBlock.product_id" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl">
+                        </label>
+                    </div>
+                    <div ng-switch-when="4">
+                        <label>
+                            <b>锚点点击跳转到</b>
+                            <input type="text" ng-model="curBlock.url" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl">
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+            <div class="popAdminBtn popAdminBtnNewpagelast">
+                <a ng-click="cancelBlock()" class="popAdminBtn-Cancel popAdminBtn-CancelFloor" href="javascript:;">关闭</a>
+            </div>
+        </div>
+        <!-- 导航组件 - 热区 end -->
+
+        <!-- 海淘商品组件 start -->
+        <div ng-switch-when="haitao">
+            <div class="popAddTitle">海淘商品组件</div>
+            <div class="popAddFloorInput">
+              <label><input type="text" placeholder="请选择样式" ng-model="curModule.style_group"><a href="javascript:;" ng-click="popStyle()">浏览</a></label>
+            </div>
+            <div class="popPiczjEdite">
+                <label>
+                    <div class="fcRadio">
+                        是否分页
+                        <label ng-click="curModule.extend.page.isPaging = 'true'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curModule.extend.page.isPaging == 'true'" type="radio"><span></span><b>是</b></label>
+                        <label ng-click="curModule.extend.page.isPaging = 'false'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curModule.extend.page.isPaging == 'false'" type="radio"><span></span><b>否</b></label>
+                    </div>
+                </label>
+                <label>
+                    <b>每页条数</b>
+                    <input ng-model="curModule.extend.page.limit" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl" type="text">
+                </label>
+            </div>
+            <div class="popAdminBtn">
+                <a class="popAdminBtn-Cancel" href="javascript:;" ng-click="cancelBlock()">关闭</a>
+            </div>
+        </div>
+        <!-- 海淘商品组件 end -->
+
+        <!-- 海淘商品组件 - 批量编辑 start -->
+        <div ng-switch-when="haitaoEditAll">
+            <div class="popAddTitle">海淘商品组件 - 批量编辑</div>
+            <div class="popPiczjEdite">
+                <div class="uploadMulti">
+                    <div class="uploadPic uploadMultiPic" ng-click="selectFile($event,'multi','origin')"><span>{{multi_pic_tips}}</span></div>
+                    <input style="display:none" type="file" alias="multi_pic_src" nv-file-select="" uploader="uploader" multiple ng-model="multi_pic_src" />
+                </div>
+                <label>
+                    <div class="fcRadio">
+                        是否添加水印
+                        <label ng-click="curModule.model.batch.is_watermark = 'true'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curModule.model.batch.is_watermark == 'true'" type="radio"><span></span><b>是</b></label>
+                        <label ng-click="curModule.model.batch.is_watermark = 'false'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curModule.model.batch.is_watermark == 'false'" type="radio"><span></span><b>否</b></label>
+                    </div>
+                </label>
+                <label ng-if="curModule.model.batch.is_watermark == 'true'">
+                    <b>水印</b>
+                    <input ng-model="curModule.model.batch.watermark" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl" type="text" readonly>
+                    <a class="uploadPic" href="javascript:void(0)" ng-click="selectFile($event,'floorBatch')"><span>修改</span></a>
+                    <input style="display:none" type="file" alias="phone_pic_src" nv-file-select="" uploader="uploader" ng-model="phone_pic_src" />
+                </label>
+            </div>
+            <div class="popAdminBtn">
+                <a class="popAdminBtn-OK" href="javascript:;" ng-click="saveEditingAll(curModule.model.batch)">关闭</a>
+            </div>
+        </div>
+        <!-- 海淘商品组件 - 批量编辑 end -->
+
+        <!-- 海淘商品组件 - 单个商品 start -->
+        <div ng-switch-when="haitaoHotspot">
+            <div class="popAddTitle">海淘商品组件 - 单个商品</div>
+            <div class="popPiczjEdite popPiczjEditeHaitao">
+                <div class="uploadCenter">
+                    <div class="uploadPic" ng-click="selectFile($event,'single')"><img ng-src="{{curBlock.extend.pic}}"></div>
+                    <input style="display:none" type="file" alias="phone_pic_src" nv-file-select="" uploader="uploader" ng-model="phone_pic_src" />
+                </div>
+
+                <label>
+                    <b>档期id</b>
+                    <input ng-model="curBlock.extend.brand_id" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl" type="text">
+                </label>
+                <label>
+                    <b>商品id</b>
+                    <input ng-model="curBlock.extend.product_id" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl" type="text">
+                </label>
+                <label>
+                    <b>商品名称</b>
+                    <input ng-model="curBlock.extend.product_name" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl" type="text">
+                </label>
+                <label>
+                    <b>商品描述</b>
+                    <input ng-model="curBlock.extend.haitao_desc" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl" type="text">
+                </label>
+                <label>
+                    <b>商品国家</b>
+                    <input ng-model="curBlock.extend.areaOutput" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl" type="text">
+                </label>
+                <label class="relative-label">
+                    <b>商品国旗</b>
+                    <div ng-click="triggerHotspotType($event)" class="popAdminSelect popAdminSelectBatchEdite popAddpicEditeInput">
+                        {{curBlock.extend.flag.name}}<div class="popXlicon popXlicon_green"></div>
+                    </div>
+                    <div ng-show="isDropHotspotType" class="tablexlChecked tablexlChecked_BatchEdit tablexlChecked_BatchEditPic">
+                        <span ng-repeat="item in options" ng-click="curBlock.extend.flag = item">{{item.name}}</span>
+                    </div>
+                </label>
+                <label>
+                    <div class="fcRadio">
+                        是否添加水印
+                        <label ng-click="curBlock.extend.is_watermark = 'true'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curBlock.extend.is_watermark == 'true'" type="radio"><span></span><b>是</b></label>
+                        <label ng-click="curBlock.extend.is_watermark = 'false'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curBlock.extend.is_watermark == 'false'" type="radio"><span></span><b>否</b></label>
+                    </div>
+                </label>
+                <label ng-show="curBlock.extend.is_watermark == 'true'">
+                    <b>水印</b>
+                    <input ng-model="curBlock.extend.watermark" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl" type="text" readonly>
+                    <a class="uploadPic" href="javascript:void(0)" ng-click="selectFile($event,'floorSingle')"><span>修改</span></a>
+                    <input style="display:none" type="file" alias="phone_pic_src" nv-file-select="" uploader="uploader" ng-model="phone_pic_src" />
+                </label>
+            </div>
+            <div class="popAdminBtn">
+                <a class="popAdminBtn-Cancel" href="javascript:;" ng-click="cancelBlock()">关闭</a>
+            </div>
+        </div>
+        <!-- 海淘商品组件 - 单个商品 end -->
+
+        <!-- 美妆商品组件 start -->
+        <div ng-switch-when="beauty">
+            <div class="popAddTitle">美妆商品组件</div>
+            <div class="popAddFloorInput">
+              <label><input type="text" placeholder="请选择样式" ng-model="curModule.style_group"><a href="javascript:;" ng-click="popStyle()">浏览</a></label>
+            </div>
+            <div class="popPiczjEdite">
+                <label>
+                    <div class="fcRadio">
+                        是否分页
+                        <label ng-click="curModule.extend.page.isPaging = 'true'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curModule.extend.page.isPaging == 'true'" type="radio"><span></span><b>是</b></label>
+                        <label ng-click="curModule.extend.page.isPaging = 'false'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curModule.extend.page.isPaging == 'false'" type="radio"><span></span><b>否</b></label>
+                    </div>
+                </label>
+                <label>
+                    <b>每页条数</b>
+                    <input ng-model="curModule.extend.page.limit" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl" type="text">
+                </label>
+            </div>
+            <div class="popAdminBtn">
+                <a class="popAdminBtn-Cancel" href="javascript:;" ng-click="cancelBlock()">关闭</a>
+            </div>
+        </div>
+        <!-- 美妆商品组件 end -->
+
+        <!-- 美妆商品组件 - 批量编辑 start -->
+        <div ng-switch-when="beautyEditAll">
+            <div class="popAddTitle">美妆商品组件 - 批量编辑</div>
+            <div class="popPiczjEdite">
+                <div class="uploadMulti">
+                    <div class="uploadPic uploadMultiPic" ng-click="selectFile($event,'multi','origin')"><span>{{multi_pic_tips}}</span></div>
+                    <input style="display:none" type="file" alias="multi_pic_src" nv-file-select="" uploader="uploader" multiple ng-model="multi_pic_src" />
+                </div>
+                <label>
+                    <div class="fcRadio">
+                        是否添加水印
+                        <label ng-click="curModule.model.batch.is_watermark = 'true'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curModule.model.batch.is_watermark == 'true'" type="radio"><span></span><b>是</b></label>
+                        <label ng-click="curModule.model.batch.is_watermark = 'false'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curModule.model.batch.is_watermark == 'false'" type="radio"><span></span><b>否</b></label>
+                    </div>
+                </label>
+                <label ng-if="curModule.model.batch.is_watermark == 'true'">
+                    <b>水印</b>
+                    <input ng-model="curModule.model.batch.watermark" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl" type="text" readonly>
+                    <a class="uploadPic" href="javascript:void(0)" ng-click="selectFile($event,'floorBatch')"><span>修改</span></a>
+                    <input style="display:none" type="file" alias="phone_pic_src" nv-file-select="" uploader="uploader" ng-model="phone_pic_src" />
+                </label>
+            </div>
+            <div class="popAdminBtn">
+                <a class="popAdminBtn-OK" href="javascript:;" ng-click="saveEditingAll(curModule.model.batch)">关闭</a>
+            </div>
+        </div>
+        <!-- 美妆商品组件 - 批量编辑 end -->
+
+        <!-- 美妆商品组件 - 单个商品 start -->
+        <div ng-switch-when="beautyHotspot">
+            <div class="popAddTitle">美妆商品组件 - 单个商品</div>
+            <div class="popPiczjEdite popPiczjEditeHaitao">
+                <div class="uploadCenter">
+                    <div class="uploadPic" ng-click="selectFile($event,'single')"><img ng-src="{{curBlock.extend.pic}}"></div>
+                    <input style="display:none" type="file" alias="phone_pic_src" nv-file-select="" uploader="uploader" ng-model="phone_pic_src" />
+                </div>
+
+                <label>
+                    <b>档期id</b>
+                    <input ng-model="curBlock.extend.brand_id" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl" type="text">
+                </label>
+                <label>
+                    <b>商品id</b>
+                    <input ng-model="curBlock.extend.product_id" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl" type="text">
+                </label>
+                <label>
+                    <b>商品名称</b>
+                    <input ng-model="curBlock.extend.product_name" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl" type="text">
+                </label>
+                <label>
+                    <b>商品描述</b>
+                    <input ng-model="curBlock.extend.beauty_desc" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl" type="text">
+                </label>
+                <label>
+                    <div class="fcRadio">
+                        是否添加水印
+                        <label ng-click="curBlock.extend.is_watermark = 'true'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curBlock.extend.is_watermark == 'true'" type="radio"><span></span><b>是</b></label>
+                        <label ng-click="curBlock.extend.is_watermark = 'false'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curBlock.extend.is_watermark == 'false'" type="radio"><span></span><b>否</b></label>
+                    </div>
+                </label>
+                <label ng-show="curBlock.extend.is_watermark == 'true'">
+                    <b>水印</b>
+                    <input ng-model="curBlock.extend.watermark" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl" type="text" readonly>
+                    <a class="uploadPic" href="javascript:void(0)" ng-click="selectFile($event,'floorSingle')"><span>修改</span></a>
+                    <input style="display:none" type="file" alias="phone_pic_src" nv-file-select="" uploader="uploader" ng-model="phone_pic_src" />
+                </label>
+            </div>
+            <div class="popAdminBtn">
+                <a class="popAdminBtn-Cancel" href="javascript:;" ng-click="cancelBlock()">关闭</a>
+            </div>
+        </div>
+        <!-- 美妆商品组件 - 单个商品 end -->
+
+        <!-- 商品收藏组件 start -->
+        <div ng-switch-when="collect">
+            <div class="popAddTitle">商品收藏组件</div>
+            <div class="popAddFloorInput">
+              <label><input type="text" placeholder="请选择样式" ng-model="curModule.style_group"><a href="javascript:;" ng-click="popStyle()">浏览</a></label>
+            </div>
+            <div class="popPiczjEdite">
+                <label>
+                    <div class="fcRadio">
+                        是否分页
+                        <label ng-click="curModule.extend.page.isPaging = 'true'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curModule.extend.page.isPaging == 'true'" type="radio"><span></span><b>是</b></label>
+                        <label ng-click="curModule.extend.page.isPaging = 'false'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curModule.extend.page.isPaging == 'false'" type="radio"><span></span><b>否</b></label>
+                    </div>
+                </label>
+                <label>
+                    <b>每页条数</b>
+                    <input ng-model="curModule.extend.page.limit" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl" type="text">
+                </label>
+            </div>
+            <div class="popAdminBtn">
+                <a class="popAdminBtn-Cancel" href="javascript:;" ng-click="cancelBlock()">关闭</a>
+            </div>
+        </div>
+        <!-- 商品收藏组件 end -->
+
+        <!-- 商品收藏组件 - 批量编辑 start -->
+        <div ng-switch-when="collectEditAll">
+            <div class="popAddTitle">商品收藏组件 - 批量编辑</div>
+            <div class="popPiczjEdite">
+                <div class="uploadMulti">
+                    <div class="uploadPic uploadMultiPic" ng-click="selectFile($event,'multi','origin')"><span>{{multi_pic_tips}}</span></div>
+                    <input style="display:none" type="file" alias="multi_pic_src" nv-file-select="" uploader="uploader" multiple ng-model="multi_pic_src" />
+                </div>
+                <label>
+                    <div class="fcRadio">
+                        是否添加水印
+                        <label ng-click="curModule.model.batch.is_watermark = 'true'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curModule.model.batch.is_watermark == 'true'" type="radio"><span></span><b>是</b></label>
+                        <label ng-click="curModule.model.batch.is_watermark = 'false'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curModule.model.batch.is_watermark == 'false'" type="radio"><span></span><b>否</b></label>
+                    </div>
+                </label>
+                <label ng-if="curModule.model.batch.is_watermark == 'true'">
+                    <b>水印</b>
+                    <input ng-model="curModule.model.batch.watermark" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl" type="text" readonly>
+                    <a class="uploadPic" href="javascript:void(0)" ng-click="selectFile($event,'floorBatch')"><span>修改</span></a>
+                    <input style="display:none" type="file" alias="phone_pic_src" nv-file-select="" uploader="uploader" ng-model="phone_pic_src" />
+                </label>
+            </div>
+            <div class="popAdminBtn">
+                <a class="popAdminBtn-Cancel" href="javascript:;" ng-click="saveEditingAll(curModule.model.batch)">关闭</a>
+            </div>
+        </div>
+        <!-- 商品收藏组件 - 批量编辑 end -->
+
+        <!-- 商品收藏组件 - 单个商品 start -->
+        <div ng-switch-when="collectHotspot">
+            <div class="popAddTitle">商品收藏组件 - 单个商品</div>
+            <div class="popPiczjEdite popPiczjEditeHaitao">
+                <label>
+                    <b>档期id</b>
+                    <input ng-model="curBlock.extend.brand_id" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl" type="text">
+                </label>
+                <label>
+                    <b>商品id</b>
+                    <input ng-model="curBlock.extend.product_id" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl" type="text">
+                </label>
+                <label>
+                    <b>商品名称</b>
+                    <input ng-model="curBlock.extend.product_name" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl" type="text">
+                </label>
+                <label>
+                    <b>商品买点</b>
+                    <input ng-model="curBlock.extend.subTitle" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl" type="text">
+                </label>
+                <label>
+                    <b>红包金额</b>
+                    <input ng-model="curBlock.extend.collect_price" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl" type="text">
+                </label>
+                <label>
+                    <div class="fcRadio">
+                        是否添加水印
+                        <label ng-click="curBlock.extend.is_watermark = 'true'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curBlock.extend.is_watermark == 'true'" type="radio"><span></span><b>是</b></label>
+                        <label ng-click="curBlock.extend.is_watermark = 'false'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curBlock.extend.is_watermark == 'false'" type="radio"><span></span><b>否</b></label>
+                    </div>
+                </label>
+                <label ng-show="curBlock.extend.is_watermark == 'true'">
+                    <b>水印</b>
+                    <input ng-model="curBlock.extend.watermark" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl" type="text" readonly>
+                    <a class="uploadPic" href="javascript:void(0)" ng-click="selectFile($event,'floorSingle')"><span>修改</span></a>
+                    <input style="display:none" type="file" alias="phone_pic_src" nv-file-select="" uploader="uploader" ng-model="phone_pic_src" />
+                </label>
+            </div>
+            <div class="popAdminBtn">
+                <a class="popAdminBtn-Cancel" href="javascript:;" ng-click="cancelBlock()">关闭</a>
+            </div>
+        </div>
+        <!-- 商品收藏组件 - 单个商品 end -->
+
+        <!-- 悬浮球组件 start -->
+        <div ng-switch-when="suspend">
+            <div class="popAddTitle">悬浮球组件</div>
+            <div class="popAddFloorInput">
+              <label><input type="text" placeholder="请选择样式" ng-model="curModule.style_group"><a href="javascript:;" ng-click="popStyle()">浏览</a></label>
+            </div>
+            <div class="popAddImg popAddImgSuspend">
+                <p class="upload-tit">上传悬浮球图片</p>
+                <div class="uploadPhone">
+                    <div class="uploadPic" ng-click="selectFile($event,'suspend')"><img ng-src="{{curModule.model.suspend_pic_src}}"></div>
+                    <input style="display:none" type="file" alias="suspend_pic_src" nv-file-select="" uploader="uploader" ng-model="suspend_pic_src" />
+                    <div class="PadPic">悬浮球图片
+                        <a ng-if="curModule.model.suspend_pic_src" ng-click="deleteImg('suspend_pic_src')"></a>
+                    </div>
+                </div>
+
+                <p class="upload-tit">上传导航层图片</p>
+                <div class="uploadPhone">
+                    <div class="uploadPic" ng-click="selectFile($event,'phone')"><img ng-src="{{curModule.model.phone_pic_src}}"></div>
+                    <input style="display:none" type="file" alias="phone_pic_src" nv-file-select="" uploader="uploader" ng-model="phone_pic_src" />
+                    <div class="PadPic">Phone图片
+                        <a ng-if="curModule.model.phone_pic_src" ng-click="deleteImg('phone_pic_src')"></a>
+                    </div>
+                </div>
+                <div class="uploadPad">
+                    <div class="uploadPic" ng-click="selectFile($event,'pad')"><img ng-src="{{curModule.model.pad_pic_src}}"></div>
+                    <input style="display:none" type="file" alias="pad_pic_src" nv-file-select="" uploader="uploader" ng-model="pad_pic_src" />
+                    <div class="PadPic">Pad图片
+                        <a ng-if="curModule.model.pad_pic_src" ng-click="deleteImg('pad_pic_src')"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="popAdminBtn">
+                <a class="popAdminBtn-Cancel" href="javascript:;" ng-click="cancelBlock()">关闭</a>
+            </div>
+        </div>
+        <!-- 悬浮球组件 end -->
+
+        <!-- 悬浮球组件 - 基本信息 start -->
+        <div ng-switch-when="suspendHotspot">
+            <div class="popAddTitle">悬浮球组件{{curBlock.type}} - {{options[curBlock.type-1].name}} - 编辑</div>
+            <div class="popPiczjEdite">
+                <label class="relative-label">
+                    <b>请输入跳转类型</b>
+                    <div ng-click="triggerHotspotType($event)" class="popAdminSelect popAdminSelectBatchEdite popAddpicEditeInput">
+                        {{options[curBlock.type-1].name}}<div class="popXlicon popXlicon_green"></div>
+                    </div>
+                    <div ng-show="isDropHotspotType" class="tablexlChecked tablexlChecked_BatchEdit tablexlChecked_BatchEditPic">
+                        <span ng-repeat="item in options" ng-click="curBlock.type = item.id">
+                            {{item.name}}
+                        </span>
+                    </div>
+                </label>
+
+                <div ng-switch="curBlock.type">
+                    <div ng-switch-when="1">
+                        <label>
+                            <b>请输入跳转URL</b>
+                            <input type="text" ng-model="curBlock.url" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl">
+                        </label>
+                        <label>
+                            <b>目标标题</b>
+                            <input type="text" ng-model="curBlock.title" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl">
+                        </label>
+                        <label>
+                            <div class="fcRadio">
+                                是否打开新窗口
+                                <label ng-click="curBlock.isBlank = 'true'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curBlock.isBlank == 'true'" type="radio"><span></span><b>是</b></label>
+                                <label ng-click="curBlock.isBlank = 'false'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curBlock.isBlank == 'false'" type="radio"><span></span><b>否</b></label>
+                            </div>
+                        </label>
+                        <!-- <label>
+                            <div class="fcRadio">
+                                是否切换链接
+                                <label class="lable-checked lable-checkedNewpageRadio"><input ng-model="curBlock.isSwitchUrl" ng-value="true"  type="radio"><span></span><b>是</b></label>
+                                <label class="lable-checked lable-checkedNewpageRadio"><input ng-model="curBlock.isSwitchUrl" ng-value="false" type="radio"><span></span><b>否</b></label>
+                            </div>
+                        </label>
+                        <div class="switchSuspendUrl" ng-show="curBlock.isSwitchUrl || curBlock.isSwitchUrl == 'true'">
+                            <label class="relative-label">
+                                开始切换时间:
+                                <div class="popAdminSelect popAdminSelectBatchEdite popXlicon_time" >
+                                    <input class="time-picker" ng-model="curModule.model.start_time" ui-time="global_start_time" ui-time-time="{'hour' : '10','minute' : '0','second' : '0'}" ui-min-range="global_end_time" ng-readonly="true"></input>
+                                    <div class="popXlicon"></div>
+                                </div>
+                            </label>
+                            <label>
+                                <b>请输入跳转URL</b>
+                                <input type="text" ng-model="curBlock.url" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl">
+                            </label>
+                            <label>
+                                <b>目标标题</b>
+                                <input type="text" ng-model="curBlock.title" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl">
+                            </label>
+                            <label>
+                                <div class="fcRadio">
+                                    是否打开新窗口
+                                    <label ng-click="curBlock.isBlank = 'true'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curBlock.isBlank == 'true'" type="radio"><span></span><b>是</b></label>
+                                    <label ng-click="curBlock.isBlank = 'false'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curBlock.isBlank == 'false'" type="radio"><span></span><b>否</b></label>
+                                </div>
+                            </label>
+                        </div> -->
+                    </div>
+                    <div ng-switch-when="2">
+
+                    </div>
+                    <div ng-switch-when="3">
+
+                    </div>
+                </div>
+            </div>
+            <div class="popAdminBtn popAdminBtnNewpagelast">
+                <a ng-click="cancelBlock()" class="popAdminBtn-Cancel popAdminBtn-CancelFloor" href="javascript:;">关闭</a>
+            </div>
+        </div>
+        <!-- 悬浮球组件 - 基本信息 end -->
+
+        <!-- 子频道组件 start -->
+        <div ng-switch-when="channel">
+            <div class="popAddTitle">子频道组件 编辑</div>
+            <div class="popAddFloorInput">
+                <label><input type="text" placeholder="请选择样式" ng-model="curModule.style_group"><a href="javascript:;" ng-click="popStyle()">浏览</a></label>
+            </div>
+            <div class="popPiczjEdite">
+                <label class="relative-label">
+                    <b>　　请选择频道</b>
+                    <div ng-click="triggerHotspotType($event)" class="popAdminSelect popAdminSelectBatchEdite popAddpicEditeInput">
+                        {{curModule.extend.selected.channel_name}}<div class="popXlicon popXlicon_green"></div>
+                    </div>
+                    <div ng-show="isDropHotspotType" class="tablexlChecked tablexlChecked_BatchEdit tablexlChecked_BatchEditPic">
+                        <span ng-repeat="item in options" ng-click="curModule.extend.selected = item">{{item.channel_name}}</span>
+                    </div>
+                </label>
+            </div>
+            <div class="popAdminBtn popAdminBtnNewpagelast">
+                <a ng-click="cancelBlock()" class="popAdminBtn-Cancel popAdminBtn-CancelFloor" href="javascript:;">关闭</a>
+            </div>
+        </div>
+        <!-- 子频道组件 end -->
+
+        <style type="text/css">
+            .upload-pic .uploadPhone{position: relative;}
+        </style>
+        <!-- 全局底色组件 start -->
+        <div ng-switch-when="allbackground">
+            <div class="popAddTitle">全局底色组件</div>
+            <div class="popPiczjEdite">
+                <label>
+                    <b>全局底色</b>
+                    <input maxlength="6" ng-model="curModule.model.bodycolor" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl" type="text">
+                </label>
+                <div class="upload-pic">
+                    <div class="uploadPhone">
+                        <div class="uploadPic" ng-click="selectFile($event,'brand_placehold')"><img ng-src="{{curModule.model.brand_placehold_pic_src}}"></div>
+                        <input style="display:none" type="file" alias="brand_placehold_pic_src" nv-file-select="" uploader="uploader" ng-model="brand_placehold_pic_src" />
+                        <div class="PadPic">
+                            档期商品占位图
+                            <a ng-if="curModule.model.brand_placehold_pic_src" ng-click="deleteImg('brand_placehold_pic_src')"></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="popAdminBtn">
+                <a class="popAdminBtn-Cancel" href="javascript:;" ng-click="cancelBlock()">关闭</a>
+                <!-- <a class="popAdminBtn-OK" href="javascript:;" ng-click="updateModule()">确定</a> -->
+            </div>
+        </div>
+        <!-- 全局底色组件 end -->
+
+        <!-- 富文本组件 start -->
+        <div ng-switch-when="editor">
+            <div class="popAddTitle">富文本组件</div>
+            <div class="popAddFloorInput">
+              <label><input type="text" placeholder="请选择样式" ng-model="curModule.style_group"><a href="javascript:;" ng-click="popStyle()">浏览</a></label>
+            </div>
+            <div class="popPiczjEdite popPiczjEditor">
+                <label>
+                    <b>背景颜色</b>
+                    <input maxlength="6" ng-model="curModule.model.bgcolor" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl" type="text">
+                </label>
+            </div>
+            <div class="popAdminBtn">
+                <a class="popAdminBtn-Cancel" href="javascript:;" ng-click="cancelBlock()">关闭</a>
+                <!-- <a class="popAdminBtn-OK" href="javascript:;" ng-click="updateModule()">确定</a> -->
+            </div>
+        </div>
+        <!-- 富文本组件 end -->
+
+        <!-- 自定义组件 start -->
+        <style>
+        .f-cl{zoom:1;}
+        .f-cl:after{content:'';display:block;clear:both;}
+        .f-fl{float:left;}
+        .f-fr{float:right;}
+
+        .m-configSign{padding:10px; }
+        .m-configSign .item{margin-top:10px;}
+        .m-configSign .item input,.m-configSign .item select{width:240px;height:30px;padding-left:10px;line-height:30px;border:none;outline:none; background-color:#f0edf0;}
+        .m-configSign .item textarea{width:240px;height:148px;padding-left:10px;line-height:30px;border:none;outline:none; background-color:#f0edf0;}
+        .m-configSign .item .label{width:110px;height:30px;line-height:30px;float:left;}
+        .m-configSign .item .img .item{ width: 130px; height: 160px;  }
+        .m-configSign .item .img .img-item{ position:relative; float: left; width: 30%; margin-right: 4px; margin-bottom:4px; }
+        .m-configSign .item .img .img-item .imgDel{ line-height: 10px; position:absolute; z-index: 3; right: -6px; top: -6px; width: 12px; height:12px; border:1px solid red; border-radius: 50%; color: red; background: #fff; }/*删除图片*/
+        .m-configSign .imgAdd{ position: relative;float: left;line-height: 14px;z-index: 3;right: -6px;top: 60px;width: 15px;height: 15px;border: 3px solid #60BAE9;border-radius: 50%;color: #60BAE9;background: #fff;}/*添加图片*/
+        .m-configSign .item .img .upload{ position: relative; padding-top: 100%; background: #fff; }
+        .m-configSign .item .img .upload img{ position: absolute; left: 0; top: 0; width: 100%; height: 100%; }
+        .m-configSign .item .img .label{ display: block; width: 100%; text-align: center; line-height: 30px; background: #000; color: #fff; }
+        .m-configSign .instruction{margin-top: -10px;margin-bottom: 10px;margin-left: 0px;word-break:break-all;width: 364px;}
+
+        </style>
+        <div ng-switch-when="custom_config">
+            <div class="popAddTitle" >自定义组件</div>
+            <div class="popAddFloorInput">
+              <label><input type="text" placeholder="请选择样式" ng-model="curModule.style_group"><a href="javascript:;" ng-click="popStyle()">浏览</a></label>
+            </div>
+            <div class="popPiczjEdite">
+                <!-- 运营界面 -->
+                <div class="m-configSign" >
+                    <!-- 使用说明 -->
+                    <p class="instruction" ng-if="curModule.model.instruction">{{curModule.model.instruction}}</p>
+
+                    <button ng-click="fnShowConfig()" style="display:none;">显示数据</button>
+                    <!-- curModule界定每一个自定义组件 -->
+                    <!-- 依赖选择 -->
+                    <span class="label"  ng-show="!!curModule.dep ? (curModule.dep.length !== 0 ? true : false) : false">选择类型</span>
+                    <!-- 依赖值根据数组，去重后repeat -->
+                    <select ng-model="curModule.selectDep" ng-click="setSetectDep(curModule.selectDep)" ng-show="!!curModule.dep ? (curModule.dep.length !== 0 ? true : false) : false">
+                        <option ng-repeat="option in curModule.dep track by $index" ng-model="curModule.selectDep"><span>{{option}}</span></option>
+                    </select>
+
+                    <div class="item" ng-repeat="data in curModule.source.custom_configs track by $index">
+                    <!-- 如果没有modelId则不显示 根据选择依赖值实现-->
+                    <div ng-switch="data.type" ng-if="showSelectDep(data,curModule.selectDep)">
+                    <!-- <div ng-switch="data.type" ng-if="data.id"> -->
+
+                        <!-- 文本 -->
+                        <div class="text" ng-switch-when="text">
+                            <span class="label" >{{data.des}}</span>
+                            <input type="text" ng-model="curModule.model[data.id]" placeholder="{{data.comment}}">
+                        </div>
+
+                        <!-- 文本框 -->
+                        <div class="text" ng-switch-when="textarea">
+                            <span class="label" >{{data.des}}</span>
+                            <textarea type="text" ng-model="curModule.model[data.id]" placeholder="{{data.comment}}"></textarea>
+                        </div>
+
+                        <!-- 图片 -->
+                        <div class="img f-cl" ng-switch-when="img">
+                            <div class="img-item" ng-repeat="imgDataItem in data.imgData track by $index " ng-if="imgDataItem.id">
+                                <!-- <div class="upload" ng-click="fnUploadImg(data.modelId);"> -->
+
+                                <!-- 旧方法置空 -->
+                                <!-- <span class="imgDel" ng-click="curModule.model[data.id][imgDataItem.id] = ' '">x</span> -->
+                                <span class="imgDel" ng-click="delImg($index, data.id, data.imgData, imgDataItem.id)" ng-if="data.imgData.length > 1">x</span>
+                                <div class="upload" ng-click="selectFile($event, data.id+'_'+imgDataItem.id);">
+                                    <img ng-src="{{curModule.model[data.id][imgDataItem.id]}}" >
+                                    <!-- <img ng-src="{{curModule.model[data.modelId+'_'+imgDataItem.id+'_pic_src']}}"> -->
+                                </div>
+                                <input type="file" ng-model="curModule.model[data.id]"  uploader="uploader" nv-file-select=""  style="display:none;">
+                                <span class="label" >{{imgDataItem.des}}</span>
+
+                                <!-- <input style="display:none" type="file" alias="phone_after_pic_src" nv-file-select="" uploader="uploader" ng-model="phone_after_pic_src" /> -->
+                            </div>
+
+                            <!-- 添加图片按钮 -->
+                            <span class="imgAdd" ng-click="addImg(data.imgData)">+</span>
+
+                        </div>
+
+                        <!-- 颜色 -->
+                         <div class="color" ng-switch-when="color">
+                            <span class="label" >{{data.des}}</span>
+                            <input type="text" ng-model="curModule.model[data.id]" >
+                        </div>
+
+                        <!-- 下拉bug-fix 改用ng-options,设定默认值-->
+                        <!--
+                        <div class="select" ng-switch-when="select">
+                            <span class="label" >{{data.des}}</span>
+                            <select ng-model="curModule.model[data.id]" ng-options = "option.val as option.des for option in data.options" >
+                            </select>
+                        </div>
+                        -->
+
+                        <div class="select" ng-switch-when="select">
+                            <span class="label" >{{data.des}}</span>
+                            <select ng-model="curModule.model[data.id]" ng-options="node.val as node.des for node in data.options"></select>
+                        </div>
+
+                        <!-- 时间 -->
+                        <div class="time" ng-switch-when="time">
+                            <span class="label" >{{data.des}}</span>
+                            <input type="text" ng-model="curModule.model[data.id]"  ui-time="global_start_time" ui-time-time="{'hour' : '10','minute' : '0','second' : '0'}" ui-max-range="global_end_time" ng-readonly="true" >
+                            <div class="popXlicon"></div>
+                        </div>
+
+                        <!-- 链接 -->
+                         <div class="link" ng-switch-when="link">
+                            <span class="label" >{{data.des}}</span>
+                            <input type="text" ng-model="curModule.model[data.id]" >
+                        </div>
+
+
+                    </div>
+
+
+                    </div>
+                </div>
+                <!-- 运营界面-end -->
+            </div>
+             <div class="popAdminBtn popAdminBtnNewpagelast">
+                <a ng-click="cancelBlock()" class="popAdminBtn-Cancel popAdminBtn-CancelFloor" href="javascript:;">关闭</a>
+            </div>
+        </div>
+        <!-- 自定义组件 end -->
+
+        <!-- 自定义组件 - 热区 start -->
+        <div ng-switch-when="custom_config_spot">
+            <div class="popAddTitle">图片组件 - {{optionsObj[curBlock.type]}} - 编辑</div>
+            <div class="popPiczjEdite">
+                <label class="relative-label">
+                    <b>请输入跳转类型</b>
+                    <div ng-click="triggerHotspotType($event)" class="popAdminSelect popAdminSelectBatchEdite popAddpicEditeInput">
+                        {{optionsObj[curBlock.type]}}<div class="popXlicon popXlicon_green"></div>
+                        <!-- {{options[curBlock.type-1].name}}<div class="popXlicon popXlicon_green"></div> -->
+                    </div>
+                    <div ng-show="isDropHotspotType" class="tablexlChecked tablexlChecked_BatchEdit tablexlChecked_BatchEditPic">
+                        <span ng-repeat="item in options" ng-click="curBlock.type = item.id">
+                            {{item.name}}
+                        </span>
+                    </div>
+                </label>
+                <div ng-switch="curBlock.type">
+                    <div ng-switch-when="1">
+                        <label>
+                            <b>请输入跳转URL</b>
+                            <input type="text" ng-model="curBlock.url" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl">
+                        </label>
+                        <label>
+                            <b>标题</b>
+                            <input type="text" ng-model="curBlock.title" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl">
+                        </label>
+                        <label>
+                            <div class="fcRadio">
+                                是否打开新窗口
+                                <label ng-click="curBlock.isBlank = 'true'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curBlock.isBlank == 'true'" type="radio"><span></span><b>是</b></label>
+                                <label ng-click="curBlock.isBlank = 'false'" class="lable-checked lable-checkedNewpageRadio"><input ng-checked="curBlock.isBlank == 'false'" type="radio"><span></span><b>否</b></label>
+                            </div>
+                        </label>
+                    </div>
+                    <div ng-switch-when="2">
+                        <label>
+                            <b>请输入档期ID</b>
+                            <input type="text" ng-model="curBlock.brand_id" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl">
+                        </label>
+                    </div>
+                    <div ng-switch-when="3">
+                        <label>
+                            <b>请输入档期ID</b>
+                            <input type="text" ng-model="curBlock.brand_id" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl">
+                        </label>
+                        <label>
+                            <b>请输入商品ID</b>
+                            <input type="text" ng-model="curBlock.product_id" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl">
+                        </label>
+                    </div>
+                    <div ng-switch-when="4">
+                        <label>
+                            <b>锚点点击跳转到</b>
+                            <input type="text" ng-model="curBlock.anchor" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl">
+                        </label>
+                    </div>
+                    <div ng-switch-when="5">
+                        <!-- <label>
+                            <b>返回首页</b>
+                            <input type="text" ng-model="curBlock.anchor" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl">
+                        </label> -->
+                    </div>
+                    <div ng-switch-default>
+                        <!-- 其它扩展 -->
+                    </div>
+                </div>
+
+            </div>
+            <div class="popAdminBtn popAdminBtnNewpagelast">
+                <a ng-click="updateBlock()" class="popAdminBtn-Cancel popAdminBtn-CancelFloor" href="javascript:;">关闭</a>
+            </div>
+        </div>
+        <!-- 自定义组件 - 热区 end -->
+
+        <!-- 视频组件 start -->
+        <style>
+
+        .video_box .uploadPhone{width:290px;}
+        .video_box .uploadPhone .PadPic{width:290px;margin-left: 0;padding-left:0;}
+        </style>
+        <div ng-switch-when="video" class="video_box">
+            <div class="popAddTitle">视频组件 编辑</div>
+            <div class="popAddFloorInput">
+                <label>
+                    <input type="text" placeholder="请选择样式" ng-model="curModule.style_group"><a href="javascript:;" ng-click="popStyle()">浏览</a>
+                </label>
+            </div>
+
+            <div class="popAddImg">
+                <div class="uploadPhone">
+                    <div class="uploadPic" title="不支持视频播放时显示的占位图片" ng-click="selectFile($event,'video_placehold')"><img ng-src="{{curModule.model.video_placehold_pic_src}}"></div>
+                    <input style="display:none" type="file" alias="video_placehold_pic_src" nv-file-select="" uploader="uploader" />
+                    <div class="PadPic" title="不支持视频播放时显示">占位图片(不支持视频播放时显示)
+                        <a ng-if="curModule.model.video_placehold_pic_src" ng-click="deleteImg('video_placehold_pic_src')"></a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="popPiczjEdite">
+                <label>
+                    <b>视频uuid</b>
+                    <input type="text" ng-model="curModule.model.video_uuid" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl">
+                </label>
+                <label>
+                    <b>视频vuid</b>
+                    <input type="text" ng-model="curModule.model.video_vuid" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl">
+                </label>
+
+                <!-- <label>
+                    <b>视频名称</b>
+                    <input type="text" ng-model="curModule.model.video_name" class="popPicInput popAddpicEditeInput popAddpicEditeInputUrl">
+                </label> -->
+            </div>
+
+            <div class="popAdminBtn">
+                <a class="popAdminBtn-Cancel" href="javascript:;" ng-click="cancelBlock()">关闭</a>
+            </div>
+
+
+        </div>
+        <!-- 视频组件 end -->
+
+
+    </div>
+</div>
+

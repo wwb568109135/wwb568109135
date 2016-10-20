@@ -1,0 +1,11 @@
+<div class="content04" ng-if="1 < pages.length">
+    <div class="fanye">
+        <p>共<span>{{range.total}}</span>条记录</p>
+        <a class="syyBtn" ng-class="{backBtnClick : pagination.current != 1}" ng-click="setCurrent(pagination.current - 1)">上一页</a>
+        <a class="page-no" ng-class="{fanyeChecked : pagination.current == pageNumber}" ng-repeat="pageNumber in pages track by $index" ng-click="setCurrent(pageNumber)">{{pageNumber}}</a>
+
+        <a class="nextBtn " ng-class="{nextBtnClick : pagination.current == pagination.last}" ng-click="setCurrent(pagination.current + 1)">下一页</a>
+        <p>跳转到 <input type="text" ng-model="pageRander">页</p>
+        <a class="goNext" ng-click="setCurrent(pageRander,this)">GO</a>
+    </div>
+</div>
