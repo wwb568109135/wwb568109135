@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>MZT系统-批量编辑-上传图片</title>
+
+<link href="css/style.css" rel="stylesheet" type="text/css">
+<style>
+html,body{background: #dedada;}
+
+
+.hide{display: none;}
+
+
+
+</style>
+</head>
+
+
+<body>
+<div class="wrapper">
+<section class="header">
+  <div class="logoWz">
+    <p>新MZT系统</p>
+  </div>
+  <div class="xsfw">
+    <span>显示范围</span>
+    <div class="xsfwXL">
+      <b>特卖会</b>
+      
+    </div>
+    
+  </div>
+  <div class="head_rt">
+    <img src="images/icon02.png"/>
+    <span><strong>系统管理</strong>Hello,<b class="nameDL">KIMI</b><b>|</b><a href="#">退出</a></span>
+  </div>
+</section>
+
+<section class="content">
+  <div class="content03 content_BatchEdit">
+    <div class="content_BatchEdit_top">
+      <h1>双11MZT活动</h1>
+      <a class="content_BatchEdit_top_btn01" href="javascript:;">取消</a>
+      <a class="content_BatchEdit_top_btn02" href="javascript:;">保存</a>
+    </div>
+    <div class="content_BatchEdit_01">
+      <label><b>MZT名称</b><input type="text"></label>
+      <label><b>标题名称</b><input type="text"></label>
+      <label>
+        <b>开始时间</b>
+        <div class="popAdminSelect popAdminSelectBatchEdite popXlicon_time">
+          2015-03-16 13:31:47<div class="popXlicon"></div>
+        </div>
+        <div class="tablexlChecked tablexlChecked_BatchEdit">
+            <span>iPhone</span>
+            <span>iPad</span>
+            <span>Android</span>
+            <span>WAP</span>
+        </div>
+      </label>
+      <label>
+        <b>结束时间</b>
+        <div class="popAdminSelect popAdminSelectBatchEdite">
+          选择时间<div class="popXlicon"></div>
+        </div>
+        <div class="tablexlChecked tablexlChecked_BatchEdit">
+            <span>iPhone</span>
+            <span>iPad</span>
+            <span>Android</span>
+            <span>WAP</span>
+        </div>
+      </label>
+      <label>
+        <b>用户类型</b>
+        <div class="popAdminSelect popAdminSelectBatchEdite">
+          下拉分类选择<div class="popXlicon popXlicon_green"></div>
+        </div>
+        <div class="tablexlChecked tablexlChecked_BatchEdit">
+            <span>iPhone</span>
+            <span>iPad</span>
+            <span>Android</span>
+            <span>WAP</span>
+        </div>
+      </label>
+      <label><b>MZT位置</b><input type="text"></label>
+    </div>
+    <div class="content_BatchEdit_02">
+      <div class="xianshiChecked">
+        <b>显示平台</b>
+        <label class="lable-checked"><input type="checkbox" checked/><span></span><b>全选</b></label>
+        <label class="lable-checked"><input type="checkbox"/><span></span><b>安卓</b></label>
+        <label class="lable-checked"><input type="checkbox"/><span></span><b>iPhone</b></label>
+        <label class="lable-checked"><input type="checkbox"/><span></span><b>iPad</b></label>
+        <label class="lable-checked"><input type="checkbox"/><span></span><b>WAP</b></label>
+      </div>
+    </div>
+    <div class="content_BatchEdit_02 content_BatchEdit_03">
+      <div class="xianshiChecked">
+        <b>插入频道</b>
+        <label class="lable-checked"><input type="checkbox" checked/><span></span><b>首页</b></label>
+        <label class="lable-checked"><input type="checkbox"/><span></span><b>亲子</b></label>
+        <label class="lable-checked"><input type="checkbox"/><span></span><b>美妆</b></label>
+        <label class="lable-checked"><input type="checkbox"/><span></span><b>居家</b></label>
+      </div>
+    </div>
+    <div class="content_BatchEdit_02 content_BatchEdit_04">
+      <div class="xianshiChecked">
+        <b class="xianshiChecked_b04">插入频道</b>
+        <table class="inko_BatchEdit">
+          <tbody>
+            <tr>
+              <th>手机档期图</th>
+              <th>iPad档期图</th>
+              <th class="inko_BatchEdit_time">开始时间</th>
+              <th class="inko_BatchEdit_time">结束时间</th>
+              <th>操作</th>
+            </tr>
+
+            <tr>
+              <td><img src="images/img_01.jpg"/><a class="inko_BatchEdit_close" href="javascript:;">x</a></td>
+              <td><img src="images/img_02.jpg"/><a class="inko_BatchEdit_close" href="javascript:;">x</a></td>
+              <td class="inko_BatchEdit_time_td">2015-03-17 13:31:47<a class="inko_BatchEdit_time_tdtime" href="javascript:;"></a></td>
+              <td class="inko_BatchEdit_time_td">2015-03-17 13:31:47<a class="inko_BatchEdit_time_tdtime" href="javascript:;"></a></td>
+              <td>默认<br>显示</td>
+            </tr>
+
+            <tr>
+              <td><a class="inko_BatchEdit_add" href="javascript:;">+</a></td>
+              <td><a class="inko_BatchEdit_add" href="javascript:;">+</a></td>
+              <td class="inko_BatchEdit_time_td">2015-03-17 13:31:47<a class="inko_BatchEdit_time_tdtime" href="javascript:;"></a></td>
+              <td class="inko_BatchEdit_time_td">2015-03-17 13:31:47<a class="inko_BatchEdit_time_tdtime" href="javascript:;"></a></td>
+              <td><a class="inko_BatchEdit_rubbish" href="javascript:;"></a></td>
+            </tr>
+          </tbody>
+        </table>
+        <a class="addDq_BatchEdit addDq_BatchEditUppic" href="javascript:;">+新增档期图</a>
+      </div>
+    </div>
+
+    <div class="content_BatchEdit_02 content_BatchEdit_05">
+      <div class="xianshiChecked">
+        <b class="content_BatchEdit_b05">显示版本号</b>
+        <div class="content_BatchEdit_05lb">
+          <b class="content_BatchEdit_05lbTitle">iPhone版本号</b>
+          <label class="lable-checked"><input type="checkbox" checked/><span></span><b>全选</b></label>
+          <label class="lable-checked"><input type="checkbox"/><span></span><b>2.10</b></label>
+          <label class="lable-checked"><input type="checkbox"/><span></span><b>2.11</b></label>
+          <label class="lable-checked"><input type="checkbox"/><span></span><b>2.10</b></label>
+          <label class="lable-checked"><input type="checkbox"/><span></span><b>2.11</b></label>
+        </div>
+        <div class="content_BatchEdit_05lb">
+          <b class="content_BatchEdit_05lbTitle">Android版本号</b>
+          <label class="lable-checked"><input type="checkbox" checked/><span></span><b>全选</b></label>
+          <label class="lable-checked"><input type="checkbox"/><span></span><b>2.10</b></label>
+          <label class="lable-checked"><input type="checkbox"/><span></span><b>2.11</b></label>
+          <label class="lable-checked"><input type="checkbox"/><span></span><b>2.10</b></label>
+          <label class="lable-checked"><input type="checkbox"/><span></span><b>2.11</b></label>
+        </div>
+        <div class="content_BatchEdit_05lb">
+          <b class="content_BatchEdit_05lbTitle">iPad版本号</b>
+          <label class="lable-checked"><input type="checkbox" checked/><span></span><b>全选</b></label>
+          <label class="lable-checked"><input type="checkbox"/><span></span><b>2.10</b></label>
+          <label class="lable-checked"><input type="checkbox"/><span></span><b>2.11</b></label>
+          <label class="lable-checked"><input type="checkbox"/><span></span><b>2.10</b></label>
+          <label class="lable-checked"><input type="checkbox"/><span></span><b>2.11</b></label>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+
+</section>
+
+<section class="footer">
+  <p>Design by mobile UED@kimi</p>
+
+</section>
+</body>
+</html>
+
+
+
+
+
