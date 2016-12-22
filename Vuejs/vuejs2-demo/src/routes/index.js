@@ -1,5 +1,12 @@
 
+// import index from "pages/index"
 const index = r => require(['pages/index'], r);
+
+
+// const goodIndex = r => require.ensure([], () => r(require('pages/good/index')), '/good')
+// const goodList = r => require.ensure([], () => r(require('pages/good/list')), '/list')
+// const goodDetail = r => require(['pages/good/detail'], r);
+
 
 
 const goodIndex = r => require(['pages/good/index'], r);
@@ -7,6 +14,7 @@ const goodList = r => require(['pages/good/list'], r);
 const goodDetail = r => require(['pages/good/detail'], r);
 
 const login = r => require(['components/common/login'], r);
+const wwb = r => require(['pages/wwb'], r);
 const notFound = r => require(['components/common/notfound'], r);
 
 
@@ -26,22 +34,22 @@ const hello = r => require(['components/hello'], r);
 // 根目录
 const rootPath = '';
 
-// import auth from '../util/auth'
+import auth from '../util/auth'
 
 function requireAuth( to,form ,next){
   console.log("requireAuth－入口-坚持登录的状态业务")
 
-  // if ( !auth.loggedIn() ) {
-  //   if ( false ){
-  //   console.log("没有登录，去登录")
-  //   next({
-  //     path: '/login',
-  //     query: { redirect: to.fullPath }
-  //   })
-  // } else {
-  //   console.log("登录了")
-  //   next()
-  // }
+  if ( !auth.loggedIn() ) {
+    // if ( 1 ){
+    console.log("没有登录，去登录")
+    next({
+      path: '/login',
+      query: { redirect: to.fullPath }
+    })
+  } else {
+    console.log("登录了")
+    next()
+  }  
 }
 
 // 页面路由
@@ -54,10 +62,10 @@ const routes = [
     //   name: 'hello'
     // }
   },
-  // {
-  //   path: '/wwb', 
-  //   component: Wwb
-  // },
+  {
+    path: '/wwb', 
+    component: wwb
+  },
   // {
   //   path: '/jquery1', 
   //   component: jquery1
@@ -81,24 +89,34 @@ const routes = [
   // },
   {
     path: '/good', component: goodIndex, 
-      children: [
-        // UserHome will be rendered inside User's <router-view>
-        // when /user/:id is matched
-        { path: '', component: notFound },
-				
-        // UserProfile will be rendered inside User's <router-view>
-        // when /user/:id/profile is matched
-        { path: 'list', component: goodList },
-
-        // UserPosts will be rendered inside User's <router-view>
-        // when /user/:id/posts is matched
-        { path: 'detail', component: goodDetail }
-      ]
   },
+  {
+    path: '/good/list/:id', component: goodList, 
+  },
+  {
+    path: '/good/detail/:id', component: goodDetail, 
+  },
+  // {
+  //   path: '/good', component: goodIndex, 
+  //     children: [
+  //       // UserHome will be rendered inside User's <router-view>
+  //       // when /user/:id is matched
+  //       // { path: '', component: notFound },
+				
+  //       // UserProfile will be rendered inside User's <router-view>
+  //       // when /user/:id/profile is matched
+  //       { path: 'list', component: goodList },
+
+  //       // UserPosts will be rendered inside User's <router-view>
+  //       // when /user/:id/posts is matched
+  //       { path: 'detail', component: goodDetail }
+  //     ]
+  // },
 ].map(route => {
   route.path = rootPath + route.path;
   return route;
 });
+
 
 // 404 页
 routes.push({path: '*', component: notFound, name: 'notFound'});

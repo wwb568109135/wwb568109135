@@ -8,6 +8,9 @@ var opn = require('opn')
 var proxyMiddleware = require('http-proxy-middleware')
 var webpackConfig = require('./webpack.dev.conf')
 
+var fs = require("fs")
+var argv = require('optimist').argv;
+
 // default port where dev server listens for incoming traffic
 var port = process.env.PORT || config.dev.port
 // Define HTTP proxies to your custom API backend
@@ -43,6 +46,23 @@ Object.keys(proxyTable).forEach(function (context) {
   app.use(proxyMiddleware(context, options))
 })
 
+// mock/proxy api requests---自定义
+var mockDir = path.resolve(__dirname, '../mock');
+(function setMock(mockDir) {
+  fs.readdirSync(mockDir).forEach(function (file) {
+    var filePath = path.resolve(mockDir, file);
+    var mock;
+    if (fs.statSync(filePath).isDirectory()) {
+      setMock(filePath);
+    }
+    else {
+      mock = require(filePath);
+      app.use(mock.api, argv.proxy ? proxyMiddleware({target: 'http://' + argv.proxy}) : mock.response);
+    }
+  });
+})(mockDir);;
+// mock/proxy api requests---自定义－结束
+
 // handle fallback for HTML5 history API
 app.use(require('connect-history-api-fallback')())
 
@@ -52,6 +72,7 @@ app.use(devMiddleware)
 // enable hot-reload and state-preserving
 // compilation error display
 app.use(hotMiddleware)
+
 
 // serve pure static assets
 var staticPath = path.posix.join(config.dev.assetsPublicPath, config.dev.assetsSubDirectory)
